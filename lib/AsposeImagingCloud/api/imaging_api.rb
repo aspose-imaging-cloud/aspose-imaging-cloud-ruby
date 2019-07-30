@@ -27,11 +27,18 @@
 require 'uri'
 
 module AsposeImagingCloud
+  # Aspose.Imaging Cloud API
   class ImagingApi
     attr_accessor :api_client
 
-    def initialize(api_client = ApiClient.default)
-      @api_client = api_client
+    # Initializes a new instance of the ImagingApi class.
+    # @param [String] app_key Key to access the server.
+    # @param [String] app_sid ID to access the server.
+    # @param [String] base_url Server URL.
+    # @param [String] api_version Api version.
+    # @param [Object] debug Debug switch [true, false].
+    def initialize(app_key = nil, app_sid = nil, base_url = 'api-qa.aspose.cloud', api_version = 'v3.0', debug = false)
+      @api_client = ApiClient.new(app_key, app_sid, base_url, api_version, debug)
     end
 
     # Add image and images features to search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -58,7 +65,6 @@ module AsposeImagingCloud
     def compare_images(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :POST, 'SearchResultsSet')
-      data
     end
 
     # Update parameters of existing TIFF image accordingly to fax parameters.
@@ -67,7 +73,6 @@ module AsposeImagingCloud
     def convert_tiff_to_fax(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'File')
-      data
     end
 
     # Copy file
@@ -94,7 +99,6 @@ module AsposeImagingCloud
     def create_cropped_image(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :POST, 'File')
-      data
     end
 
     # Create the folder
@@ -121,7 +125,6 @@ module AsposeImagingCloud
     def create_image_frame(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :POST, 'File')
-      data
     end
 
     # Create new search context.
@@ -130,7 +133,6 @@ module AsposeImagingCloud
     def create_image_search(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :POST, 'SearchContextStatus')
-      data
     end
 
     # Add tag and reference image to search context. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -148,7 +150,6 @@ module AsposeImagingCloud
     def create_modified_bmp(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :POST, 'File')
-      data
     end
 
     # Process existing EMF imaging using given parameters. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -157,7 +158,6 @@ module AsposeImagingCloud
     def create_modified_emf(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :POST, 'File')
-      data
     end
 
     # Update parameters of GIF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -166,7 +166,6 @@ module AsposeImagingCloud
     def create_modified_gif(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :POST, 'File')
-      data
     end
 
     # Update parameters of JPEG image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -175,7 +174,6 @@ module AsposeImagingCloud
     def create_modified_jpeg(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :POST, 'File')
-      data
     end
 
     # Update parameters of JPEG2000 image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -184,7 +182,6 @@ module AsposeImagingCloud
     def create_modified_jpeg2000(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :POST, 'File')
-      data
     end
 
     # Update parameters of PSD image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -193,7 +190,6 @@ module AsposeImagingCloud
     def create_modified_psd(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :POST, 'File')
-      data
     end
 
     # Update parameters of TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -202,7 +198,6 @@ module AsposeImagingCloud
     def create_modified_tiff(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :POST, 'File')
-      data
     end
 
     # Update parameters of WEBP image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -211,7 +206,6 @@ module AsposeImagingCloud
     def create_modified_web_p(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :POST, 'File')
-      data
     end
 
     # Process existing WMF image using given parameters. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -220,7 +214,6 @@ module AsposeImagingCloud
     def create_modified_wmf(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :POST, 'File')
-      data
     end
 
     # Resize an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -229,7 +222,6 @@ module AsposeImagingCloud
     def create_resized_image(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :POST, 'File')
-      data
     end
 
     # Rotate and/or flip an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -238,7 +230,6 @@ module AsposeImagingCloud
     def create_rotate_flipped_image(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :POST, 'File')
-      data
     end
 
     # Export existing image to another format. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.             
@@ -247,7 +238,6 @@ module AsposeImagingCloud
     def create_saved_image_as(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :POST, 'File')
-      data
     end
 
     # Perform scaling, cropping and flipping of an image in a single request. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -256,7 +246,6 @@ module AsposeImagingCloud
     def create_updated_image(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :POST, 'File')
-      data
     end
 
     # Crop an existing image.
@@ -265,7 +254,6 @@ module AsposeImagingCloud
     def crop_image(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'File')
-      data
     end
 
     # Delete file
@@ -319,7 +307,6 @@ module AsposeImagingCloud
     def download_file(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'File')
-      data
     end
 
     # Extract features from image without adding to search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -328,7 +315,6 @@ module AsposeImagingCloud
     def extract_image_features(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'ImageFeatures')
-      data
     end
 
     # Get separate frame properties of existing TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -337,7 +323,6 @@ module AsposeImagingCloud
     def extract_image_frame_properties(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :POST, 'ImagingResponse')
-      data
     end
 
     # Get properties of an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -346,7 +331,6 @@ module AsposeImagingCloud
     def extract_image_properties(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :POST, 'ImagingResponse')
-      data
     end
 
     # Find images duplicates.
@@ -355,7 +339,6 @@ module AsposeImagingCloud
     def find_image_duplicates(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'ImageDuplicatesSet')
-      data
     end
 
     # Find images by tags. Tags JSON string is passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -364,7 +347,6 @@ module AsposeImagingCloud
     def find_images_by_tags(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :POST, 'SearchResultsSet')
-      data
     end
 
     # Find similar images. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -373,7 +355,6 @@ module AsposeImagingCloud
     def find_similar_images(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'SearchResultsSet')
-      data
     end
 
     # Get disc usage
@@ -382,7 +363,6 @@ module AsposeImagingCloud
     def get_disc_usage(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'DiscUsage')
-      data
     end
 
     # Get file versions
@@ -391,7 +371,6 @@ module AsposeImagingCloud
     def get_file_versions(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'FileVersions')
-      data
     end
 
     # Get all files and folders within a folder
@@ -400,7 +379,6 @@ module AsposeImagingCloud
     def get_files_list(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'FilesList')
-      data
     end
 
     # Gets image features from search context.
@@ -409,7 +387,6 @@ module AsposeImagingCloud
     def get_image_features(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'ImageFeatures')
-      data
     end
 
     # Get separate frame from existing TIFF image.
@@ -418,7 +395,6 @@ module AsposeImagingCloud
     def get_image_frame(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'File')
-      data
     end
 
     # Get separate frame properties of existing TIFF image.
@@ -427,7 +403,6 @@ module AsposeImagingCloud
     def get_image_frame_properties(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'ImagingResponse')
-      data
     end
 
     # Get properties of an image.
@@ -436,7 +411,6 @@ module AsposeImagingCloud
     def get_image_properties(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'ImagingResponse')
-      data
     end
 
     # Gets the search context status.
@@ -445,7 +419,6 @@ module AsposeImagingCloud
     def get_image_search_status(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'SearchContextStatus')
-      data
     end
 
     # Get image from search context
@@ -454,7 +427,6 @@ module AsposeImagingCloud
     def get_search_image(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'File')
-      data
     end
 
     # Update parameters of existing BMP image.
@@ -463,7 +435,6 @@ module AsposeImagingCloud
     def modify_bmp(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'File')
-      data
     end
 
     # Process existing EMF imaging using given parameters.
@@ -472,7 +443,6 @@ module AsposeImagingCloud
     def modify_emf(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'File')
-      data
     end
 
     # Update parameters of existing GIF image.
@@ -481,7 +451,6 @@ module AsposeImagingCloud
     def modify_gif(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'File')
-      data
     end
 
     # Update parameters of existing JPEG image.
@@ -490,7 +459,6 @@ module AsposeImagingCloud
     def modify_jpeg(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'File')
-      data
     end
 
     # Update parameters of existing JPEG2000 image.
@@ -499,7 +467,6 @@ module AsposeImagingCloud
     def modify_jpeg2000(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'File')
-      data
     end
 
     # Update parameters of existing PSD image.
@@ -508,7 +475,6 @@ module AsposeImagingCloud
     def modify_psd(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'File')
-      data
     end
 
     # Update parameters of existing TIFF image.
@@ -517,7 +483,6 @@ module AsposeImagingCloud
     def modify_tiff(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'File')
-      data
     end
 
     # Update parameters of existing WEBP image.
@@ -526,7 +491,6 @@ module AsposeImagingCloud
     def modify_web_p(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'File')
-      data
     end
 
     # Process existing WMF image using given parameters.
@@ -535,7 +499,6 @@ module AsposeImagingCloud
     def modify_wmf(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'File')
-      data
     end
 
     # Move file
@@ -562,7 +525,6 @@ module AsposeImagingCloud
     def object_exists(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'ObjectExist')
-      data
     end
 
     # Resize an existing image.
@@ -571,7 +533,6 @@ module AsposeImagingCloud
     def resize_image(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'File')
-      data
     end
 
     # Rotate and/or flip an existing image.
@@ -580,7 +541,6 @@ module AsposeImagingCloud
     def rotate_flip_image(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'File')
-      data
     end
 
     # Export existing image to another format.
@@ -589,7 +549,6 @@ module AsposeImagingCloud
     def save_image_as(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'File')
-      data
     end
 
     # Check if storage exists
@@ -598,7 +557,6 @@ module AsposeImagingCloud
     def storage_exists(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'StorageExist')
-      data
     end
 
     # Perform scaling, cropping and flipping of an existing image in a single request.
@@ -607,7 +565,6 @@ module AsposeImagingCloud
     def update_image(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'File')
-      data
     end
 
     # Update images features in search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -634,20 +591,60 @@ module AsposeImagingCloud
     def upload_file(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :PUT, 'FilesUploadResult')
-      data
     end
 
     private
 
     def make_request(http_request, method, return_type)
-      @api_client.call_api(method: method,
-                           path: http_request.resource_path,
-                           header_params: http_request.header_params,
-                           query_params: http_request.query_params,
-                           form_params: http_request.form_params,
-                           body: http_request.body,
-                           auth_names: http_request.auth_names,
-                           return_type: return_type)
+      call_api(http_request, method, return_type)
+    rescue ApiError => e
+      if e.code.equal? 401
+        request_token
+        return call_api(http_request, method, return_type)
+      end
+      raise
+
+    end
+
+    def call_api(http_request, method, return_type)
+      response = @api_client.call_api(method,
+                                      http_request.resource_path,
+                                      header_params: http_request.header_params,
+                                      query_params: http_request.query_params,
+                                      form_params: http_request.form_params,
+                                      body: http_request.body,
+                                      auth_names: http_request.auth_names,
+                                      return_type: return_type)
+      response[0]
+    end
+
+    def request_token
+      config = @api_client.config
+      request_url = '/connect/token'
+      form_params =
+        {
+          'grant_type': 'client_credentials',
+          'client_id': config.api_key[:app_sid],
+          'client_secret': config.api_key[:api_key]
+        }
+
+      header_params =
+        {
+          'Accept' => 'application/json',
+          'Content-Type' =>'application/x-www-form-urlencoded'
+        }
+
+      base_path = @api_client.config.base_path
+      @api_client.config.base_path = ''
+
+      data = @api_client.call_api(:POST, request_url,
+                                  header_params: header_params,
+                                  form_params: form_params,
+                                  return_type: 'Object')
+      access_token = data[0]['access_token'.to_sym]
+
+      @api_client.config.base_path = base_path
+      @api_client.config.access_token = access_token
     end
   end
 end
