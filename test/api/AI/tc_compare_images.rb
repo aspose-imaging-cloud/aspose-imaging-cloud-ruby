@@ -29,9 +29,12 @@ require_relative './ai_api_tester'
 
 module AsposeImagingCloudTests
   class TestCompareImages < AiApiTester
-    @comparable_image = 'ComparableImage.jpg'
-    @comparing_image_similar_less_15 = 'ComparingImageSimilar15.jpg'
-    @comparing_image_similar_more_75 = 'ComparingImageSimilar75.jpg'
+    def setup
+      super
+      @comparable_image = 'ComparableImage.jpg'
+      @comparing_image_similar_less_15 = 'ComparingImageSimilar15.jpg'
+      @comparing_image_similar_more_75 = 'ComparingImageSimilar75.jpg'
+    end
 
     def test_compare_two_images_in_search_context
       test = lambda do
@@ -39,7 +42,7 @@ module AsposeImagingCloudTests
         add_image_features_to_search_context(image1)
         image2 = get_storage_path(@comparing_image_similar_more_75)
         add_image_features_to_search_context(image2)
-        response = imaging_api.compare_images(AsposeImagingCloud::CompareImagesRequest(search_context_id, image_id1: image1, image_id2: image2, storage: test_storage))
+        response = imaging_api.compare_images(AsposeImagingCloud::CompareImagesRequest.new(search_context_id, image1, nil, image2, nil, test_storage))
         assert_equal(1, response.results.size)
         assert(response.results[0].similarity >= 70)
       end
@@ -52,9 +55,9 @@ module AsposeImagingCloudTests
         image = get_storage_path(@comparable_image)
         add_image_features_to_search_context(image)
         storage_path = (@original_data_folder + '/') + @comparing_image_similar_less_15
-        image_stream = imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest(storage_path, test_storage))
+        image_stream = imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new(storage_path, test_storage))
         assert_not_nil(image_stream)
-        response = imaging_api.compare_images(AsposeImagingCloud::CompareImagesRequest(search_context_id, image_id1: image, image_data: image_stream, storage: test_storage))
+        response = imaging_api.compare_images(AsposeImagingCloud::CompareImagesRequest.new(search_context_id, image, image_stream, nil, nil, test_storage))
         assert_equal(1, response.results.size)
         assert(response.results[0].similarity <= 15)
       end

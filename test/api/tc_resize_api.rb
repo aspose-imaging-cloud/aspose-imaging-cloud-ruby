@@ -32,14 +32,13 @@ module AsposeImagingCloudTests
     #  Class for testing ResizeAPI
 
     #   Test resize_image
-    (@extended_test ? ['.jpg'] : ['.jpg', '.bmp', '.dicom', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp']).each do |format_extension|
+    (@extended_test ? ['.jpg', '.bmp', '.dicom', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp'] : ['.jpg']).each do |format_extension|
       define_method("test_resize_image_format_extension_#{format_extension}") do
         new_width = 100
         new_height = 150
         folder = @temp_folder
         storage = @test_storage
         formats_to_export = @basic_export_formats
-
 
         properties_tester = lambda do |_original_properties, result_properties, _result_stream|
           assert_equal(new_width, result_properties.width)
@@ -62,7 +61,7 @@ module AsposeImagingCloudTests
     end
 
     #  Test create_resized_image
-    (@extended_test ? ['.jpg'] : ['.jpg', '.bmp', '.dicom', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp']).each do |format_extension|
+    (@extended_test ? ['.jpg', '.bmp', '.dicom', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp'] : ['.jpg']).each do |format_extension|
       [true, false].each do |save_result_to_storage|
         define_method("test_create_resized_image_save_to_storage_#{save_result_to_storage}_format_extension_#{format_extension}") do
           new_width = 100
@@ -71,22 +70,23 @@ module AsposeImagingCloudTests
           storage = @test_storage
           formats_to_export = @basic_export_formats
 
-          request_invoker = lambda do |input_stream, out_path|
-            return imaging_api.create_resized_image(AsposeImagingCloud::CreateResizedImageRequest.new(input_stream, format, new_width, new_height, out_path, storage))
-          end
-
           properties_tester = lambda do |_original_properties, result_properties, _result_stream|
             assert_equal(new_width, result_properties.width)
             assert_equal(new_height, result_properties.height)
           end
 
           @input_test_files.each do |input_file|
-            next if is_bool(!input_file.name.to_s.end_with?(format_extension))
+            next unless input_file.name.to_s.end_with?(format_extension)
 
             name = input_file.name
             formats_to_export.each do |format|
+              request_invoker = lambda do |input_stream, out_path|
+                return imaging_api.create_resized_image(AsposeImagingCloud::CreateResizedImageRequest.new(input_stream, format, new_width, new_height, out_path, storage))
+              end
+
               out_name = "#{name}_crop.#{format}"
-              post_request_tester('CreateResizedImageTest', save_result_to_storage, "Input image: #{name}; Output format: #{format}; New width: #{new_width}; New height: #{new_height};", name, out_name, request_invoker, properties_tester, folder, storage)            end
+              post_request_tester('CreateResizedImageTest', save_result_to_storage, "Input image: #{name}; Output format: #{format}; New width: #{new_width}; New height: #{new_height};", name, out_name, request_invoker, properties_tester, folder, storage)
+            end
           end
         end
       end

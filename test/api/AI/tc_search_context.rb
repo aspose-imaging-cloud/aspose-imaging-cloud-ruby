@@ -25,12 +25,15 @@
 #  </summary>
 #  ----------------------------------------------------------------------------
 
-require_relative '../../api_tester'
+require_relative './ai_api_tester'
 
 module AsposeImagingCloudTests
   class TestSearchContext < AiApiTester
-    @small_test_image = 'ComparableImage.jpg'
-    @test_image = 'ComparingImageSimilar15.jpg'
+    def setup
+      super
+      @small_test_image = 'ComparableImage.jpg'
+      @test_image = 'ComparingImageSimilar15.jpg'
+    end
 
     def test_create_search_context
       AiApiTester.run_test_with_logging('CreateSearchContextTest', lambda do
@@ -42,15 +45,15 @@ module AsposeImagingCloudTests
       test = lambda do
         delete_image_search(search_context_id)
         assert_raise AsposeImagingCloud::ApiError do
-          imaging_api.get_image_search_status(AsposeImagingCloud::GetImageSearchStatusRequest(search_context_id, storage: test_storage))
+          imaging_api.get_image_search_status(AsposeImagingCloud::GetImageSearchStatusRequest.new(search_context_id, nil, test_storage))
         end
       end
 
-      run_test_with_logging('DeleteImageSearchTest', test)
+      AiApiTester.run_test_with_logging('DeleteImageSearchTest', test)
     end
 
     def test_add_image
-      run_test_with_logging('AddImageTest', -> { add_image(@test_image) })
+      AiApiTester.run_test_with_logging('AddImageTest', -> { add_image(@test_image) })
     end
 
     def test_delete_image
@@ -58,11 +61,13 @@ module AsposeImagingCloudTests
         image = @test_image
         add_image(image)
         dest_server_path = (temp_folder + '/') + image
-        imaging_api.delete_image_search(AsposeImagingCloud::DeleteSearchImageRequest(search_context_id, dest_server_path, storage: test_storage))
-        assert_raise AsposeImagingCloud::ApiError imaging_api.get_search_image(AsposeImagingCloud::GetSearchImageRequest(search_context_id, dest_server_path, storage: test_storage))
+        imaging_api.delete_image_search(AsposeImagingCloud::DeleteSearchImageRequest.new(search_context_id, dest_server_path, nil, test_storage))
+        assert_raise AsposeImagingCloud::ApiError do
+          imaging_api.get_search_image(AsposeImagingCloud::GetSearchImageRequest.new(search_context_id, dest_server_path, nil, test_storage))
+        end
       end
 
-      run_test_with_logging('DeleteImageTest', test)
+      AiApiTester.run_test_with_logging('DeleteImageTest', test)
     end
 
     def test_get_image
@@ -72,7 +77,7 @@ module AsposeImagingCloudTests
         response_file = get_image(image)
         assert_operator response_file.size, :>, 50_000
       end
-      run_test_with_logging('GetImageTest', test)
+      AiApiTester.run_test_with_logging('GetImageTest', test)
     end
 
     def test_update_image
@@ -84,14 +89,14 @@ module AsposeImagingCloudTests
         image = @small_test_image
         dest_server_path = (temp_folder + '/') + image
         storage_path = (original_data_folder + '/') + image
-        image_stream = imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest(storage_path, test_storage))
+        image_stream = imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new(storage_path, test_storage))
         assert_not_nil(image_stream)
-        imaging_api.update_search_image(AsposeImagingCloud::UpdateSearchImageRequest(search_context_id, dest_server_path, image_stream, storage: test_storage))
+        imaging_api.update_search_image(AsposeImagingCloud::UpdateSearchImageRequest.new(search_context_id, dest_server_path, image_stream, nil, test_storage))
         response_file = get_image(image)
         assert_operator response_file.size, :<, 40_000
       end
 
-      run_test_with_logging('UpdateImageTest', test)
+      AiApiTester.run_test_with_logging('UpdateImageTest', test)
     end
 
     def test_extract_image_features
@@ -99,28 +104,29 @@ module AsposeImagingCloudTests
         image = @test_image
         add_image(image)
         dest_server_path = (temp_folder + '/') + image
-        response = imaging_api.extract_image_features(AsposeImagingCloud::ExtractImageFeaturesRequest(search_context_id, dest_server_path, storage: test_storage))
+        response = imaging_api.extract_image_features(AsposeImagingCloud::ExtractImageFeaturesRequest.new(search_context_id, dest_server_path, nil, nil, test_storage))
         assert(response.image_id.include?(image))
         assert_operator response.features.size, :>, 0
       end
 
-      run_test_with_logging('ExtractImageFeaturesTest', test)
+      AiApiTester.run_test_with_logging('ExtractImageFeaturesTest', test)
     end
 
     def test_extract_and_add_image_features
-      run_test_with_logging('ExtractAndAddImageFeaturesTest', -> { add_image_features(@test_image) })
+      AiApiTester.run_test_with_logging('ExtractAndAddImageFeaturesTest', -> { add_image_features(@test_image) })
     end
 
     def test_extract_and_add_image_features_from_folder_test
+      omit('IMAGINGNET-107')
       test = lambda do
-        imaging_api.create_image_features(AsposeImagingCloud::CreateImageFeaturesRequest(search_context_id, images_folder: original_data_folder + '/FindSimilar', storage: test_storage))
-        wait_timeout.call
-        response = imaging_api.get_image_features(AsposeImagingCloud::GetImageFeaturesRequest(search_context_id, original_data_folder + '/FindSimilar/3.jpg', storage: test_storage))
+        imaging_api.create_image_features(AsposeImagingCloud::CreateImageFeaturesRequest.new(search_context_id, nil, nil, original_data_folder + '/FindSimilar', nil, test_storage))
+        sleep(wait_timeout)
+        response = imaging_api.get_image_features(AsposeImagingCloud::GetImageFeaturesRequest.new(search_context_id, original_data_folder + '/FindSimilar/3.jpg', nil, test_storage))
         assert(response.image_id.include?('3.jpg'))
         assert_operator response.features.size, :>, 0
       end
 
-      run_test_with_logging('ExtractAndAddImageFeaturesFromFolderTest', test)
+      AiApiTester.run_test_with_logging('ExtractAndAddImageFeaturesFromFolderTest', test)
     end
 
     def test_get_image_feature
@@ -131,7 +137,7 @@ module AsposeImagingCloudTests
         assert_operator response.features.size, :>, 0
       end
 
-      run_test_with_logging('GetImageFeaturesTest', test)
+      AiApiTester.run_test_with_logging('GetImageFeaturesTest', test)
     end
 
     def test_delete_image_features
@@ -139,11 +145,13 @@ module AsposeImagingCloudTests
         image = @test_image
         add_image_features(image)
         dest_server_path = (temp_folder + '/') + image
-        imaging_api.delete_image_search(AsposeImagingCloud::DeleteSearchImageRequest(search_context_id, dest_server_path, storage: test_storage))
-        assert_raise AsposeImagingCloud::ApiError imaging_api.get_search_image(AsposeImagingCloud::GetSearchImageRequest(search_context_id, dest_server_path, storage: test_storage))
+        imaging_api.delete_image_search(AsposeImagingCloud::DeleteSearchImageRequest.new(search_context_id, dest_server_path, nil, test_storage))
+        assert_raise AsposeImagingCloud::ApiError do
+          imaging_api.get_search_image(AsposeImagingCloud::GetSearchImageRequest.new(search_context_id, dest_server_path, nil, test_storage))
+        end
       end
 
-      run_test_with_logging('DeleteImageFeaturesTest', test)
+      AiApiTester.run_test_with_logging('DeleteImageFeaturesTest', test)
     end
 
     def test_update_image_features
@@ -155,15 +163,15 @@ module AsposeImagingCloudTests
         features_length = response.features.size
         dest_server_path = (original_data_folder + '/') + image
         storage_path = (original_data_folder + '/') + @small_test_image
-        image_stream = imaging_api.download_file(DownloadFileRequest(storage_path, test_storage))
+        image_stream = imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new(storage_path, test_storage))
         assert_not_nil(image_stream)
-        imaging_api.update_image_features(UpdateImageFeaturesRequest(search_context_id, dest_server_path, image_stream, storage: test_storage))
+        imaging_api.update_image_features(AsposeImagingCloud::UpdateImageFeaturesRequest.new(search_context_id, dest_server_path, image_stream, nil, test_storage))
         response = get_image_features(image)
         assert(response.image_id.include?(@test_image))
         assert_not_equal(features_length, response.features.size)
       end
 
-      run_test_with_logging('ExtractImageFeaturesTest', test)
+      AiApiTester.run_test_with_logging('ExtractImageFeaturesTest', test)
     end
 
     private
@@ -171,27 +179,27 @@ module AsposeImagingCloudTests
     def add_image(image)
       dest_server_path = (temp_folder + '/') + image
       storage_path = (original_data_folder + '/') + image
-      image_stream = imaging_api.download_file(DownloadFileRequest(storage_path, test_storage))
+      image_stream = File.open(imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new(storage_path, test_storage)))
       assert_not_nil(image_stream)
-      imaging_api.add_search_image(AddSearchImageRequest(search_context_id, dest_server_path, image_stream, storage: test_storage))
-      exist_response = imaging_api.object_exists(ObjectExistsRequest(dest_server_path, test_storage))
+      imaging_api.add_search_image(AsposeImagingCloud::AddSearchImageRequest.new(search_context_id, dest_server_path, image_stream, nil, test_storage))
+      exist_response = imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(dest_server_path, test_storage))
       assert_not_nil(exist_response)
       assert(exist_response.exists)
     end
 
     def get_image(image)
       dest_server_path = (temp_folder + '/') + image
-      imaging_api.get_search_image(GetSearchImageRequest(search_context_id, dest_server_path, storage: test_storage))
+      imaging_api.get_search_image(AsposeImagingCloud::GetSearchImageRequest.new(search_context_id, dest_server_path, nil, test_storage))
     end
 
     def add_image_features(image)
       dest_server_path = (original_data_folder + '/') + image
-      imaging_api.create_image_features(CreateImageFeaturesRequest(search_context_id, image_id: dest_server_path, storage: test_storage))
+      imaging_api.create_image_features(AsposeImagingCloud::CreateImageFeaturesRequest.new(search_context_id, nil, dest_server_path, nil, nil, test_storage))
     end
 
     def get_image_features(image)
       dest_server_path = (original_data_folder + '/') + image
-      imaging_api.get_image_features(GetImageFeaturesRequest(search_context_id, image_id: dest_server_path, storage: test_storage))
+      imaging_api.get_image_features(AsposeImagingCloud::GetImageFeaturesRequest.new(search_context_id, dest_server_path, nil, test_storage))
     end
   end
 end

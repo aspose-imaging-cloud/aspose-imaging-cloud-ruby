@@ -63,7 +63,7 @@ module AsposeImagingCloudTests
         assert_equal(rect_width, result_properties.height)
       end
 
-      get_request_tester('GetImageSingleFrameTest', "Input image: #{name}; Frame ID: #{frame_id}; New width: #{new_width}; New height: #{new_height}; Rotate/flip method: #{rotate_flip_method}; Save other frames: #{save_other_frames}; X: #{x}; Y: #{y}; Rect width: #{rect_width}; Rect height: #{rh}", name, request_invoker, properties_tester, folder, storage)
+      get_request_tester('GetImageSingleFrameTest', "Input image: #{name}; Frame ID: #{frame_id}; New width: #{new_width}; New height: #{new_height}; Rotate/flip method: #{rotate_flip_method}; Save other frames: #{save_other_frames}; X: #{x}; Y: #{y}; Rect width: #{rect_width}; Rect height: #{rect_height}", name, request_invoker, properties_tester, folder, storage)
     end
 
     def test_get_image_all_frames

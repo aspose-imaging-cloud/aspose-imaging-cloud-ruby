@@ -320,7 +320,7 @@ module AsposeImagingCloudTests
 
         assert(!imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists)
 
-        original_file = imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new((original_data_folder + '/') + file, test_storage))
+        original_file = File.open(imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new((original_data_folder + '/') + file, test_storage)))
         result = imaging_api.upload_file(AsposeImagingCloud::UploadFileRequest.new((folder + '/') + file, original_file, test_storage))
         assert_not_nil(result)
         assert(!result.errors || result.errors.empty?)
@@ -346,8 +346,8 @@ module AsposeImagingCloudTests
             assert_equal(original_string.size, copied_string.size)
             assert_equal(original_string.size, original_file_info.size)
             assert_equal(original_string, copied_string)
-            assert_equal(original_string, original_file_info.path.chomp('/').reverse.chomp('/'))
-            assert_equal(original_string.gsub(original_data_folder, folder), uploaded_file_info.path.chomp('/').reverse.chomp('/'))
+            assert_equal(original_string, original_file_info.path.chomp('/').reverse.chomp('/').reverse)
+            assert_equal(original_string.gsub(original_data_folder, folder), uploaded_file_info.path.chomp('/').reverse.chomp('/').reverse)
           end
         end
       ensure

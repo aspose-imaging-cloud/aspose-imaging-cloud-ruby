@@ -57,7 +57,7 @@ module AsposeImagingCloudTests
         assert_not_same(comment, original_properties.jpeg2000_properties.comments[0])
       end
 
-      get_request_tester("ModifyJpeg2000Test', 'Input image: #{name}; Comment: #{comment}; Codec: #{codec}", name, request_invoker, properties_tester, folder, storage)
+      get_request_tester('ModifyJpeg2000Test', "Input image: #{name}; Comment: #{comment}; Codec: #{codec}", name, request_invoker, properties_tester, folder, storage)
     end
 
     #  Test create_modified_jpeg2000

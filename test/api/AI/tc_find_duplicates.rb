@@ -25,13 +25,16 @@
 #  </summary>
 #  ----------------------------------------------------------------------------
 
-require_relative '../../api_tester'
+require_relative './ai_api_tester'
 
 module AsposeImagingCloudTests
   class TestFindDuplicates < AiApiTester
-    @comparable_image = 'ComparableImage.jpg'
-    @comparing_image_similar_less_15 = 'ComparingImageSimilar15.jpg'
-    @comparing_image_similar_more_75 = 'ComparingImageSimilar75.jpg'
+    def setup
+      super
+      @comparable_image = 'ComparableImage.jpg'
+      @comparing_image_similar_less_15 = 'ComparingImageSimilar15.jpg'
+      @comparing_image_similar_more_75 = 'ComparingImageSimilar75.jpg'
+    end
 
     def test_find_duplicates
       test = lambda do
@@ -42,7 +45,7 @@ module AsposeImagingCloudTests
         add_image_features_to_search_context(image)
         image = get_storage_path(@comparing_image_similar_more_75)
         add_image_features_to_search_context(image)
-        response = imaging_api.find_image_duplicates(AsposeImagingCloud::FindImageDuplicatesRequest(search_context_id, similarity_threshold: 80, storage: test_storage))
+        response = imaging_api.find_image_duplicates(AsposeImagingCloud::FindImageDuplicatesRequest.new(search_context_id, 80.0, nil, test_storage))
         assert_equal(1, response.duplicates.size)
       end
 

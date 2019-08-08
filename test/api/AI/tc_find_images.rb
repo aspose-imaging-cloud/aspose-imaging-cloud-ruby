@@ -25,18 +25,22 @@
 #  </summary>
 #  ----------------------------------------------------------------------------
 
-require_relative '../../api_tester'
+require 'json'
+require_relative './ai_api_tester'
 
 module AsposeImagingCloudTests
   class TestFindImages < AiApiTester
-    @image_to_find = '4.jpg'
-    @image_to_find_by_tag = 'ComparingImageSimilar75.jpg'
+    def setup
+      super
+      @image_to_find = '4.jpg'
+      @image_to_find_by_tag = 'ComparingImageSimilar75.jpg'
+    end
 
     def test_find_similar
       test = lambda do
         add_image_features_to_search_context(original_data_folder + '/FindSimilar', is_folder: true)
         find_image_id = (original_data_folder + '/FindSimilar/') + @image_to_find
-        response = imaging_api.find_similar_images(AsposeImagingCloud::FindSimilarImagesRequest(search_context_id, similarity_threshold: 3, max_count: 3, image_id: find_image_id, storage: test_storage))
+        response = imaging_api.find_similar_images(AsposeImagingCloud::FindSimilarImagesRequest.new(search_context_id, 3.0, 3, nil, find_image_id, nil, test_storage))
         assert(response.results.size >= 1)
       end
 
@@ -48,11 +52,12 @@ module AsposeImagingCloudTests
         add_image_features_to_search_context(original_data_folder + '/FindSimilar', is_folder: true)
         tag = 'TestTag'
         storage_path = (original_data_folder + '/') + @image_to_find_by_tag
-        tag_image_stream = imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest(storage_path, test_storage))
+        tag_image_stream = File.open(imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new(storage_path, test_storage)))
         assert_not_nil(tag_image_stream)
-        imaging_api.create_image_tag(AsposeImagingCloud::CreateImageTagRequest(tag_image_stream, search_context_id, tag, storage: test_storage))
-        response = imaging_api.find_images_by_tags(AsposeImagingCloud::FindImagesByTagsRequest([tag], search_context_id, similarity_threshold: 60, max_count: 5, storage: test_storage))
-        assert_equal(1, response.result.size)
+        imaging_api.create_image_tag(AsposeImagingCloud::CreateImageTagRequest.new(tag_image_stream, search_context_id, tag, nil, test_storage))
+        tags = JSON.dump([tag])
+        response = imaging_api.find_images_by_tags(AsposeImagingCloud::FindImagesByTagsRequest.new(tags, search_context_id, 60.0,  5, nil, test_storage))
+        assert_equal(1, response.results.size)
         assert(response.results[0].image_id.include?('2.jpg'))
       end
 

@@ -267,7 +267,7 @@ module AsposeImagingCloudTests
     end
 
     def obtain_post_response(input_path, out_path, storage, request_invoker)
-      res = imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new(input_path, storage))
+      res = File.open(imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new(input_path, storage)))
 
       response = request_invoker.call(res, out_path)
 

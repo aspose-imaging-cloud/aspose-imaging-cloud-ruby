@@ -34,7 +34,7 @@ module AsposeImagingCloudTests
     #     Performs SaveAs (export to another format) operation test with GET
     #     method, taking input data from storage
     #
-    (@extended_test ? ['.jpg'] : ['.jpg', '.bmp', '.dicom', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp']).each do |format_extension|
+    (@extended_test ? ['.jpg', '.bmp', '.dicom', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp'] : ['.jpg']).each do |format_extension|
       define_method("test_save_image_as_format_extension_#{format_extension}") do
         folder = @temp_folder
         storage = @test_storage
@@ -60,7 +60,7 @@ module AsposeImagingCloudTests
   #     Performs SaveAs (export to another format) operation test with POST
   #     method, sending input data in request stream.
   #
-  (@extended_test ? ['.jpg'] : ['.jpg', '.bmp', '.dicom', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp']).each do |format_extension|
+  (@extended_test ? ['.jpg', '.bmp', '.dicom', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp'] : ['.jpg']).each do |format_extension|
     [true, false].each do |save_result_to_storage|
       define_method("test_create_saved_image_as_save_to_storage_#{save_result_to_storage}_format_extension_#{format_extension}") do
         folder = @temp_folder
