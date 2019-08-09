@@ -111,14 +111,16 @@ module AsposeImagingCloud
     def build_from_hash(attributes)
       return nil unless attributes.is_a?(Hash)
       self.class.swagger_types.each_pair do |key, type|
+        attribute_key = self.class.attribute_map[key]
+        attribute_key = (attribute_key[0, 1].downcase + attribute_key[1..-1]).to_sym
         if type =~ /\AArray<(.*)>/i
           # check to ensure the input is an array given that the the attribute
           # is documented as an array but the input is not
-          if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
+          if attributes[attribute_key].is_a?(Array)
+            self.send("#{key}=", attributes[attribute_key].map { |v| _deserialize($1, v) })
           end
-        elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
+        elsif !attributes[attribute_key].nil?
+          self.send("#{key}=", _deserialize(type, attributes[attribute_key]))
         end # or else data not found in attributes(hash), not an issue as the data can be optional
       end
 
@@ -208,5 +210,6 @@ module AsposeImagingCloud
         value
       end
     end
+
   end
 end
