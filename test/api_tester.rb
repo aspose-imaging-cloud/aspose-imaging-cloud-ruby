@@ -27,7 +27,7 @@
 
 require 'test/unit'
 require 'json'
-require_relative '../lib/AsposeImagingCloud'
+require_relative '../lib/aspose-imaging-cloud'
 
 module AsposeImagingCloudTests
   # Common tests operations
