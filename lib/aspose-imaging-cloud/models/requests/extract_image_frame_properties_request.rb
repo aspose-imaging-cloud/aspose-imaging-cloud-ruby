@@ -56,13 +56,6 @@ module AsposeImagingCloud
       # query parameters
       query_params = {}
 
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = select_header_content_type(['multipart/form-data'])
-
       # form parameters
       form_params = {}
       form_params['imageData'] = @image_data
@@ -70,6 +63,13 @@ module AsposeImagingCloud
       # http body (model)
       post_body = nil
       auth_names = ['JWT']
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = form_params.any? ? 'multipart/form-data' : select_header_content_type(['multipart/form-data'])
 
       AsposeImagingCloud::HttpRequest.new(local_var_path,
                                       header_params,

@@ -55,19 +55,19 @@ module AsposeImagingCloud
       query_params[:storageName] = @storage_name unless @storage_name.nil?
       query_params[:recursive] = @recursive unless @recursive.nil?
 
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = select_header_content_type(['application/json'])
-
       # form parameters
       form_params = {}
 
       # http body (model)
       post_body = nil
       auth_names = ['JWT']
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = form_params.any? ? 'multipart/form-data' : select_header_content_type(['application/json'])
 
       AsposeImagingCloud::HttpRequest.new(local_var_path,
                                       header_params,

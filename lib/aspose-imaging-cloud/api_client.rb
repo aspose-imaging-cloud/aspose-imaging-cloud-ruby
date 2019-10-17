@@ -121,6 +121,8 @@ module AsposeImagingCloud
         if @config.debugging
           @config.logger.debug "HTTP request body param ~BEGIN~\n#{req_body}\n~END~\n"
         end
+      elsif http_method == :get && body.nil? && !form_params.any? && header_params['Content-Type'] == 'multipart/form-data'
+        req_opts[:headers].delete('Content-Type')
       end
 
       conn = Faraday.new url, { :params => query_params, :headers => header_params } do |f|
@@ -286,13 +288,15 @@ module AsposeImagingCloud
     # @return [String] HTTP body data in the form of string
     def build_request_body(header_params, form_params, body)
       # http form
-      if header_params['Content-Type'] == 'application/x-www-form-urlencoded' ||
-         header_params['Content-Type'] == 'multipart/form-data'
+      if (header_params['Content-Type'] == 'application/x-www-form-urlencoded' ||
+         header_params['Content-Type'] == 'multipart/form-data') && form_params.any?
         data = {}
         form_params.each do |key, value|
           case value
           when ::File
             data[key] = Faraday::UploadIO.new(value.path, MimeMagic.by_magic(value).to_s, key)
+          when ::Tempfile
+            data[key] = Faraday::UploadIO.new(value.path, key)
           when ::Array, nil
             data[key] = value
           else
