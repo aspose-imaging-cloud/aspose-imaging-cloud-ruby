@@ -192,6 +192,14 @@ module AsposeImagingCloud
       make_request(http_request, :POST, 'File')
     end
 
+    # Update parameters of SVG image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+    # @param [create_modified_svgRequest] request Request object.
+    # @return [File]
+    def create_modified_svg(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :POST, 'File')
+    end
+
     # Update parameters of TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
     # @param [create_modified_tiffRequest] request Request object.
     # @return [File]
@@ -473,6 +481,14 @@ module AsposeImagingCloud
     # @param [modify_psdRequest] request Request object.
     # @return [File]
     def modify_psd(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :GET, 'File')
+    end
+
+    # Update parameters of existing SVG image.
+    # @param [modify_svgRequest] request Request object.
+    # @return [File]
+    def modify_svg(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'File')
     end
