@@ -260,6 +260,8 @@ module AsposeImagingCloudTests
     def obtain_get_response(request_invoker)
       response = request_invoker.call
 
+      response = File.open(response, 'rb') if response.is_a? ::File
+
       assert_not_nil(response)
       assert_operator response.size, :>, 0
 
@@ -267,11 +269,13 @@ module AsposeImagingCloudTests
     end
 
     def obtain_post_response(input_path, out_path, storage, request_invoker)
-      res = File.open(imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new(input_path, storage)))
+      res = File.open(imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new(input_path, storage)), 'rb')
 
       response = request_invoker.call(res, out_path)
 
       return nil unless out_path.nil?
+
+      response = File.open(response, 'rb') if response.is_a? ::File
 
       assert_not_nil(response)
       response

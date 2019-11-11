@@ -45,14 +45,14 @@ module AsposeImagingCloudTests
         # inspect result.Uploaded list for uploaded file names
 
         # convert image from storage to JPEG
-        converted_image = imaging_api.save_image_as(AsposeImagingCloud::SaveImageAsRequest.new('inputImage.png', 'jpg', 'ExampleFolderRuby', test_storage))
+        converted_image = File.open(imaging_api.save_image_as(AsposeImagingCloud::SaveImageAsRequest.new('inputImage.png', 'jpg', 'ExampleFolderRuby', test_storage)), 'rb')
         # process resulting image
         # for example, save it to storage
 
         result = imaging_api.upload_file(AsposeImagingCloud::UploadFileRequest.new('ExampleFolderRuby/resultImage.jpg', converted_image, test_storage))
 
-        # inspect result.Errors list if there were any
-        # inspect result.Uploaded list for uploaded file names
+          # inspect result.Errors list if there were any
+          # inspect result.Uploaded list for uploaded file names
 
       ensure
         # remove files from storage
@@ -82,7 +82,7 @@ module AsposeImagingCloudTests
         # convert image from request stream to JPEG and read it from
         # resulting stream
         image_stream = imaging_api.create_saved_image_as(AsposeImagingCloud::CreateSavedImageAsRequest.new(File.open(local_input_image), 'jpg', nil, test_storage))
-        # process resulting image from response stream
+          # process resulting image from response stream
       ensure
         imaging_api.delete_file(AsposeImagingCloud::DeleteFileRequest.new(remote_result_image, test_storage))
       end

@@ -89,7 +89,7 @@ module AsposeImagingCloudTests
         image = @small_test_image
         dest_server_path = (temp_folder + '/') + image
         storage_path = (original_data_folder + '/') + image
-        image_stream = imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new(storage_path, test_storage))
+        image_stream = File.open(imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new(storage_path, test_storage)), 'rb')
         assert_not_nil(image_stream)
         imaging_api.update_search_image(AsposeImagingCloud::UpdateSearchImageRequest.new(search_context_id, dest_server_path, image_stream, nil, test_storage))
         response_file = get_image(image)
@@ -163,7 +163,7 @@ module AsposeImagingCloudTests
         features_length = response.features.size
         dest_server_path = (original_data_folder + '/') + image
         storage_path = (original_data_folder + '/') + @small_test_image
-        image_stream = imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new(storage_path, test_storage))
+        image_stream = File.open(imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new(storage_path, test_storage)), 'rb')
         assert_not_nil(image_stream)
         imaging_api.update_image_features(AsposeImagingCloud::UpdateImageFeaturesRequest.new(search_context_id, dest_server_path, image_stream, nil, test_storage))
         response = get_image_features(image)
@@ -179,7 +179,7 @@ module AsposeImagingCloudTests
     def add_image(image)
       dest_server_path = (temp_folder + '/') + image
       storage_path = (original_data_folder + '/') + image
-      image_stream = File.open(imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new(storage_path, test_storage)))
+      image_stream = File.open(imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new(storage_path, test_storage)), 'rb')
       assert_not_nil(image_stream)
       imaging_api.add_search_image(AsposeImagingCloud::AddSearchImageRequest.new(search_context_id, dest_server_path, image_stream, nil, test_storage))
       exist_response = imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(dest_server_path, test_storage))
@@ -189,7 +189,7 @@ module AsposeImagingCloudTests
 
     def get_image(image)
       dest_server_path = (temp_folder + '/') + image
-      imaging_api.get_search_image(AsposeImagingCloud::GetSearchImageRequest.new(search_context_id, dest_server_path, nil, test_storage))
+      File.open(imaging_api.get_search_image(AsposeImagingCloud::GetSearchImageRequest.new(search_context_id, dest_server_path, nil, test_storage)), 'rb')
     end
 
     def add_image_features(image)

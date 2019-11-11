@@ -253,7 +253,7 @@ module AsposeImagingCloud
       end
       prefix += '-' unless prefix.end_with?('-')
       encoding = response.body.encoding
-      tempfile = Tempfile.open(prefix, @config.temp_folder_path, encoding: encoding)
+      tempfile = Tempfile.open(prefix, @config.temp_folder_path).binmode
       @tempfile = tempfile
       tempfile.write(response.body)
       response.on_complete do |resp|
@@ -293,10 +293,8 @@ module AsposeImagingCloud
         data = {}
         form_params.each do |key, value|
           case value
-          when ::File
+          when ::File, ::Tempfile
             data[key] = Faraday::UploadIO.new(value.path, MimeMagic.by_magic(value).to_s, key)
-          when ::Tempfile
-            data[key] = Faraday::UploadIO.new(value.path, key)
           when ::Array, nil
             data[key] = value
           else
