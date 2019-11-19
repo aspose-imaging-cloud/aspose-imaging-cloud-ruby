@@ -13,6 +13,7 @@ namespace :ci do
   task :crop => ['ci:setup:testunit', 'crop']
   task :emf => ['ci:setup:testunit', 'emf']
   task :examples => ['ci:setup:testunit', 'examples']
+  task :filter_effect => ['ci:setup:testunit', 'filter_effect']
   task :tiff => ['ci:setup:testunit', 'tiff']
   task :gif => ['ci:setup:testunit', 'gif']
   task :jpeg2000 => ['ci:setup:testunit', 'jpeg2000']
@@ -79,6 +80,12 @@ end
 
 Rake::TestTask.new('examples') do |t|
   t.test_files = ['test/api/tc_examples.rb']
+  t.warning = false
+  t.verbose = true
+end
+
+Rake::TestTask.new('filter_effect') do |t|
+  t.test_files = ['test/api/tc_filter_effect_api.rb']
   t.warning = false
   t.verbose = true
 end

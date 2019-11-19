@@ -334,32 +334,6 @@ module AsposeImagingCloud
       end
     end
 
-    # Convert object (array, hash, object, etc) to JSON string.
-    # @param [Object] model object to be converted into JSON string
-    # @return [String] JSON string representation of the object
-    def object_to_http_body(model)
-      return model if model.nil? || model.is_a?(String)
-
-      local_body = nil
-      local_body = if model.is_a?(Array)
-                     model.map { |m| object_to_hash(m) }
-                   else
-                     object_to_hash(model)
-                   end
-      local_body.to_json
-    end
-
-    # Convert object(non-array) to hash.
-    # @param [Object] obj object to be converted into JSON string
-    # @return [String] JSON string representation of the object
-    def object_to_hash(obj)
-      if obj.respond_to?(:to_hash)
-        obj.to_hash
-      else
-        obj
-      end
-    end
-
     # Build parameter value according to the given collection format.
     # @param [String] collection_format one of :csv, :ssv, :tsv, :pipes and :multi
     def build_collection_param(param, collection_format)

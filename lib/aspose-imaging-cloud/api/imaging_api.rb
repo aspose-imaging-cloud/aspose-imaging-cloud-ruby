@@ -341,6 +341,14 @@ module AsposeImagingCloud
       make_request(http_request, :POST, 'ImagingResponse')
     end
 
+    # Apply filtering effects to an existing image.
+    # @param [filter_effect_imageRequest] request Request object.
+    # @return [File]
+    def filter_effect_image(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :PUT, 'File')
+    end
+
     # Find images duplicates.
     # @param [find_image_duplicatesRequest] request Request object.
     # @return [ImageDuplicatesSet]
