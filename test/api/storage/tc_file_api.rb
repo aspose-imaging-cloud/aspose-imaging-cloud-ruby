@@ -55,17 +55,11 @@ module AsposeImagingCloudTests
 
         original_file = imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new((original_data_folder + '/') + file, test_storage))
         copied_file = imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new((folder + '/') + file, test_storage))
-        open(original_file, 'r') do |original_reader|
-          open(copied_file, 'r') do |copied_reader|
-            original_string = original_reader.read
-            copied_string = copied_reader.read
-            assert_equal(original_string.size, copied_string.size)
-            assert_equal(original_string.size, original_file_info.size)
-            assert_equal(original_string, copied_string)
-            assert_equal(original_string, original_file_info.path.chomp('/').reverse.chomp('/').reverse)
-            assert_equal(original_string.gsub(original_data_folder, folder), copied_file_info.path.chomp('/').reverse.chomp('/').reverse)
-          end
-        end
+        assert_equal(original_file.size, copied_file.size)
+        assert_equal(original_file.size, original_file_info.size)
+        assert_equal(original_file, copied_file)
+        assert_equal(original_file, original_file_info.path.chomp('/').reverse.chomp('/').reverse)
+        assert_equal(original_file.gsub(original_data_folder, folder), copied_file_info.path.chomp('/').reverse.chomp('/').reverse)
       ensure
         imaging_api.delete_file(AsposeImagingCloud::DeleteFileRequest.new((folder + '/') + file, test_storage))
         assert(!imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new((folder + '/') + file, test_storage)).exists)
@@ -204,12 +198,10 @@ module AsposeImagingCloudTests
         versions = imaging_api.get_file_versions(AsposeImagingCloud::GetFileVersionsRequest.new((folder + '/') + file1, test_storage)).value
         recent_version = versions.find(&:is_latest)
         old_version = versions.find { |x| !x.is_latest }
-        open(imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new((folder + '/') + file1, test_storage, old_version.version_id)), 'r') do |old_file|
-          assert_equal(old_version.size, old_file.read.size)
-        end
-        open(imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new((folder + '/') + file1, test_storage, recent_version.version_id)), 'r') do |old_file|
-          assert_equal(recent_version.size, old_file.read.size)
-        end
+        old_file = imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new((folder + '/') + file1, test_storage, old_version.version_id))
+        assert_equal(old_version.size, old_file.size)
+        recent_file = imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new((folder + '/') + file1, test_storage, recent_version.version_id))
+        assert_equal(recent_version.size, recent_file.size)
       ensure
         if imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists
           imaging_api.delete_folder(AsposeImagingCloud::DeleteFolderRequest.new(folder, test_storage, true))
@@ -286,17 +278,13 @@ module AsposeImagingCloudTests
         moved_file_info = imaging_api.get_files_list(AsposeImagingCloud::GetFilesListRequest.new(folder, test_storage)).value.find { |x| x.name == file }
         assert_equal(original_file_info.size, moved_file_info.size)
 
-        open(imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new((original_data_folder + '/') + file, test_storage)), 'r') do |original_file|
-          open(imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new((folder + '/') + file, test_storage)), 'r') do |moved_file|
-            original_string = original_file.read
-            moved_string = moved_file.read
-            assert_equal(original_string.size, moved_string.size)
-            assert_equal(original_string.size, original_file_info.size)
-            assert_equal(original_string, moved_string)
-            assert_equal(original_string, original_file_info.path.chomp('/').reverse.chomp('/').reverse)
-            assert_equal(original_string.gsub(original_data_folder, folder), moved_file_info.path.chomp('/').reverse.chomp('/').reverse)
-          end
-        end
+        original_file = imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new((original_data_folder + '/') + file, test_storage))
+        moved_file =  imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new((folder + '/') + file, test_storage))
+        assert_equal(original_file.size, moved_file.size)
+        assert_equal(original_file.size, original_file_info.size)
+        assert_equal(original_file, moved_file)
+        assert_equal(original_file, original_file_info.path.chomp('/').reverse.chomp('/').reverse)
+        assert_equal(original_file.gsub(original_data_folder, folder), moved_file_info.path.chomp('/').reverse.chomp('/').reverse)
       ensure
         imaging_api.delete_file(AsposeImagingCloud::DeleteFileRequest.new((folder + '/') + file, test_storage))
         assert(!imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new((folder + '/') + file, test_storage)).exists)
@@ -320,8 +308,8 @@ module AsposeImagingCloudTests
 
         assert(!imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists)
 
-        original_file = File.open(imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new((original_data_folder + '/') + file, test_storage)))
-        result = imaging_api.upload_file(AsposeImagingCloud::UploadFileRequest.new((folder + '/') + file, original_file, test_storage))
+        original_file = imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new((original_data_folder + '/') + file, test_storage))
+        result = imaging_api.upload_file(AsposeImagingCloud::UploadFileRequest.new((folder + '/') + file, StringIO.new(original_file), test_storage))
         assert_not_nil(result)
         assert(!result.errors || result.errors.empty?)
         assert_not_nil(result.uploaded)
@@ -338,18 +326,11 @@ module AsposeImagingCloudTests
         assert_equal(original_file_info.size, uploaded_file_info.size)
         original_file = imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new((original_data_folder + '/') + file, test_storage))
         uploaded_file = imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new((folder + '/') + file, test_storage))
-
-        open(original_file, 'r') do |original_reader|
-          open(uploaded_file, 'r') do |uploaded_reader|
-            original_string = original_reader.read
-            copied_string = uploaded_reader.read
-            assert_equal(original_string.size, copied_string.size)
-            assert_equal(original_string.size, original_file_info.size)
-            assert_equal(original_string, copied_string)
-            assert_equal(original_string, original_file_info.path.chomp('/').reverse.chomp('/').reverse)
-            assert_equal(original_string.gsub(original_data_folder, folder), uploaded_file_info.path.chomp('/').reverse.chomp('/').reverse)
-          end
-        end
+        assert_equal(original_file.size, uploaded_file.size)
+        assert_equal(original_file.size, original_file_info.size)
+        assert_equal(original_file, uploaded_file)
+        assert_equal(original_file, original_file_info.path.chomp('/').reverse.chomp('/').reverse)
+        assert_equal(original_file.gsub(original_data_folder, folder), uploaded_file_info.path.chomp('/').reverse.chomp('/').reverse)
       ensure
         imaging_api.delete_file(AsposeImagingCloud::DeleteFileRequest.new((folder + '/') + file, test_storage))
         assert(!imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new((folder + '/') + file, test_storage)).exists)

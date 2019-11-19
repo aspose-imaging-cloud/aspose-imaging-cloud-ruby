@@ -45,7 +45,7 @@ module AsposeImagingCloudTests
         # inspect result.Uploaded list for uploaded file names
 
         # convert image from storage to JPEG
-        converted_image = File.open(imaging_api.save_image_as(AsposeImagingCloud::SaveImageAsRequest.new('inputImage.png', 'jpg', 'ExampleFolderRuby', test_storage)), 'rb')
+        converted_image = imaging_api.save_image_as(AsposeImagingCloud::SaveImageAsRequest.new('inputImage.png', 'jpg', 'ExampleFolderRuby', test_storage))
         # process resulting image
         # for example, save it to storage
 

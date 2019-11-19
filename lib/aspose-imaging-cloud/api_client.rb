@@ -64,7 +64,6 @@ module AsposeImagingCloud
     #   the data deserialized from response body (could be nil), response status code and response headers.
     def call_api(http_method, path, opts = {})
       response = build_request(http_method, path, opts)
-      download_file response if opts[:return_type] == 'File'
 
       if @config.debugging
         @config.logger.debug "'HTTP' response body '~BEGIN~'\n #{response.body}\n'~END~'\n"
@@ -84,7 +83,10 @@ module AsposeImagingCloud
         end
       end
 
-      data = (deserialize(response, opts[:return_type]) if opts[:return_type])
+      data = ''
+      if opts[:return_type]
+        data = opts[:return_type] == 'File' ? response.body : deserialize(response, opts[:return_type])
+      end
       [data, response.status, response.headers]
     end
 
@@ -297,6 +299,8 @@ module AsposeImagingCloud
             data[key] = Faraday::UploadIO.new(value.path, MimeMagic.by_magic(value).to_s, key)
           when ::Array, nil
             data[key] = value
+          when ::StringIO
+            data[key] = Faraday::UploadIO.new(value, MimeMagic.by_magic(value).to_s, key)
           else
             data[key] = value.to_s
           end

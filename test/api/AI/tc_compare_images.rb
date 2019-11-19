@@ -55,7 +55,7 @@ module AsposeImagingCloudTests
         image = get_storage_path(@comparable_image)
         add_image_features_to_search_context(image)
         storage_path = (@original_data_folder + '/') + @comparing_image_similar_less_15
-        image_stream = File.open(imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new(storage_path, test_storage)), 'rb')
+        image_stream = imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new(storage_path, test_storage))
         assert_not_nil(image_stream)
         response = imaging_api.compare_images(AsposeImagingCloud::CompareImagesRequest.new(search_context_id, image, image_stream, nil, nil, test_storage))
         assert_equal(1, response.results.size)

@@ -52,7 +52,7 @@ module AsposeImagingCloudTests
         add_image_features_to_search_context(original_data_folder + '/FindSimilar', is_folder: true)
         tag = 'TestTag'
         storage_path = (original_data_folder + '/') + @image_to_find_by_tag
-        tag_image_stream = File.open(imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new(storage_path, test_storage)))
+        tag_image_stream = imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new(storage_path, test_storage))
         assert_not_nil(tag_image_stream)
         imaging_api.create_image_tag(AsposeImagingCloud::CreateImageTagRequest.new(tag_image_stream, search_context_id, tag, nil, test_storage))
         tags = JSON.dump([tag])
