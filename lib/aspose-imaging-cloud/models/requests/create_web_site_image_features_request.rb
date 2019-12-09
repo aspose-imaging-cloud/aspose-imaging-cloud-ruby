@@ -1,5 +1,5 @@
 #  ----------------------------------------------------------------------------
-#  <copyright company="Aspose" file="create_image_features_request.rb">
+#  <copyright company="Aspose" file="create_web_site_image_features_request.rb">
 #    Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
 #  </copyright>
 #  <summary>
@@ -28,21 +28,17 @@ require_relative './imaging_request'
 require_relative './http_request'
 
 module AsposeImagingCloud
-  # Request model for create_image_features operation.
-  class CreateImageFeaturesRequest < ImagingRequest
+  # Request model for create_web_site_image_features operation.
+  class CreateWebSiteImageFeaturesRequest < ImagingRequest
 
-    # Extract images features and add them to search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
+    # Extract images features from web page and add them to search context
     # @param [String] search_context_id The search context identifier.
-    # @param [File] image_data Input image
-    # @param [String] image_id The image identifier.
-    # @param [String] images_folder Images source - a folder
+    # @param [String] images_source Images source - a web page
     # @param [String] folder The folder.
     # @param [String] storage The storage.
-    def initialize(search_context_id, image_data = nil, image_id = nil, images_folder = nil, folder = nil, storage = nil)
+    def initialize(search_context_id, images_source, folder = nil, storage = nil)
       @search_context_id = search_context_id
-      @image_data = image_data
-      @image_id = image_id
-      @images_folder = images_folder
+      @images_source = images_source
       @folder = folder
       @storage = storage
     end
@@ -50,22 +46,25 @@ module AsposeImagingCloud
     def to_http_info(config)
       # verify the required parameter 'search_context_id' is set
       if config.client_side_validation && @search_context_id.nil?
-        raise ArgumentError, "Missing the required parameter 'search_context_id' when calling ImagingApi.create_image_features"
+        raise ArgumentError, "Missing the required parameter 'search_context_id' when calling ImagingApi.create_web_site_image_features"
+      end
+
+      # verify the required parameter 'images_source' is set
+      if config.client_side_validation && @images_source.nil?
+        raise ArgumentError, "Missing the required parameter 'images_source' when calling ImagingApi.create_web_site_image_features"
       end
 
       # resource path
-      local_var_path = '/imaging/ai/imageSearch/{searchContextId}/features'.sub('{' + 'searchContextId' + '}', @search_context_id.to_s)
+      local_var_path = '/imaging/ai/imageSearch/{searchContextId}/features/web'.sub('{' + 'searchContextId' + '}', @search_context_id.to_s)
 
       # query parameters
       query_params = {}
-      query_params[:imageId] = @image_id unless @image_id.nil?
-      query_params[:imagesFolder] = @images_folder unless @images_folder.nil?
+      query_params[:imagesSource] = @images_source
       query_params[:folder] = @folder unless @folder.nil?
       query_params[:storage] = @storage unless @storage.nil?
 
       # form parameters
       form_params = {}
-      form_params['imageData'] = @image_data unless @image_data.nil?
 
       # http body (model)
       post_body = nil
@@ -76,7 +75,7 @@ module AsposeImagingCloud
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = form_params.any? ? 'multipart/form-data' : select_header_content_type(['multipart/form-data'])
+      header_params['Content-Type'] = form_params.any? ? 'multipart/form-data' : select_header_content_type(['application/json'])
 
       AsposeImagingCloud::HttpRequest.new(local_var_path,
                                       header_params,

@@ -256,6 +256,15 @@ module AsposeImagingCloud
       make_request(http_request, :POST, 'File')
     end
 
+    # Extract images features from web page and add them to search context
+    # @param [create_web_site_image_featuresRequest] request Request object.
+    # @return [nil]
+    def create_web_site_image_features(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :POST, nil)
+      nil
+    end
+
     # Crop an existing image.
     # @param [crop_imageRequest] request Request object.
     # @return [File]

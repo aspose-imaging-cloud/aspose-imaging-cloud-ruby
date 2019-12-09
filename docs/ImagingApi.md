@@ -30,6 +30,7 @@ Method | HTTP request | Description
 [**create_rotate_flipped_image**](ImagingApi.md#create_rotate_flipped_image) | **POST** /imaging/rotateflip | Rotate and/or flip an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 [**create_saved_image_as**](ImagingApi.md#create_saved_image_as) | **POST** /imaging/saveAs | Export existing image to another format. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.             
 [**create_updated_image**](ImagingApi.md#create_updated_image) | **POST** /imaging/updateImage | Perform scaling, cropping and flipping of an image in a single request. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+[**create_web_site_image_features**](ImagingApi.md#create_web_site_image_features) | **POST** /imaging/ai/imageSearch/{searchContextId}/features/web | Extract images features from web page and add them to search context
 [**crop_image**](ImagingApi.md#crop_image) | **GET** /imaging/{name}/crop | Crop an existing image.
 [**delete_file**](ImagingApi.md#delete_file) | **DELETE** /imaging/storage/file/{path} | Delete file
 [**delete_folder**](ImagingApi.md#delete_folder) | **DELETE** /imaging/storage/folder/{path} | Delete folder
@@ -577,7 +578,7 @@ search_context_id = 'search_context_id_example' # String | The search context id
 opts = { 
   image_data: File.new('/path/to/file.txt'), # File | Input image
   image_id: 'image_id_example', # String | The image identifier.
-  images_folder: 'images_folder_example', # String | Images folder.
+  images_folder: 'images_folder_example', # String | Images source - a folder
   folder: 'folder_example', # String | The folder.
   storage: 'storage_example' # String | The storage.
 }
@@ -597,7 +598,7 @@ Name | Type | Description  | Notes
  **search_context_id** | **String**| The search context identifier. | 
  **image_data** | **File**| Input image | [optional] 
  **image_id** | **String**| The image identifier. | [optional] 
- **images_folder** | **String**| Images folder. | [optional] 
+ **images_folder** | **String**| Images source - a folder | [optional] 
  **folder** | **String**| The folder. | [optional] 
  **storage** | **String**| The storage. | [optional] 
 
@@ -1762,6 +1763,64 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+
+
+# **create_web_site_image_features**
+> create_web_site_image_features(search_context_id, images_source, opts)
+
+Extract images features from web page and add them to search context
+
+### Example
+```ruby
+# load the gem
+require 'aspose-imaging-cloud'
+# setup authorization
+AsposeImagingCloud.configure do |config|
+  # Configure OAuth2 access token for authorization: JWT
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = AsposeImagingCloud::ImagingApi.new
+
+search_context_id = 'search_context_id_example' # String | The search context identifier.
+
+images_source = 'images_source_example' # String | Images source - a web page
+
+opts = { 
+  folder: 'folder_example', # String | The folder.
+  storage: 'storage_example' # String | The storage.
+}
+
+begin
+  #Extract images features from web page and add them to search context
+  api_instance.create_web_site_image_features(search_context_id, images_source, opts)
+rescue AsposeImagingCloud::ApiError => e
+  puts "Exception when calling ImagingApi->create_web_site_image_features: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **search_context_id** | **String**| The search context identifier. | 
+ **images_source** | **String**| Images source - a web page | 
+ **folder** | **String**| The folder. | [optional] 
+ **storage** | **String**| The storage. | [optional] 
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+[JWT](../README.md#JWT)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 
