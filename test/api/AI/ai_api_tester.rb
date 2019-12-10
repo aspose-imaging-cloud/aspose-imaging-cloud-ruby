@@ -68,7 +68,7 @@ module AsposeImagingCloudTests
       File.join(folder.nil? ? @original_data_folder : folder, image_name)
     end
 
-    def add_image_features_to_search_context(storage_source_path, is_folder: false)
+    def add_image_features_to_search_context(storage_source_path, is_folder = false)
       if is_folder
         request = AsposeImagingCloud::CreateImageFeaturesRequest.new(@search_context_id,
                                                                      nil,
@@ -92,7 +92,7 @@ module AsposeImagingCloudTests
       imaging_api.delete_image_search(AsposeImagingCloud::DeleteImageSearchRequest.new(search_context_id, nil, @test_storage))
     end
 
-    def wait_search_context_idle(max_time: nil)
+    def wait_search_context_idle(max_time = nil)
       max_time ||= @wait_timeout * 60
       timeout = 10
       start_time = Time.now
