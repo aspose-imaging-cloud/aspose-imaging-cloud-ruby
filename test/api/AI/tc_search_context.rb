@@ -117,18 +117,18 @@ module AsposeImagingCloudTests
       AiApiTester.run_test_with_logging('ExtractAndAddImageFeaturesTest', -> { add_image_features(@test_image) })
     end
 
-    def test_extract_and_add_image_features_from_folder_test
-      omit('IMAGINGNET-107')
-      test = lambda do
-        imaging_api.create_image_features(AsposeImagingCloud::CreateImageFeaturesRequest.new(search_context_id, nil, nil, original_data_folder + '/FindSimilar', nil, test_storage))
-        sleep(wait_timeout)
-        response = imaging_api.get_image_features(AsposeImagingCloud::GetImageFeaturesRequest.new(search_context_id, original_data_folder + '/FindSimilar/3.jpg', nil, test_storage))
-        assert(response.image_id.include?('3.jpg'))
-        assert_operator response.features.size, :>, 0
-      end
-
-      AiApiTester.run_test_with_logging('ExtractAndAddImageFeaturesFromFolderTest', test)
-    end
+    # omitted due to IMAGINGNET-107
+    # def test_extract_and_add_image_features_from_folder_test
+    #   test = lambda do
+    #     imaging_api.create_image_features(AsposeImagingCloud::CreateImageFeaturesRequest.new(search_context_id, nil, nil, original_data_folder + '/FindSimilar', nil, test_storage))
+    #     sleep(wait_timeout)
+    #     response = imaging_api.get_image_features(AsposeImagingCloud::GetImageFeaturesRequest.new(search_context_id, original_data_folder + '/FindSimilar/3.jpg', nil, test_storage))
+    #     assert(response.image_id.include?('3.jpg'))
+    #     assert_operator response.features.size, :>, 0
+    #   end
+    #
+    #     AiApiTester.run_test_with_logging('ExtractAndAddImageFeaturesFromFolderTest', test)
+    # end
 
     def test_extract_and_add_image_features_from_website_test
       image_source_url = URI.encode('https://www.f1news.ru/interview/hamilton/140909.shtml')

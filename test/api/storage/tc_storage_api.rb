@@ -30,16 +30,16 @@ module AsposeImagingCloudTests
   class TestStorageApi < StorageApiTester
     # Specific Storage API tests
 
-    def test_get_disk_storage
-      omit('IMAGINGCLOUD-292')
-      begin
-        disk_usage = self.imaging_api.get_disc_usage(
-            AsposeImagingCloud::GetDiscUsageRequest.new(self.test_storage))
-        assert_equal(disk_usage.used_size, disk_usage.total_size)
-      rescue ApiError > ex
-        assert_equal(501, ex.code)
-      end
-    end
+    # omitted due to IMAGINGCLOUD-292
+    # def test_get_disk_storage
+    #   begin
+    #     disk_usage = self.imaging_api.get_disc_usage(
+    #         AsposeImagingCloud::GetDiscUsageRequest.new(self.test_storage))
+    #     assert_equal(disk_usage.used_size, disk_usage.total_size)
+    #   rescue ApiError > ex
+    #     assert_equal(501, ex.code)
+    #   end
+    # end
 
     def test_storage_exists
       storage_exists = self.imaging_api.storage_exists(
