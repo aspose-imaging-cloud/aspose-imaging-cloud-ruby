@@ -48,6 +48,7 @@ module AsposeImagingCloudTests
         assert_raise AsposeImagingCloud::ApiError do
           imaging_api.get_image_search_status(AsposeImagingCloud::GetImageSearchStatusRequest.new(search_context_id, nil, test_storage))
         end
+		@search_context_id = nil
       end
 
       AiApiTester.run_test_with_logging('DeleteImageSearchTest', test)
