@@ -85,7 +85,7 @@ Add image and images features to search context. Image data may be passed as zer
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -145,7 +145,7 @@ Appends existing TIFF image to another existing TIFF image (i.e. merges TIFF ima
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -203,7 +203,7 @@ Compare two images. Image data may be passed as zero-indexed multipart/form-data
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -266,7 +266,7 @@ Update parameters of existing TIFF image accordingly to fax parameters.
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -322,7 +322,7 @@ Copy file
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -382,7 +382,7 @@ Copy folder
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -440,7 +440,7 @@ Crop an image. Image data is passed as zero-indexed multipart/form-data content 
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -511,7 +511,7 @@ Create the folder
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -564,7 +564,7 @@ Extract images features and add them to search context. Image data may be passed
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -625,7 +625,7 @@ Get separate frame from existing TIFF image. Image data is passed as zero-indexe
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -700,7 +700,7 @@ Create new search context.
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -757,7 +757,7 @@ Add tag and reference image to search context. Image data is passed as zero-inde
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -818,7 +818,7 @@ Update parameters of BMP image. Image data is passed as zero-indexed multipart/f
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -885,7 +885,7 @@ Process existing EMF imaging using given parameters. Image data is passed as zer
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -960,7 +960,7 @@ Update parameters of GIF image. Image data is passed as zero-indexed multipart/f
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -1030,7 +1030,7 @@ Update parameters of JPEG image. Image data is passed as zero-indexed multipart/
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -1092,7 +1092,7 @@ Update parameters of JPEG2000 image. Image data is passed as zero-indexed multip
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -1155,7 +1155,7 @@ Update parameters of PSD image. Image data is passed as zero-indexed multipart/f
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -1217,7 +1217,7 @@ Update parameters of SVG image. Image data is passed as zero-indexed multipart/f
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -1295,7 +1295,7 @@ Update parameters of TIFF image. Image data is passed as zero-indexed multipart/
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -1364,7 +1364,7 @@ Update parameters of WEBP image. Image data is passed as zero-indexed multipart/
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -1434,7 +1434,7 @@ Process existing WMF image using given parameters. Image data is passed as zero-
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -1509,7 +1509,7 @@ Resize an image. Image data is passed as zero-indexed multipart/form-data conten
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -1574,7 +1574,7 @@ Rotate and/or flip an image. Image data is passed as zero-indexed multipart/form
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -1636,7 +1636,7 @@ Export existing image to another format. Image data is passed as zero-indexed mu
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -1695,7 +1695,7 @@ Perform scaling, cropping and flipping of an image in a single request. Image da
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -1775,7 +1775,7 @@ Extract images features from web page and add them to search context
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -1833,7 +1833,7 @@ Crop an existing image.
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -1904,7 +1904,7 @@ Delete file
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -1959,7 +1959,7 @@ Delete folder
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -2014,7 +2014,7 @@ Deletes image features from search context.
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -2072,7 +2072,7 @@ Deletes the search context.
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -2127,7 +2127,7 @@ Delete image and images features from search context
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -2185,7 +2185,7 @@ Download file
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -2241,7 +2241,7 @@ Extract features from image without adding to search context. Image data may be 
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -2302,7 +2302,7 @@ Get separate frame properties of existing TIFF image. Image data is passed as ze
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -2355,7 +2355,7 @@ Get properties of an image. Image data is passed as zero-indexed multipart/form-
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -2405,7 +2405,7 @@ Apply filtering effects to an existing image.
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -2470,7 +2470,7 @@ Find images duplicates.
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -2529,7 +2529,7 @@ Find images by tags. Tags JSON string is passed as zero-indexed multipart/form-d
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -2594,7 +2594,7 @@ Find similar images. Image data may be passed as zero-indexed multipart/form-dat
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -2660,7 +2660,7 @@ Get disc usage
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -2711,7 +2711,7 @@ Get file versions
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -2765,7 +2765,7 @@ Get all files and folders within a folder
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -2819,7 +2819,7 @@ Gets image features from search context.
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -2878,7 +2878,7 @@ Get separate frame from existing TIFF image.
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -2953,7 +2953,7 @@ Get separate frame properties of existing TIFF image.
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -3012,7 +3012,7 @@ Get properties of an image.
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -3068,7 +3068,7 @@ Gets the search context status.
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -3124,7 +3124,7 @@ Get image from search context
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -3183,7 +3183,7 @@ Update parameters of existing BMP image.
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -3250,7 +3250,7 @@ Process existing EMF imaging using given parameters.
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -3325,7 +3325,7 @@ Update parameters of existing GIF image.
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -3395,7 +3395,7 @@ Update parameters of existing JPEG image.
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -3457,7 +3457,7 @@ Update parameters of existing JPEG2000 image.
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -3520,7 +3520,7 @@ Update parameters of existing PSD image.
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -3582,7 +3582,7 @@ Update parameters of existing SVG image.
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -3660,7 +3660,7 @@ Update parameters of existing TIFF image.
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -3729,7 +3729,7 @@ Update parameters of existing WEBP image.
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -3799,7 +3799,7 @@ Process existing WMF image using given parameters.
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -3874,7 +3874,7 @@ Move file
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -3934,7 +3934,7 @@ Move folder
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -3992,7 +3992,7 @@ Check if file or folder exists
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -4048,7 +4048,7 @@ Resize an existing image.
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -4113,7 +4113,7 @@ Rotate and/or flip an existing image.
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -4175,7 +4175,7 @@ Export existing image to another format.
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -4234,7 +4234,7 @@ Check if storage exists
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -4284,7 +4284,7 @@ Perform scaling, cropping and flipping of an existing image in a single request.
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -4364,7 +4364,7 @@ Update images features in search context. Image data may be passed as zero-index
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -4424,7 +4424,7 @@ Update image and images features in search context. Image data may be passed as 
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
@@ -4484,7 +4484,7 @@ Upload file
 ### Example
 ```ruby
 # load the gem
-require 'aspose-imaging-cloud'
+require 'aspose_imaging_cloud'
 # setup authorization
 AsposeImagingCloud.configure do |config|
   # Configure OAuth2 access token for authorization: JWT
