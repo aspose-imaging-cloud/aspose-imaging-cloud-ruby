@@ -33,14 +33,14 @@ module AsposeImagingCloud
 
     # Rotate and/or flip an existing image.
     # @param [String] name Filename of an image.
-    # @param [String] format Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
     # @param [String] method RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY).
+    # @param [String] format Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
     # @param [String] folder Folder with image to process.
     # @param [String] storage Your Aspose Cloud Storage name.
-    def initialize(name, format, method, folder = nil, storage = nil)
+    def initialize(name, method, format = nil, folder = nil, storage = nil)
       @name = name
-      @format = format
       @method = method
+      @format = format
       @folder = folder
       @storage = storage
     end
@@ -49,11 +49,6 @@ module AsposeImagingCloud
       # verify the required parameter 'name' is set
       if config.client_side_validation && @name.nil?
         raise ArgumentError, "Missing the required parameter 'name' when calling ImagingApi.rotate_flip_image"
-      end
-
-      # verify the required parameter 'format' is set
-      if config.client_side_validation && @format.nil?
-        raise ArgumentError, "Missing the required parameter 'format' when calling ImagingApi.rotate_flip_image"
       end
 
       # verify the required parameter 'method' is set
@@ -66,8 +61,8 @@ module AsposeImagingCloud
 
       # query parameters
       query_params = {}
-      query_params[:format] = @format
       query_params[:method] = @method
+      query_params[:format] = @format unless @format.nil?
       query_params[:folder] = @folder unless @folder.nil?
       query_params[:storage] = @storage unless @storage.nil?
 

@@ -1,6 +1,6 @@
 # AsposeImagingCloud::ImagingApi
 
-All URIs are relative to *https://localhost:5000/v3.0*
+All URIs are relative to *https://localhost:57972/v3.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -435,7 +435,7 @@ nil (empty response body)
 
 
 # **create_cropped_image**
-> File create_cropped_image(image_data, format, x, y, width, height, opts)
+> File create_cropped_image(image_data, x, y, width, height, opts)
 
 Crop an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 
@@ -453,8 +453,6 @@ api_instance = AsposeImagingCloud::ImagingApi.new
 
 image_data = File.new('/path/to/file.txt') # File | Input image
 
-format = 'format_example' # String | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-
 x = 56 # Integer | X position of start point for cropping rectangle.
 
 y = 56 # Integer | Y position of start point for cropping rectangle.
@@ -464,13 +462,14 @@ width = 56 # Integer | Width of cropping rectangle.
 height = 56 # Integer | Height of cropping rectangle.
 
 opts = { 
+  format: 'format_example', # String | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
   out_path: 'out_path_example', # String | Path to updated file (if this is empty, response contains streamed image).
   storage: 'storage_example' # String | Your Aspose Cloud Storage name.
 }
 
 begin
   #Crop an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
-  result = api_instance.create_cropped_image(image_data, format, x, y, width, height, opts)
+  result = api_instance.create_cropped_image(image_data, x, y, width, height, opts)
   p result
 rescue AsposeImagingCloud::ApiError => e
   puts "Exception when calling ImagingApi->create_cropped_image: #{e}"
@@ -482,11 +481,11 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **image_data** | **File**| Input image | 
- **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
  **x** | **Integer**| X position of start point for cropping rectangle. | 
  **y** | **Integer**| Y position of start point for cropping rectangle. | 
  **width** | **Integer**| Width of cropping rectangle. | 
  **height** | **Integer**| Height of cropping rectangle. | 
+ **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional] 
  **out_path** | **String**| Path to updated file (if this is empty, response contains streamed image). | [optional] 
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional] 
 
@@ -1565,7 +1564,7 @@ Name | Type | Description  | Notes
 
 
 # **create_resized_image**
-> File create_resized_image(image_data, format, new_width, new_height, opts)
+> File create_resized_image(image_data, new_width, new_height, opts)
 
 Resize an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 
@@ -1583,20 +1582,19 @@ api_instance = AsposeImagingCloud::ImagingApi.new
 
 image_data = File.new('/path/to/file.txt') # File | Input image
 
-format = 'format_example' # String | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-
 new_width = 56 # Integer | New width.
 
 new_height = 56 # Integer | New height.
 
 opts = { 
+  format: 'format_example', # String | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
   out_path: 'out_path_example', # String | Path to updated file (if this is empty, response contains streamed image).
   storage: 'storage_example' # String | Your Aspose Cloud Storage name.
 }
 
 begin
   #Resize an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
-  result = api_instance.create_resized_image(image_data, format, new_width, new_height, opts)
+  result = api_instance.create_resized_image(image_data, new_width, new_height, opts)
   p result
 rescue AsposeImagingCloud::ApiError => e
   puts "Exception when calling ImagingApi->create_resized_image: #{e}"
@@ -1608,9 +1606,9 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **image_data** | **File**| Input image | 
- **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
  **new_width** | **Integer**| New width. | 
  **new_height** | **Integer**| New height. | 
+ **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional] 
  **out_path** | **String**| Path to updated file (if this is empty, response contains streamed image). | [optional] 
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional] 
 
@@ -1630,7 +1628,7 @@ Name | Type | Description  | Notes
 
 
 # **create_rotate_flipped_image**
-> File create_rotate_flipped_image(image_data, format, method, opts)
+> File create_rotate_flipped_image(image_data, method, opts)
 
 Rotate and/or flip an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 
@@ -1648,18 +1646,17 @@ api_instance = AsposeImagingCloud::ImagingApi.new
 
 image_data = File.new('/path/to/file.txt') # File | Input image
 
-format = 'format_example' # String | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-
 method = 'method_example' # String | RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY).
 
 opts = { 
+  format: 'format_example', # String | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
   out_path: 'out_path_example', # String | Path to updated file (if this is empty, response contains streamed image).
   storage: 'storage_example' # String | Your Aspose Cloud Storage name.
 }
 
 begin
   #Rotate and/or flip an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
-  result = api_instance.create_rotate_flipped_image(image_data, format, method, opts)
+  result = api_instance.create_rotate_flipped_image(image_data, method, opts)
   p result
 rescue AsposeImagingCloud::ApiError => e
   puts "Exception when calling ImagingApi->create_rotate_flipped_image: #{e}"
@@ -1671,8 +1668,8 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **image_data** | **File**| Input image | 
- **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
  **method** | **String**| RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). | 
+ **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional] 
  **out_path** | **String**| Path to updated file (if this is empty, response contains streamed image). | [optional] 
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional] 
 
@@ -1751,7 +1748,7 @@ Name | Type | Description  | Notes
 
 
 # **create_updated_image**
-> File create_updated_image(image_data, format, new_width, new_height, x, y, rect_width, rect_height, rotate_flip_method, opts)
+> File create_updated_image(image_data, new_width, new_height, x, y, rect_width, rect_height, rotate_flip_method, opts)
 
 Perform scaling, cropping and flipping of an image in a single request. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 
@@ -1769,8 +1766,6 @@ api_instance = AsposeImagingCloud::ImagingApi.new
 
 image_data = File.new('/path/to/file.txt') # File | Input image
 
-format = 'format_example' # String | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-
 new_width = 56 # Integer | New width of the scaled image.
 
 new_height = 56 # Integer | New height of the scaled image.
@@ -1786,13 +1781,14 @@ rect_height = 56 # Integer | Height of cropping rectangle.
 rotate_flip_method = 'rotate_flip_method_example' # String | RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). Default is RotateNoneFlipNone.
 
 opts = { 
+  format: 'format_example', # String | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
   out_path: 'out_path_example', # String | Path to updated file (if this is empty, response contains streamed image).
   storage: 'storage_example' # String | Your Aspose Cloud Storage name.
 }
 
 begin
   #Perform scaling, cropping and flipping of an image in a single request. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
-  result = api_instance.create_updated_image(image_data, format, new_width, new_height, x, y, rect_width, rect_height, rotate_flip_method, opts)
+  result = api_instance.create_updated_image(image_data, new_width, new_height, x, y, rect_width, rect_height, rotate_flip_method, opts)
   p result
 rescue AsposeImagingCloud::ApiError => e
   puts "Exception when calling ImagingApi->create_updated_image: #{e}"
@@ -1804,7 +1800,6 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **image_data** | **File**| Input image | 
- **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
  **new_width** | **Integer**| New width of the scaled image. | 
  **new_height** | **Integer**| New height of the scaled image. | 
  **x** | **Integer**| X position of start point for cropping rectangle. | 
@@ -1812,6 +1807,7 @@ Name | Type | Description  | Notes
  **rect_width** | **Integer**| Width of cropping rectangle. | 
  **rect_height** | **Integer**| Height of cropping rectangle. | 
  **rotate_flip_method** | **String**| RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). Default is RotateNoneFlipNone. | 
+ **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional] 
  **out_path** | **String**| Path to updated file (if this is empty, response contains streamed image). | [optional] 
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional] 
 
@@ -1889,7 +1885,7 @@ nil (empty response body)
 
 
 # **crop_image**
-> File crop_image(name, format, x, y, width, height, opts)
+> File crop_image(name, x, y, width, height, opts)
 
 Crop an existing image.
 
@@ -1907,8 +1903,6 @@ api_instance = AsposeImagingCloud::ImagingApi.new
 
 name = 'name_example' # String | Filename of an image.
 
-format = 'format_example' # String | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-
 x = 56 # Integer | X position of start point for cropping rectangle.
 
 y = 56 # Integer | Y position of start point for cropping rectangle.
@@ -1918,13 +1912,14 @@ width = 56 # Integer | Width of cropping rectangle
 height = 56 # Integer | Height of cropping rectangle.
 
 opts = { 
+  format: 'format_example', # String | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
   folder: 'folder_example', # String | Folder with image to process.
   storage: 'storage_example' # String | Your Aspose Cloud Storage name.
 }
 
 begin
   #Crop an existing image.
-  result = api_instance.crop_image(name, format, x, y, width, height, opts)
+  result = api_instance.crop_image(name, x, y, width, height, opts)
   p result
 rescue AsposeImagingCloud::ApiError => e
   puts "Exception when calling ImagingApi->crop_image: #{e}"
@@ -1936,11 +1931,11 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| Filename of an image. | 
- **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
  **x** | **Integer**| X position of start point for cropping rectangle. | 
  **y** | **Integer**| Y position of start point for cropping rectangle. | 
  **width** | **Integer**| Width of cropping rectangle | 
  **height** | **Integer**| Height of cropping rectangle. | 
+ **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional] 
  **folder** | **String**| Folder with image to process. | [optional] 
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional] 
 
@@ -2522,7 +2517,7 @@ Name | Type | Description  | Notes
 
 
 # **filter_effect_image**
-> File filter_effect_image(name, format, filter_type, filter_properties, opts)
+> File filter_effect_image(name, filter_type, filter_properties, opts)
 
 Apply filtering effects to an existing image.
 
@@ -2540,20 +2535,19 @@ api_instance = AsposeImagingCloud::ImagingApi.new
 
 name = 'name_example' # String | Filename of an image.
 
-format = 'format_example' # String | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-
 filter_type = 'filter_type_example' # String | Filter type (BigRectangular, SmallRectangular, Median, GaussWiener, MotionWiener, GaussianBlur, Sharpen, BilateralSmoothing).
 
 filter_properties = AsposeImagingCloud::FilterPropertiesBase.new # FilterPropertiesBase | Filter properties.
 
 opts = { 
+  format: 'format_example', # String | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
   folder: 'folder_example', # String | Folder with image to process.
   storage: 'storage_example' # String | Your Aspose Cloud Storage name.
 }
 
 begin
   #Apply filtering effects to an existing image.
-  result = api_instance.filter_effect_image(name, format, filter_type, filter_properties, opts)
+  result = api_instance.filter_effect_image(name, filter_type, filter_properties, opts)
   p result
 rescue AsposeImagingCloud::ApiError => e
   puts "Exception when calling ImagingApi->filter_effect_image: #{e}"
@@ -2565,9 +2559,9 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| Filename of an image. | 
- **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
  **filter_type** | **String**| Filter type (BigRectangular, SmallRectangular, Median, GaussWiener, MotionWiener, GaussianBlur, Sharpen, BilateralSmoothing). | 
  **filter_properties** | [**FilterPropertiesBase**](FilterPropertiesBase.md)| Filter properties. | 
+ **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional] 
  **folder** | **String**| Folder with image to process. | [optional] 
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional] 
 
@@ -4165,7 +4159,7 @@ Name | Type | Description  | Notes
 
 
 # **resize_image**
-> File resize_image(name, format, new_width, new_height, opts)
+> File resize_image(name, new_width, new_height, opts)
 
 Resize an existing image.
 
@@ -4183,20 +4177,19 @@ api_instance = AsposeImagingCloud::ImagingApi.new
 
 name = 'name_example' # String | Filename of an image.
 
-format = 'format_example' # String | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-
 new_width = 56 # Integer | New width.
 
 new_height = 56 # Integer | New height.
 
 opts = { 
+  format: 'format_example', # String | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
   folder: 'folder_example', # String | Folder with image to process.
   storage: 'storage_example' # String | Your Aspose Cloud Storage name.
 }
 
 begin
   #Resize an existing image.
-  result = api_instance.resize_image(name, format, new_width, new_height, opts)
+  result = api_instance.resize_image(name, new_width, new_height, opts)
   p result
 rescue AsposeImagingCloud::ApiError => e
   puts "Exception when calling ImagingApi->resize_image: #{e}"
@@ -4208,9 +4201,9 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| Filename of an image. | 
- **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
  **new_width** | **Integer**| New width. | 
  **new_height** | **Integer**| New height. | 
+ **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional] 
  **folder** | **String**| Folder with image to process. | [optional] 
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional] 
 
@@ -4230,7 +4223,7 @@ Name | Type | Description  | Notes
 
 
 # **rotate_flip_image**
-> File rotate_flip_image(name, format, method, opts)
+> File rotate_flip_image(name, method, opts)
 
 Rotate and/or flip an existing image.
 
@@ -4248,18 +4241,17 @@ api_instance = AsposeImagingCloud::ImagingApi.new
 
 name = 'name_example' # String | Filename of an image.
 
-format = 'format_example' # String | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-
 method = 'method_example' # String | RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY).
 
 opts = { 
+  format: 'format_example', # String | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
   folder: 'folder_example', # String | Folder with image to process.
   storage: 'storage_example' # String | Your Aspose Cloud Storage name.
 }
 
 begin
   #Rotate and/or flip an existing image.
-  result = api_instance.rotate_flip_image(name, format, method, opts)
+  result = api_instance.rotate_flip_image(name, method, opts)
   p result
 rescue AsposeImagingCloud::ApiError => e
   puts "Exception when calling ImagingApi->rotate_flip_image: #{e}"
@@ -4271,8 +4263,8 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| Filename of an image. | 
- **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
  **method** | **String**| RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). | 
+ **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional] 
  **folder** | **String**| Folder with image to process. | [optional] 
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional] 
 
@@ -4401,7 +4393,7 @@ Name | Type | Description  | Notes
 
 
 # **update_image**
-> File update_image(name, format, new_width, new_height, x, y, rect_width, rect_height, rotate_flip_method, opts)
+> File update_image(name, new_width, new_height, x, y, rect_width, rect_height, rotate_flip_method, opts)
 
 Perform scaling, cropping and flipping of an existing image in a single request.
 
@@ -4419,8 +4411,6 @@ api_instance = AsposeImagingCloud::ImagingApi.new
 
 name = 'name_example' # String | Filename of an image.
 
-format = 'format_example' # String | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-
 new_width = 56 # Integer | New width of the scaled image.
 
 new_height = 56 # Integer | New height of the scaled image.
@@ -4436,13 +4426,14 @@ rect_height = 56 # Integer | Height of cropping rectangle.
 rotate_flip_method = 'rotate_flip_method_example' # String | RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). Default is RotateNoneFlipNone.
 
 opts = { 
+  format: 'format_example', # String | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
   folder: 'folder_example', # String | Folder with image to process.
   storage: 'storage_example' # String | Your Aspose Cloud Storage name.
 }
 
 begin
   #Perform scaling, cropping and flipping of an existing image in a single request.
-  result = api_instance.update_image(name, format, new_width, new_height, x, y, rect_width, rect_height, rotate_flip_method, opts)
+  result = api_instance.update_image(name, new_width, new_height, x, y, rect_width, rect_height, rotate_flip_method, opts)
   p result
 rescue AsposeImagingCloud::ApiError => e
   puts "Exception when calling ImagingApi->update_image: #{e}"
@@ -4454,7 +4445,6 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| Filename of an image. | 
- **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
  **new_width** | **Integer**| New width of the scaled image. | 
  **new_height** | **Integer**| New height of the scaled image. | 
  **x** | **Integer**| X position of start point for cropping rectangle. | 
@@ -4462,6 +4452,7 @@ Name | Type | Description  | Notes
  **rect_width** | **Integer**| Width of cropping rectangle. | 
  **rect_height** | **Integer**| Height of cropping rectangle. | 
  **rotate_flip_method** | **String**| RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). Default is RotateNoneFlipNone. | 
+ **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional] 
  **folder** | **String**| Folder with image to process. | [optional] 
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional] 
 

@@ -33,16 +33,16 @@ module AsposeImagingCloud
 
     # Apply filtering effects to an existing image.
     # @param [String] name Filename of an image.
-    # @param [String] format Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
     # @param [String] filter_type Filter type (BigRectangular, SmallRectangular, Median, GaussWiener, MotionWiener, GaussianBlur, Sharpen, BilateralSmoothing).
     # @param [FilterPropertiesBase] filter_properties Filter properties.
+    # @param [String] format Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
     # @param [String] folder Folder with image to process.
     # @param [String] storage Your Aspose Cloud Storage name.
-    def initialize(name, format, filter_type, filter_properties, folder = nil, storage = nil)
+    def initialize(name, filter_type, filter_properties, format = nil, folder = nil, storage = nil)
       @name = name
-      @format = format
       @filter_type = filter_type
       @filter_properties = filter_properties
+      @format = format
       @folder = folder
       @storage = storage
     end
@@ -51,11 +51,6 @@ module AsposeImagingCloud
       # verify the required parameter 'name' is set
       if config.client_side_validation && @name.nil?
         raise ArgumentError, "Missing the required parameter 'name' when calling ImagingApi.filter_effect_image"
-      end
-
-      # verify the required parameter 'format' is set
-      if config.client_side_validation && @format.nil?
-        raise ArgumentError, "Missing the required parameter 'format' when calling ImagingApi.filter_effect_image"
       end
 
       # verify the required parameter 'filter_type' is set
@@ -73,8 +68,8 @@ module AsposeImagingCloud
 
       # query parameters
       query_params = {}
-      query_params[:format] = @format
       query_params[:filterType] = @filter_type
+      query_params[:format] = @format unless @format.nil?
       query_params[:folder] = @folder unless @folder.nil?
       query_params[:storage] = @storage unless @storage.nil?
 

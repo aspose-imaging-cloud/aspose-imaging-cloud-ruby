@@ -58,7 +58,7 @@ module AsposeImagingCloudTests
           name = input_file.name
           formats_to_export.each do |format|
             request_invoker = lambda do
-              return imaging_api.rotate_flip_image(AsposeImagingCloud::RotateFlipImageRequest.new(name, format, method, folder, storage))
+              return imaging_api.rotate_flip_image(AsposeImagingCloud::RotateFlipImageRequest.new(name, method, format, folder, storage))
             end
 
             get_request_tester('RotateFlipImageTest', "Input image: #{name}; Output format: #{format}; Method: #{method}", name, request_invoker, properties_tester, folder, storage)
@@ -98,7 +98,7 @@ module AsposeImagingCloudTests
             request_invoker = lambda do |input_stream, out_path|
               kwargs = {storage: storage}
               kwargs['out_path'] = out_path unless out_path.nil?
-              return imaging_api.create_rotate_flipped_image(AsposeImagingCloud::CreateRotateFlippedImageRequest.new(input_stream, format, method, out_path, storage))
+              return imaging_api.create_rotate_flipped_image(AsposeImagingCloud::CreateRotateFlippedImageRequest.new(input_stream, method, format, out_path, storage))
             end
 
             out_name = "#{name}_crop.#{format}"
