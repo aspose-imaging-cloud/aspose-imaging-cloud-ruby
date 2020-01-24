@@ -101,6 +101,14 @@ module AsposeImagingCloud
       make_request(http_request, :POST, 'File')
     end
 
+    # Deskew an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+    # @param [create_deskewed_imageRequest] request Request object.
+    # @return [File]
+    def create_deskewed_image(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :POST, 'File')
+    end
+
     # Create the folder
     # @param [create_folderRequest] request Request object.
     # @return [nil]
@@ -316,6 +324,14 @@ module AsposeImagingCloud
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :DELETE, nil)
       nil
+    end
+
+    # Deskew an existing image.
+    # @param [deskew_imageRequest] request Request object.
+    # @return [File]
+    def deskew_image(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :GET, 'File')
     end
 
     # Download file
