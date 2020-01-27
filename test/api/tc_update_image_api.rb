@@ -54,7 +54,7 @@ module AsposeImagingCloudTests
           name = input_file.name
           formats_to_export.each do |format|
             request_invoker = lambda do
-              return imaging_api.update_image(AsposeImagingCloud::UpdateImageRequest.new(name, format, new_width, new_height, x, y, rect_width, rect_height, rotate_flip_method, folder, storage))
+              return imaging_api.update_image(AsposeImagingCloud::UpdateImageRequest.new(name, new_width, new_height, x, y, rect_width, rect_height, rotate_flip_method, format, folder, storage))
             end
 
             get_request_tester('UpdateImageTest', "Input image: #{name}; Output format: #{format}; New width: #{new_width}; New height: #{new_height}; Rotate/flip method: #{rotate_flip_method}; X: #{x}; Y: #{y}; Rect width: #{rect_width}; Rect height: #{rect_height}", name, request_invoker, properties_tester, folder, storage)
@@ -89,7 +89,7 @@ module AsposeImagingCloudTests
           name = input_file.name
           formats_to_export.each do |format|
             request_invoker = lambda do |input_stream, out_path|
-              return imaging_api.create_updated_image(AsposeImagingCloud::CreateUpdatedImageRequest.new(input_stream, format, new_width, new_height, x, y, rect_width, rect_height, rotate_flip_method, out_path, storage))
+              return imaging_api.create_updated_image(AsposeImagingCloud::CreateUpdatedImageRequest.new(input_stream, new_width, new_height, x, y, rect_width, rect_height, rotate_flip_method, format, out_path, storage))
             end
 
             out_name ="#{name}_crop.#{format}"
