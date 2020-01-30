@@ -135,7 +135,7 @@ module AsposeImagingCloudTests
       image_source_url = URI.encode('https://www.f1news.ru/interview/hamilton/140909.shtml')
       imaging_api.create_web_site_image_features(AsposeImagingCloud::CreateWebSiteImageFeaturesRequest.new(search_context_id, image_source_url, nil, test_storage))
 
-      sleep(wait_timeout)
+      wait_search_context_idle
 
       image_url = URI.encode('https://cdn.f1ne.ws/userfiles/hamilton/140909.jpg')
       response = imaging_api.get_image_features(AsposeImagingCloud::GetImageFeaturesRequest.new(search_context_id, image_url, nil, test_storage))

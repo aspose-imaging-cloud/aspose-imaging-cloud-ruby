@@ -33,16 +33,16 @@ module AsposeImagingCloud
 
     # Resize an existing image.
     # @param [String] name Filename of an image.
-    # @param [String] format Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
     # @param [Integer] new_width New width.
     # @param [Integer] new_height New height.
+    # @param [String] format Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
     # @param [String] folder Folder with image to process.
     # @param [String] storage Your Aspose Cloud Storage name.
-    def initialize(name, format, new_width, new_height, folder = nil, storage = nil)
+    def initialize(name, new_width, new_height, format = nil, folder = nil, storage = nil)
       @name = name
-      @format = format
       @new_width = new_width
       @new_height = new_height
+      @format = format
       @folder = folder
       @storage = storage
     end
@@ -51,11 +51,6 @@ module AsposeImagingCloud
       # verify the required parameter 'name' is set
       if config.client_side_validation && @name.nil?
         raise ArgumentError, "Missing the required parameter 'name' when calling ImagingApi.resize_image"
-      end
-
-      # verify the required parameter 'format' is set
-      if config.client_side_validation && @format.nil?
-        raise ArgumentError, "Missing the required parameter 'format' when calling ImagingApi.resize_image"
       end
 
       # verify the required parameter 'new_width' is set
@@ -73,9 +68,9 @@ module AsposeImagingCloud
 
       # query parameters
       query_params = {}
-      query_params[:format] = @format
       query_params[:newWidth] = @new_width
       query_params[:newHeight] = @new_height
+      query_params[:format] = @format unless @format.nil?
       query_params[:folder] = @folder unless @folder.nil?
       query_params[:storage] = @storage unless @storage.nil?
 

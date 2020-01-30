@@ -1,5 +1,5 @@
 #  ----------------------------------------------------------------------------
-#  <copyright company="Aspose" file="tc_crop_api.rb">
+#  <copyright company="Aspose" file="tc_deskew_api.rb">
 #    Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
 #  </copyright>
 #  <summary>
@@ -26,68 +26,58 @@
 require_relative './imaging_api_tester'
 
 module AsposeImagingCloudTests
-  class TestCropApi < ImagingApiTester
-    #  Class for testing CropAPI
+  class TestDeskewApi < ImagingApiTester
+    #  Class for testing DeskewAPI
 
-    # Test crop_image
-    (@extended_test ? ['.jpg', '.bmp', '.dicom', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp'] : ['.jpg']).each do |format_extension|
-      define_method("test_crop_image_format_extension_#{format_extension}") do
-        x = 10
-        y = 10
-        width = 100
-        height = 150
+    # Test deskew_image
+    (@extended_test ? ['.jpg', '.bmp', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp'] : ['.jpg']).each do |format_extension|
+      define_method("test_deskew_image_format_extension_#{format_extension}") do
         folder = @temp_folder
         storage = @test_storage
+        resize_proportionally = true
+        bk_color = nil
         formats_to_export = @basic_export_formats
 
         properties_tester = lambda do |_original_properties, result_properties, _result_stream|
-          assert_equal(width, result_properties.width)
-          assert_equal(height, result_properties.height)
+          assert_not_nil(_result_stream)
         end
 
         @input_test_files.each do |input_file|
           next unless input_file.name.to_s.end_with?(format_extension)
 
           name = input_file.name
-          formats_to_export.each do |format|
-            request_invoker = lambda do
-              return imaging_api.crop_image(AsposeImagingCloud::CropImageRequest.new(name, x, y, width, height, format, folder, storage))
-            end
-
-            get_request_tester('CropImageTest', "Input image: #{name}; Output format: #{format}; Width: #{width}; Height: #{height}; X: #{x}; Y: #{y}", name, request_invoker, properties_tester, folder, storage)
+          request_invoker = lambda do
+            return imaging_api.deskew_image(AsposeImagingCloud::DeskewImageRequest.new(name, resize_proportionally, bk_color, folder, storage))
           end
+
+          get_request_tester('DeskewImageTest', "Input image: #{name}; Output format: #{format_extension}; Resize proportionally: #{resize_proportionally}; Background color: #{bk_color};", name, request_invoker, properties_tester, folder, storage)
         end
       end
     end
 
-    # Test create_cropped_image
-    (@extended_test ? ['.jpg', '.bmp', '.dicom', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp'] : ['.jpg']).each do |format_extension|
+    # Test create_deskewed_image
+    (@extended_test ? ['.jpg', '.bmp', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp'] : ['.jpg']).each do |format_extension|
       [true, false].each do |save_result_to_storage|
-        define_method("test_create_cropped_image_save_to_storage_#{save_result_to_storage}_format_extension_#{format_extension}") do
-          x = 10
-          y = 10
-          width = 100
-          height = 150
+        define_method("test_create_deskewed_image_save_to_storage_#{save_result_to_storage}_format_extension_#{format_extension}") do
+          resize_proportionally = true
+          bk_color = nil
           folder = @temp_folder
           storage = @test_storage
-          formats_to_export = @basic_export_formats
 
           properties_tester = lambda do |_original_properties, result_properties, _result_stream|
-            assert_equal(width, result_properties.width)
-            assert_equal(height, result_properties.height)
+            assert_equal(_original_properties.bits_per_pixel, result_properties.bits_per_pixel)
+            assert_equal(_original_properties.bits_per_pixel, result_properties.bits_per_pixel)
           end
           @input_test_files.each do |input_file|
             next unless input_file.name.to_s.end_with?(format_extension)
 
             name = input_file.name
-            formats_to_export.each do |format|
-              request_invoker = lambda do |input_stream, out_path|
-                return imaging_api.create_cropped_image(AsposeImagingCloud::CreateCroppedImageRequest.new(input_stream, x, y, width, height, format, out_path, storage))
-              end
-
-              out_name = "#{name}_crop.#{format}}"
-              post_request_tester('CreateCroppedImageTest', save_result_to_storage, "Input image: #{name}; Output format: #{format}; Width: #{width}; Height: #{height}; X: #{x}; Y: #{y}", name, out_name, request_invoker, properties_tester, folder, storage)
+            request_invoker = lambda do |input_stream, out_path|
+              return imaging_api.create_deskewed_image(AsposeImagingCloud::CreateDeskewedImageRequest.new(input_stream, resize_proportionally, bk_color, out_path, storage))
             end
+
+            out_name = "#{name}_deskewed#{format_extension}}"
+            post_request_tester('CreateDeskewedImageTest', save_result_to_storage, "Input image: #{name}; Output format: #{format_extension}; Resize proportionally: #{resize_proportionally}; Background color: #{bk_color};", name, out_name, request_invoker, properties_tester, folder, storage)
           end
         end
       end

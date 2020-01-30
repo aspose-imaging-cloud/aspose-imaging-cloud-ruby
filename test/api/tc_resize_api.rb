@@ -51,7 +51,7 @@ module AsposeImagingCloudTests
           name = input_file.name
           formats_to_export.each do |format|
             request_invoker = lambda do
-              return imaging_api.resize_image(AsposeImagingCloud::ResizeImageRequest.new(name, format, new_width, new_height, folder, storage))
+              return imaging_api.resize_image(AsposeImagingCloud::ResizeImageRequest.new(name, new_width, new_height, format, folder, storage))
             end
 
             get_request_tester('ResizeImageTest', "Input image: #{name}; Output format: #{format}; New width: #{new_width}; New height: #{new_height};", name, request_invoker, properties_tester, folder, storage)
@@ -81,7 +81,7 @@ module AsposeImagingCloudTests
             name = input_file.name
             formats_to_export.each do |format|
               request_invoker = lambda do |input_stream, out_path|
-                return imaging_api.create_resized_image(AsposeImagingCloud::CreateResizedImageRequest.new(input_stream, format, new_width, new_height, out_path, storage))
+                return imaging_api.create_resized_image(AsposeImagingCloud::CreateResizedImageRequest.new(input_stream, new_width, new_height, format, out_path, storage))
               end
 
               out_name = "#{name}_crop.#{format}"

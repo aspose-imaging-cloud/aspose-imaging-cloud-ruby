@@ -71,7 +71,7 @@ module AsposeImagingCloudTests
           filters.each do |filter|
             formats_to_export.each do |format|
               request_invoker = lambda do
-                return @imaging_api.filter_effect_image(AsposeImagingCloud::FilterEffectImageRequest.new(name, format, filter.filter_type, filter.filter_properties, folder, storage))
+                return @imaging_api.filter_effect_image(AsposeImagingCloud::FilterEffectImageRequest.new(name, filter.filter_type, filter.filter_properties, format, folder, storage))
               end
 
               get_request_tester('FilterEffectTest', "Input image: #{name}; Output format: #{format}; Filter type: #{filter.filter_type}", name, request_invoker, properties_tester, folder, storage)

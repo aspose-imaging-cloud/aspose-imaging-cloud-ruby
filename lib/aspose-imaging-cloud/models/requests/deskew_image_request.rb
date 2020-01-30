@@ -1,5 +1,5 @@
 #  ----------------------------------------------------------------------------
-#  <copyright company="Aspose" file="filter_effect_image_request.rb">
+#  <copyright company="Aspose" file="deskew_image_request.rb">
 #    Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
 #  </copyright>
 #  <summary>
@@ -28,21 +28,19 @@ require_relative './imaging_request'
 require_relative './http_request'
 
 module AsposeImagingCloud
-  # Request model for filter_effect_image operation.
-  class FilterEffectImageRequest < ImagingRequest
+  # Request model for deskew_image operation.
+  class DeskewImageRequest < ImagingRequest
 
-    # Apply filtering effects to an existing image.
+    # Deskew an existing image.
     # @param [String] name Filename of an image.
-    # @param [String] filter_type Filter type (BigRectangular, SmallRectangular, Median, GaussWiener, MotionWiener, GaussianBlur, Sharpen, BilateralSmoothing).
-    # @param [FilterPropertiesBase] filter_properties Filter properties.
-    # @param [String] format Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-    # @param [String] folder Folder with image to process.
-    # @param [String] storage Your Aspose Cloud Storage name.
-    def initialize(name, filter_type, filter_properties, format = nil, folder = nil, storage = nil)
+    # @param [BOOLEAN] resize_proportionally Resize proportionally
+    # @param [String] bk_color Background color
+    # @param [String] folder Folder
+    # @param [String] storage Storage
+    def initialize(name, resize_proportionally, bk_color = nil, folder = nil, storage = nil)
       @name = name
-      @filter_type = filter_type
-      @filter_properties = filter_properties
-      @format = format
+      @resize_proportionally = resize_proportionally
+      @bk_color = bk_color
       @folder = folder
       @storage = storage
     end
@@ -50,26 +48,21 @@ module AsposeImagingCloud
     def to_http_info(config)
       # verify the required parameter 'name' is set
       if config.client_side_validation && @name.nil?
-        raise ArgumentError, "Missing the required parameter 'name' when calling ImagingApi.filter_effect_image"
+        raise ArgumentError, "Missing the required parameter 'name' when calling ImagingApi.deskew_image"
       end
 
-      # verify the required parameter 'filter_type' is set
-      if config.client_side_validation && @filter_type.nil?
-        raise ArgumentError, "Missing the required parameter 'filter_type' when calling ImagingApi.filter_effect_image"
-      end
-
-      # verify the required parameter 'filter_properties' is set
-      if config.client_side_validation && @filter_properties.nil?
-        raise ArgumentError, "Missing the required parameter 'filter_properties' when calling ImagingApi.filter_effect_image"
+      # verify the required parameter 'resize_proportionally' is set
+      if config.client_side_validation && @resize_proportionally.nil?
+        raise ArgumentError, "Missing the required parameter 'resize_proportionally' when calling ImagingApi.deskew_image"
       end
 
       # resource path
-      local_var_path = '/imaging/{name}/filterEffect'.sub('{' + 'name' + '}', @name.to_s)
+      local_var_path = '/imaging/{name}/deskew'.sub('{' + 'name' + '}', @name.to_s)
 
       # query parameters
       query_params = {}
-      query_params[:filterType] = @filter_type
-      query_params[:format] = @format unless @format.nil?
+      query_params[:resizeProportionally] = @resize_proportionally
+      query_params[:bkColor] = @bk_color unless @bk_color.nil?
       query_params[:folder] = @folder unless @folder.nil?
       query_params[:storage] = @storage unless @storage.nil?
 
@@ -77,7 +70,7 @@ module AsposeImagingCloud
       form_params = {}
 
       # http body (model)
-      post_body = object_to_http_body(@filter_properties)
+      post_body = nil
       auth_names = ['JWT']
 
       # header parameters
@@ -85,7 +78,7 @@ module AsposeImagingCloud
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = form_params.any? ? 'multipart/form-data' : select_header_content_type(['application/json', 'application/xml'])
+      header_params['Content-Type'] = form_params.any? ? 'multipart/form-data' : select_header_content_type(['application/json'])
 
       AsposeImagingCloud::HttpRequest.new(local_var_path,
                                       header_params,

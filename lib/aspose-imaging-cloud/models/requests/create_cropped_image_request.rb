@@ -33,20 +33,20 @@ module AsposeImagingCloud
 
     # Crop an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
     # @param [File] image_data Input image
-    # @param [String] format Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
     # @param [Integer] x X position of start point for cropping rectangle.
     # @param [Integer] y Y position of start point for cropping rectangle.
     # @param [Integer] width Width of cropping rectangle.
     # @param [Integer] height Height of cropping rectangle.
+    # @param [String] format Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
     # @param [String] out_path Path to updated file (if this is empty, response contains streamed image).
     # @param [String] storage Your Aspose Cloud Storage name.
-    def initialize(image_data, format, x, y, width, height, out_path = nil, storage = nil)
+    def initialize(image_data, x, y, width, height, format = nil, out_path = nil, storage = nil)
       @image_data = image_data
-      @format = format
       @x = x
       @y = y
       @width = width
       @height = height
+      @format = format
       @out_path = out_path
       @storage = storage
     end
@@ -55,11 +55,6 @@ module AsposeImagingCloud
       # verify the required parameter 'image_data' is set
       if config.client_side_validation && @image_data.nil?
         raise ArgumentError, "Missing the required parameter 'image_data' when calling ImagingApi.create_cropped_image"
-      end
-
-      # verify the required parameter 'format' is set
-      if config.client_side_validation && @format.nil?
-        raise ArgumentError, "Missing the required parameter 'format' when calling ImagingApi.create_cropped_image"
       end
 
       # verify the required parameter 'x' is set
@@ -87,11 +82,11 @@ module AsposeImagingCloud
 
       # query parameters
       query_params = {}
-      query_params[:format] = @format
       query_params[:x] = @x
       query_params[:y] = @y
       query_params[:width] = @width
       query_params[:height] = @height
+      query_params[:format] = @format unless @format.nil?
       query_params[:outPath] = @out_path unless @out_path.nil?
       query_params[:storage] = @storage unless @storage.nil?
 
