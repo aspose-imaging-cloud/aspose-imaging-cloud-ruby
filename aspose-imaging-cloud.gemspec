@@ -4,9 +4,11 @@ Gem::Specification.new do |s|
   s.licenses    = ['MIT']
   s.summary     = "Aspose.Imaging Cloud Ruby SDK"
   s.description = "
-Aspose.Imaging Cloud is a true REST API that enables you to perform a wide range of image processing operations including creation, manipulation and conversion in the cloud, with zero initial costs. Our Cloud SDKs are wrappers around REST API in various programming languages, allowing you to process images in language of your choice quickly and easily, gaining all benefits of strong types and IDE highlights.
+When you need robust image processing features into your Ruby application, but do not have time&resources to develop complex imaging back end yourself, Aspose.Imaging Cloud SDK for Ruby is for you. There are set of powerful image conversion, transformation, filtering features along with advanced reverse image search feature exposed via Aspose.Imaging REST API and wrapped as native Ruby SDK to help Ruby developers build imaging applications easy.
 
-This repository contains Aspose.Imaging Cloud Python SDK source code. This SDK allows you to work with Aspose.Imaging Cloud REST APIs in your Python applications quickly and easily, with zero initial cost.
+Aspose.Imaging Cloud SDK for Ruby offers advanced processing of multi page TIFF images. You can extract a single TIFF frame to crop, resize, rotate, or flip add the frame, prepare TIFF as a fax.
+
+This repository contains Aspose.Imaging Cloud Ruby SDK source code. This SDK allows you to work with Aspose.Imaging Cloud REST APIs in your Ruby applications quickly and easily, with zero initial cost.
 
 To use this SDK, you will need App SID and App Key which can be looked up at Aspose Cloud Dashboard (free registration in Aspose Cloud is required for this).
 
