@@ -106,7 +106,10 @@ module AsposeImagingCloudExamples
                              if imaging_response.tiff_properties
                                output_file.write('Tiff properties:')
                                output_file.write('Frames count: ' + imaging_response.tiff_properties.frames.size.to_s)
-                               output_file.write('Camera owner name: ' + (imaging_response.tiff_properties.exif_data ? imaging_response.tiff_properties.exif_data.camera_owner_name : ''))
+                               output_file.write(
+                                   'Camera owner name: ' +
+                                       (imaging_response.tiff_properties.exif_data ?
+                                            imaging_response.tiff_properties.exif_data.camera_owner_name : ''))
                                output_file.write('Byte order: ' + imaging_response.tiff_properties.byte_order.to_s)
                              end
                            }

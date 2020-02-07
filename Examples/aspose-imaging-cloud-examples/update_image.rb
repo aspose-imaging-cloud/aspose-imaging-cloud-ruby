@@ -45,7 +45,8 @@ module AsposeImagingCloudExamples
 
       upload_sample_image_to_cloud
 
-      # Please refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-Update
+      # Please refer to
+      #   https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-Update
       # for possible output formats
       format = 'pdf' # Resulting image format
       new_width = 300
@@ -58,9 +59,13 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::UpdateImageRequest.new(get_sample_image_file_name, new_width, new_height, x, y, rect_width, rect_height, rotate_flip_method, format, folder, storage)
+      request = AsposeImagingCloud::UpdateImageRequest.new(
+          get_sample_image_file_name, new_width, new_height, x, y, rect_width, rect_height, rotate_flip_method, format,
+          folder, storage)
 
-      puts("Call UpdateImage with params: new width: #{new_width}, new height: #{new_height}, x: #{x}, y: #{y}, rect width: #{rect_width}, rectHeight: #{rect_height}, rotate/flip method: #{rotate_flip_method}, format: #{format}")
+      puts("Call UpdateImage with params: new width: #{new_width}, new height: #{new_height}, x: #{x}, y: #{y}, " +
+               "rect width: #{rect_width}, rectHeight: #{rect_height}, rotate/flip method: #{rotate_flip_method}, " +
+               "format: #{format}")
 
       updated_image = imaging_api.update_image(request)
       save_updated_sample_image_to_output(updated_image, false)
@@ -73,7 +78,8 @@ module AsposeImagingCloudExamples
 
       upload_sample_image_to_cloud
 
-      # Please refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-Update
+      # Please refer to
+      #   https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-Update
       # for possible output formats
       format = 'pdf' # Resulting image format
       new_width = 300
@@ -86,9 +92,13 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::UpdateImageRequest.new(get_sample_image_file_name, new_width, new_height, x, y, rect_width, rect_height, rotate_flip_method, format, folder, storage)
+      request = AsposeImagingCloud::UpdateImageRequest.new(
+          get_sample_image_file_name, new_width, new_height, x, y, rect_width, rect_height, rotate_flip_method, format,
+          folder, storage)
 
-      puts("Call UpdateImage with params: new width: #{new_width}, new height: #{new_height}, x: #{x}, y: #{y}, rect width: #{rect_width}, rectHeight: #{rect_height}, rotate/flip method: #{rotate_flip_method}, format: #{format}")
+      puts("Call UpdateImage with params: new width: #{new_width}, new height: #{new_height}, x: #{x}, y: #{y}, " +
+               "rect width: #{rect_width}, rectHeight: #{rect_height}, rotate/flip method: #{rotate_flip_method}, " +
+               "format: #{format}")
 
       updated_image = @imaging_api.update_image(request)
       upload_image_to_cloud(get_modified_sample_image_file_name, updated_image)
@@ -99,7 +109,8 @@ module AsposeImagingCloudExamples
     def create_updated_image_from_request_body
       puts('Update an image from request body')
 
-      # Please refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-Update
+      # Please refer to
+      #   https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-Update
       # for possible output formats
       format = 'pdf' # Resulting image format
       new_width = 300
@@ -113,9 +124,13 @@ module AsposeImagingCloudExamples
       out_path = nil # Path to updated file (if this is empty, response contains streamed image)
 
       input_stream = File.open(File.join(ImagingBase::EXAMPLE_IMAGES_FOLDER, get_sample_image_file_name), 'r')
-      request = AsposeImagingCloud::CreateUpdatedImageRequest.new(input_stream, new_width, new_height, x, y, rect_width, rect_height, rotate_flip_method, format, out_path, storage)
+      request = AsposeImagingCloud::CreateUpdatedImageRequest.new(
+          input_stream, new_width, new_height, x, y, rect_width, rect_height, rotate_flip_method, format, out_path,
+          storage)
 
-      puts("Call CreateUpdatedImage with params: new width: #{new_width}, new height: #{new_height}, x: #{x}, y: #{y}, rect width: #{rect_width}, rectHeight: #{rect_height}, rotate/flip method: #{rotate_flip_method}, format: #{format}")
+      puts("Call CreateUpdatedImage with params: new width: #{new_width}, new height: #{new_height}, x: #{x}, y: #{y}" +
+               ", rect width: #{rect_width}, rectHeight: #{rect_height}, rotate/flip method: #{rotate_flip_method}, " +
+               "format: #{format}")
 
       updated_image = imaging_api.create_updated_image(request)
       save_updated_sample_image_to_output(updated_image, true)

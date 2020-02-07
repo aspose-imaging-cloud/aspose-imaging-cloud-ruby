@@ -45,7 +45,8 @@ module AsposeImagingCloudExamples
 
       upload_sample_image_to_cloud
 
-      # Please refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-Export(SaveAs)
+      # Please refer to
+      #   https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-Export(SaveAs)
       # for possible output formats
       format = 'pdf' # Resulting image format
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
@@ -66,7 +67,8 @@ module AsposeImagingCloudExamples
 
       upload_sample_image_to_cloud
 
-      # Please refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-Export(SaveAs)
+      # Please refer to
+      #   https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-Export(SaveAs)
       # for possible output formats
       format = 'pdf' # Resulting image format
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
@@ -85,7 +87,8 @@ module AsposeImagingCloudExamples
     def create_saved_image_as_from_request_body
       puts('Export an image to another format. Image data is passed in a request body')
 
-      # Please refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-Export(SaveAs)
+      # Please refer to
+      #   https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-Export(SaveAs)
       # for possible output formats
       format = 'pdf' # Resulting image format
       storage = nil # We are using default Cloud Storage

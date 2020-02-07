@@ -51,7 +51,8 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::ModifyJpeg2000Request.new(get_sample_image_file_name, comment, codec, from_scratch, folder, storage)
+      request = AsposeImagingCloud::ModifyJpeg2000Request.new(
+          get_sample_image_file_name, comment, codec, from_scratch, folder, storage)
 
       puts("Call ModifyJpeg2000 with params: codec: #{codec}, comment: #{comment}")
 
@@ -72,7 +73,8 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::ModifyJpeg2000Request.new(get_sample_image_file_name, comment, codec, from_scratch, folder, storage)
+      request = AsposeImagingCloud::ModifyJpeg2000Request.new(
+          get_sample_image_file_name, comment, codec, from_scratch, folder, storage)
 
       puts("Call ModifyJpeg2000 with params: codec: #{codec}, comment: #{comment}")
 
@@ -92,7 +94,8 @@ module AsposeImagingCloudExamples
       out_path = nil # Path to updated file (if this is empty, response contains streamed image)
 
       input_stream = File.open(File.join(ImagingBase::EXAMPLE_IMAGES_FOLDER, get_sample_image_file_name), 'r')
-      request = AsposeImagingCloud::CreateModifiedJpeg2000Request.new(input_stream, comment, codec, from_scratch, out_path, storage)
+      request = AsposeImagingCloud::CreateModifiedJpeg2000Request.new(
+          input_stream, comment, codec, from_scratch, out_path, storage)
 
       puts("Call CreateModifiedJpeg2000 with params: codec: #{codec}, comment: #{comment}")
 

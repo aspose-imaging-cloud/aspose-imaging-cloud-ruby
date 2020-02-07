@@ -45,14 +45,16 @@ module AsposeImagingCloudExamples
 
       upload_sample_image_to_cloud
 
-      # Please refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-RotateFlip
+      # Please refer to
+      #   https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-RotateFlip
       # for possible output formats
       format = 'gif' # Resulting image format
       method = 'Rotate90FlipX' # RotateFlip method
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::RotateFlipImageRequest.new(get_sample_image_file_name, method, format, folder, storage)
+      request = AsposeImagingCloud::RotateFlipImageRequest.new(
+          get_sample_image_file_name, method, format, folder, storage)
 
       puts("Call RotateFlipImage with params: method: #{method}, format: #{format}")
 
@@ -67,14 +69,16 @@ module AsposeImagingCloudExamples
 
       upload_sample_image_to_cloud
 
-      # Please refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-RotateFlip
+      # Please refer to
+      #   https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-RotateFlip
       # for possible output formats
       format = 'gif' # Resulting image format
       method = 'Rotate90FlipX' # RotateFlip method
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::RotateFlipImageRequest.new(get_sample_image_file_name, method, format, folder, storage)
+      request = AsposeImagingCloud::RotateFlipImageRequest.new(
+          get_sample_image_file_name, method, format, folder, storage)
 
       puts("Call RotateFlipImage with params: method: #{method}, format: #{format}")
 
@@ -87,7 +91,8 @@ module AsposeImagingCloudExamples
     def create_rotate_flipped_image_from_request_body
       puts('Rotate/flip an image from request body')
 
-      # Please refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-RotateFlip
+      # Please refer to
+      #   https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-RotateFlip
       # for possible output formats
       format = 'gif' # Resulting image format
       method = 'Rotate90FlipX' # RotateFlip method

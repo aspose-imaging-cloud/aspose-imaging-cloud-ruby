@@ -53,9 +53,12 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::ModifyWebPRequest.new(get_sample_image_file_name, lossless, quality, anim_loop_count, anim_background_color, from_scratch, folder, storage)
+      request = AsposeImagingCloud::ModifyWebPRequest.new(
+          get_sample_image_file_name, lossless, quality, anim_loop_count, anim_background_color, from_scratch, folder,
+          storage)
 
-      puts("Call ModifyWebP with params: lossless: #{lossless}, quality: #{quality}, anim loop count: #{anim_loop_count}, anim background color: #{anim_background_color}")
+      puts("Call ModifyWebP with params: lossless: #{lossless}, quality: #{quality}, anim loop count: " +
+               "#{anim_loop_count}, anim background color: #{anim_background_color}")
 
       updated_image = imaging_api.modify_web_p(request)
       save_updated_sample_image_to_output(updated_image, false)
@@ -76,9 +79,12 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::ModifyWebPRequest.new(get_sample_image_file_name, lossless, quality, anim_loop_count, anim_background_color, from_scratch, folder, storage)
+      request = AsposeImagingCloud::ModifyWebPRequest.new(
+          get_sample_image_file_name, lossless, quality, anim_loop_count, anim_background_color, from_scratch, folder,
+          storage)
 
-      puts("Call ModifyWebP with params: lossless: #{lossless}, quality: #{quality}, anim loop count: #{anim_loop_count}, anim background color: #{anim_background_color}")
+      puts("Call ModifyWebP with params: lossless: #{lossless}, quality: #{quality}, anim loop count: " +
+               "#{anim_loop_count}, anim background color: #{anim_background_color}")
 
       updated_image = @imaging_api.modify_web_p(request)
       upload_image_to_cloud(get_modified_sample_image_file_name, updated_image)
@@ -98,9 +104,11 @@ module AsposeImagingCloudExamples
       out_path = nil # Path to updated file (if this is empty, response contains streamed image)
 
       input_stream = File.open(File.join(ImagingBase::EXAMPLE_IMAGES_FOLDER, get_sample_image_file_name), 'r')
-      request = AsposeImagingCloud::CreateModifiedWebPRequest.new(input_stream, lossless, quality, anim_loop_count, anim_background_color, from_scratch, out_path, storage)
+      request = AsposeImagingCloud::CreateModifiedWebPRequest.new(
+          input_stream, lossless, quality, anim_loop_count, anim_background_color, from_scratch, out_path, storage)
 
-      puts("Call CreateModifiedWebP with params: lossless: #{lossless}, quality: #{quality}, anim loop count: #{anim_loop_count}, anim background color: #{anim_background_color}")
+      puts("Call CreateModifiedWebP with params: lossless: #{lossless}, quality: #{quality}, anim loop count: " +
+               "#{anim_loop_count}, anim background color: #{anim_background_color}")
 
       updated_image = imaging_api.create_modified_web_p(request)
       save_updated_sample_image_to_output(updated_image, true)

@@ -64,9 +64,11 @@ module AsposeImagingCloudExamples
       folder = ImagingAiBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::FindSimilarImagesRequest.new(search_context_id, similarity_threshold, max_count, nil, find_image_id, folder, storage)
+      request = AsposeImagingCloud::FindSimilarImagesRequest.new(
+          search_context_id, similarity_threshold, max_count, nil, find_image_id, folder, storage)
 
-      puts("Call FindSimilarImages with params: similarity threshold: #{similarity_threshold}, max count: #{max_count}, image id: #{find_image_id}")
+      puts("Call FindSimilarImages with params: similarity threshold:" +
+          "#{similarity_threshold}, max count: #{max_count}, image id: #{find_image_id}")
 
       response = imaging_api.find_similar_images(request)
 
@@ -86,16 +88,19 @@ module AsposeImagingCloudExamples
       storage = nil # We are using default Cloud Storage
 
       input_stream = File.open(File.join(ImagingAiBase::EXAMPLE_IMAGES_FOLDER, file_name), 'r')
-      create_tag_request = AsposeImagingCloud::CreateImageTagRequest.new(input_stream, search_context_id, tag_name, folder, storage)
+      create_tag_request = AsposeImagingCloud::CreateImageTagRequest.new(
+          input_stream, search_context_id, tag_name, folder, storage)
 
       puts('Call CreateImageTag with params: tag name: ' + tag_name)
 
       imaging_api.create_image_tag(create_tag_request)
 
       tags = JSON.dump([tag_name])
-      find_request = AsposeImagingCloud::FindImagesByTagsRequest.new(tags, search_context_id, similarity_threshold, max_count, folder, storage)
+      find_request = AsposeImagingCloud::FindImagesByTagsRequest.new(
+          tags, search_context_id, similarity_threshold, max_count, folder, storage)
 
-      puts("Call FindImagesByTags with params: similarity threshold: #{similarity_threshold}, max count: #{max_count}, tags: #{tags}")
+      puts("Call FindImagesByTags with params: similarity threshold:" +
+               " #{similarity_threshold}, max count: #{max_count}, tags: #{tags}")
 
       find_response = imaging_api.find_images_by_tags(find_request)
 

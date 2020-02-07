@@ -54,9 +54,13 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::ModifyTiffRequest.new(get_sample_image_file_name, bit_depth, compression, resolution_unit, horizontal_resolution, vertical_resolution, from_scratch, folder, storage)
+      request = AsposeImagingCloud::ModifyTiffRequest.new(
+          get_sample_image_file_name, bit_depth, compression, resolution_unit, horizontal_resolution,
+          vertical_resolution, from_scratch, folder, storage)
 
-      puts("Call ModifyTiff with params: compression: #{compression}, resolution unit: #{resolution_unit}, bit depth: #{bit_depth}, horizontal resolution: #{horizontal_resolution}, vertical resolution: #{vertical_resolution}")
+      puts("Call ModifyTiff with params: compression: #{compression}, resolution unit: #{resolution_unit}, bit depth:" +
+               " #{bit_depth}, horizontal resolution: #{horizontal_resolution}, vertical resolution: " +
+               "#{vertical_resolution}")
 
       updated_image = imaging_api.modify_tiff(request)
       save_updated_sample_image_to_output(updated_image, false)
@@ -78,9 +82,13 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::ModifyTiffRequest.new(get_sample_image_file_name, bit_depth, compression, resolution_unit, horizontal_resolution, vertical_resolution, from_scratch, folder, storage)
+      request = AsposeImagingCloud::ModifyTiffRequest.new(
+          get_sample_image_file_name, bit_depth, compression, resolution_unit, horizontal_resolution,
+          vertical_resolution, from_scratch, folder, storage)
 
-      puts("Call ModifyTiff with params: compression: #{compression}, resolution unit: #{resolution_unit}, bit depth: #{bit_depth}, horizontal resolution: #{horizontal_resolution}, vertical resolution: #{vertical_resolution}")
+      puts("Call ModifyTiff with params: compression: #{compression}, resolution unit: #{resolution_unit}, " +
+               "bit depth: #{bit_depth}, horizontal resolution: #{horizontal_resolution}, vertical resolution: " +
+               "#{vertical_resolution}")
 
       updated_image = @imaging_api.modify_tiff(request)
       upload_image_to_cloud(get_modified_sample_image_file_name, updated_image)
@@ -101,9 +109,13 @@ module AsposeImagingCloudExamples
       out_path = nil # Path to updated file (if this is empty, response contains streamed image)
 
       input_stream = File.open(File.join(ImagingBase::EXAMPLE_IMAGES_FOLDER, get_sample_image_file_name), 'r')
-      request = AsposeImagingCloud::CreateModifiedTiffRequest.new(input_stream, bit_depth, compression, resolution_unit, horizontal_resolution, vertical_resolution, from_scratch, out_path, storage)
+      request = AsposeImagingCloud::CreateModifiedTiffRequest.new(
+          input_stream, bit_depth, compression, resolution_unit, horizontal_resolution, vertical_resolution,
+          from_scratch, out_path, storage)
 
-      puts("Call CreateModifiedTiff with params: compression: #{compression}, resolution unit: #{resolution_unit}, bit depth: #{bit_depth}, horizontal resolution: #{horizontal_resolution}, vertical resolution: #{vertical_resolution}")
+      puts("Call CreateModifiedTiff with params: compression: #{compression}, resolution unit: #{resolution_unit}, " +
+               "bit depth: #{bit_depth}, horizontal resolution: #{horizontal_resolution}, vertical resolution: " +
+               "#{vertical_resolution}")
 
       updated_image = imaging_api.create_modified_tiff(request)
       save_updated_sample_image_to_output(updated_image, true)
@@ -142,14 +154,16 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      update_request = AsposeImagingCloud::AppendTiffRequest.new(get_sample_image_file_name, append_file_name, storage, folder)
+      update_request = AsposeImagingCloud::AppendTiffRequest.new(
+          get_sample_image_file_name, append_file_name, storage, folder)
 
       puts('Call AppendTiff')
 
       imaging_api.append_tiff(update_request)
 
       # Download updated file to local storage
-      download_request = AsposeImagingCloud::DownloadFileRequest.new(File.join(ImagingBase::CLOUD_PATH, get_sample_image_file_name), storage)
+      download_request = AsposeImagingCloud::DownloadFileRequest.new(
+          File.join(ImagingBase::CLOUD_PATH, get_sample_image_file_name), storage)
       updated_image = imaging_api.download_file(download_request)
       save_updated_image_to_output('AppendToTiff.tiff', updated_image)
       puts

@@ -55,7 +55,8 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::CropImageRequest.new(get_sample_image_file_name, x, y, width, height, format, folder, storage)
+      request = AsposeImagingCloud::CropImageRequest.new(
+          get_sample_image_file_name, x, y, width, height, format, folder, storage)
 
       puts("Call CropImage with params: x: #{x}, y: #{y}, width: #{width}, height: #{height}")
 
@@ -80,7 +81,8 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::CropImageRequest.new(get_sample_image_file_name, x, y, width, height, format, folder, storage)
+      request = AsposeImagingCloud::CropImageRequest.new(
+          get_sample_image_file_name, x, y, width, height, format, folder, storage)
 
       puts("Call CropImage with params: x: #{x}, y: #{y}, width: #{width}, height: #{height}")
 
@@ -104,7 +106,8 @@ module AsposeImagingCloudExamples
       out_path = nil # Path to updated file (if this is empty, response contains streamed image)
 
       input_stream = File.open(File.join(ImagingBase::EXAMPLE_IMAGES_FOLDER, get_sample_image_file_name), 'r')
-      request = AsposeImagingCloud::CreateCroppedImageRequest.new(input_stream, x, y, width, height, format, out_path, storage)
+      request = AsposeImagingCloud::CreateCroppedImageRequest.new(
+          input_stream, x, y, width, height, format, out_path, storage)
 
       puts("Call CreateCroppedImage with params: x: #{x}, y: #{y}, width: #{width}, height: #{height}")
 

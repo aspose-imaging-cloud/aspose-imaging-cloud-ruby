@@ -45,7 +45,8 @@ module AsposeImagingCloudExamples
 
       upload_sample_image_to_cloud
 
-      # Please refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-Resize
+      # Please refer to
+      #   https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-Resize
       # for possible output formats
       format = 'gif' # Resulting image format
       new_width = 100
@@ -53,7 +54,8 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::ResizeImageRequest.new(get_sample_image_file_name, new_width, new_height, format, folder, storage)
+      request = AsposeImagingCloud::ResizeImageRequest.new(
+          get_sample_image_file_name, new_width, new_height, format, folder, storage)
 
       puts("Call ResizeImage with params: new width: #{new_width}, new height: #{new_height}")
 
@@ -68,7 +70,8 @@ module AsposeImagingCloudExamples
 
       upload_sample_image_to_cloud
 
-      # Please refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-Resize
+      # Please refer to
+      #   https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-Resize
       # for possible output formats
       format = 'gif' # Resulting image format
       new_width = 100
@@ -76,7 +79,8 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::ResizeImageRequest.new(get_sample_image_file_name, new_width, new_height, format, folder, storage)
+      request = AsposeImagingCloud::ResizeImageRequest.new(
+          get_sample_image_file_name, new_width, new_height, format, folder, storage)
 
       puts("Call ResizeImage with params: new width: #{new_width}, new height: #{new_height}")
 
@@ -89,7 +93,8 @@ module AsposeImagingCloudExamples
     def create_resized_image_from_request_body
       puts('Resize an image from request body')
 
-      # Please refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-Resize
+      # Please refer to
+      #   https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-Resize
       # for possible output formats
       format = 'gif' # Resulting image format
       new_width = 100
@@ -98,7 +103,8 @@ module AsposeImagingCloudExamples
       out_path = nil # Path to updated file (if this is empty, response contains streamed image)
 
       input_stream = File.open(File.join(ImagingBase::EXAMPLE_IMAGES_FOLDER, get_sample_image_file_name), 'r')
-      request = AsposeImagingCloud::CreateResizedImageRequest.new(input_stream, new_width, new_height, format, out_path, storage)
+      request = AsposeImagingCloud::CreateResizedImageRequest.new(
+          input_stream, new_width, new_height, format, out_path, storage)
 
       puts("Call CreateResizedImage with params: new width: #{new_width}, new height: #{new_height}")
 

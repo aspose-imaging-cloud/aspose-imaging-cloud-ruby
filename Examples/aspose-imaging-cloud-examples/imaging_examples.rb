@@ -244,7 +244,9 @@ def main
     find_similar_images.delete_search_context
   rescue Exception => exception
     puts 'Something goes wrong: ' + exception.message
+    exit 1
   end
+  exit 0
 end
 
 main

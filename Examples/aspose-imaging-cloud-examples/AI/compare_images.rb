@@ -61,7 +61,8 @@ module AsposeImagingCloudExamples
       folder = ImagingAiBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::CompareImagesRequest.new(search_context_id, comparable_image, nil, comparable_image_similar_more_75, folder, storage)
+      request = AsposeImagingCloud::CompareImagesRequest.new(
+          search_context_id, comparable_image, nil, comparable_image_similar_more_75, folder, storage)
 
       puts("Call CompareImages with params: image1: #{comparable_image}, image2: #{comparable_image_similar_more_75}")
 

@@ -51,7 +51,8 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::ModifyPsdRequest.new(get_sample_image_file_name, channels_count, compression_method, from_scratch, folder, storage)
+      request = AsposeImagingCloud::ModifyPsdRequest.new(
+          get_sample_image_file_name, channels_count, compression_method, from_scratch, folder, storage)
 
       puts("Call ModifyPsd with params: channels count: #{channels_count}, compression method: #{compression_method}")
 
@@ -72,7 +73,8 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::ModifyPsdRequest.new(get_sample_image_file_name, channels_count, compression_method, from_scratch, folder, storage)
+      request = AsposeImagingCloud::ModifyPsdRequest.new(
+          get_sample_image_file_name, channels_count, compression_method, from_scratch, folder, storage)
 
       puts("Call ModifyPsd with params: channels count: #{channels_count}, compression method: #{compression_method}")
 
@@ -92,9 +94,11 @@ module AsposeImagingCloudExamples
       out_path = nil # Path to updated file (if this is empty, response contains streamed image)
 
       input_stream = File.open(File.join(ImagingBase::EXAMPLE_IMAGES_FOLDER, get_sample_image_file_name), 'r')
-      request = AsposeImagingCloud::CreateModifiedPsdRequest.new(input_stream, channels_count, compression_method, from_scratch, out_path, storage)
+      request = AsposeImagingCloud::CreateModifiedPsdRequest.new(
+          input_stream, channels_count, compression_method, from_scratch, out_path, storage)
 
-      puts("Call CreateModifiedPsd with params: channels count: #{channels_count}, compression method: #{compression_method}")
+      puts("Call CreateModifiedPsd with params: channels count: #{channels_count}, compression method: " +
+               "#{compression_method}")
 
       updated_image = imaging_api.create_modified_psd(request)
       save_updated_sample_image_to_output(updated_image, true)

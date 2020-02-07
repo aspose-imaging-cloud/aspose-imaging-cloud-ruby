@@ -55,9 +55,13 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::ModifyGifRequest.new(get_sample_image_file_name, background_color_index, color_resolution, has_trailer, interlaced, is_palette_sorted, pixel_aspect_ratio, from_scratch, folder, storage)
+      request = AsposeImagingCloud::ModifyGifRequest.new(
+          get_sample_image_file_name, background_color_index, color_resolution, has_trailer, interlaced,
+          is_palette_sorted, pixel_aspect_ratio, from_scratch, folder, storage)
 
-      puts("Call ModifyGif with params: background color index: #{background_color_index}, color resolution: #{color_resolution}, has trailer: #{has_trailer}, interlaced: #{interlaced}}, is palette sorted: #{is_palette_sorted}, pixel aspect ratio: #{pixel_aspect_ratio}")
+      puts("Call ModifyGif with params: background color index: #{background_color_index}, color resolution: " +
+               "#{color_resolution}, has trailer: #{has_trailer}, interlaced: #{interlaced}}, is palette sorted: " +
+               "#{is_palette_sorted}, pixel aspect ratio: #{pixel_aspect_ratio}")
 
       updated_image = imaging_api.modify_gif(request)
       save_updated_sample_image_to_output(updated_image, false)
@@ -80,9 +84,13 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::ModifyGifRequest.new(get_sample_image_file_name, background_color_index, color_resolution, has_trailer, interlaced, is_palette_sorted, pixel_aspect_ratio, from_scratch, folder, storage)
+      request = AsposeImagingCloud::ModifyGifRequest.new(
+          get_sample_image_file_name, background_color_index, color_resolution, has_trailer, interlaced,
+          is_palette_sorted, pixel_aspect_ratio, from_scratch, folder, storage)
 
-      puts("Call ModifyGif with params: background color index: #{background_color_index}, color resolution: #{color_resolution}, has trailer: #{has_trailer}, interlaced: #{interlaced}}, is palette sorted: #{is_palette_sorted}, pixel aspect ratio: #{pixel_aspect_ratio}")
+      puts("Call ModifyGif with params: background color index: #{background_color_index}, color resolution: " +
+               "#{color_resolution}, has trailer: #{has_trailer}, interlaced: #{interlaced}}, is palette sorted: " +
+               "#{is_palette_sorted}, pixel aspect ratio: #{pixel_aspect_ratio}")
 
       updated_image = @imaging_api.modify_gif(request)
       upload_image_to_cloud(get_modified_sample_image_file_name, updated_image)
@@ -104,9 +112,13 @@ module AsposeImagingCloudExamples
       out_path = nil # Path to updated file (if this is empty, response contains streamed image)
 
       input_stream = File.open(File.join(ImagingBase::EXAMPLE_IMAGES_FOLDER, get_sample_image_file_name), 'r')
-      request = AsposeImagingCloud::CreateModifiedGifRequest.new(input_stream, background_color_index, color_resolution, has_trailer, interlaced, is_palette_sorted, pixel_aspect_ratio, from_scratch, out_path, storage)
+      request = AsposeImagingCloud::CreateModifiedGifRequest.new(
+          input_stream, background_color_index, color_resolution, has_trailer, interlaced, is_palette_sorted,
+          pixel_aspect_ratio, from_scratch, out_path, storage)
 
-      puts("Call CreateModifiedGif with params: background color index: #{background_color_index}, color resolution: #{color_resolution}, has trailer: #{has_trailer}, interlaced: #{interlaced}}, is palette sorted: #{is_palette_sorted}, pixel aspect ratio: #{pixel_aspect_ratio}")
+      puts("Call CreateModifiedGif with params: background color index: #{background_color_index}, color resolution: " +
+               "#{color_resolution}, has trailer: #{has_trailer}, interlaced: #{interlaced}}, is palette sorted: " +
+               "#{is_palette_sorted}, pixel aspect ratio: #{pixel_aspect_ratio}")
 
       updated_image = imaging_api.create_modified_gif(request)
       save_updated_sample_image_to_output(updated_image, true)

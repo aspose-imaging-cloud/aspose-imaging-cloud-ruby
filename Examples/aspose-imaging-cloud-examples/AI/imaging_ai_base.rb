@@ -32,10 +32,12 @@ module AsposeImagingCloudExamples
   class ImagingAiBase
 
     # The example images folder path
-    EXAMPLE_IMAGES_FOLDER = File.join(File.dirname(File.dirname(File.dirname(__FILE__))), File.join('Images', 'AI'))
+    EXAMPLE_IMAGES_FOLDER = File.join(File.dirname(File.dirname(
+        File.dirname(__FILE__))), File.join('Images', 'AI'))
 
     # The output folder path
-    OUTPUT_FOLDER = File.join(File.dirname(File.dirname(File.dirname(__FILE__))), File.join('Output', 'AI'))
+    OUTPUT_FOLDER = File.join(File.dirname(File.dirname(
+        File.dirname(__FILE__))), File.join('Output', 'AI'))
 
     # The cloud path
     CLOUD_PATH = File.join('Examples', 'AI')
@@ -83,7 +85,22 @@ module AsposeImagingCloudExamples
       folder = nil # File will be saved at the root of the storage
       storage = nil # We are using default Cloud Storage
 
-      request = is_folder ? AsposeImagingCloud::CreateImageFeaturesRequest.new(search_context_id, nil, nil, File.join(ImagingAiBase::CLOUD_PATH, source_path), folder, storage) : AsposeImagingCloud::CreateImageFeaturesRequest.new(search_context_id, nil, File.join(ImagingAiBase::CLOUD_PATH, source_path), nil, folder, storage)
+      request = is_folder ?
+                    AsposeImagingCloud::CreateImageFeaturesRequest.new(
+                        search_context_id,
+                        nil,
+                        nil,
+                        File.join(ImagingAiBase::CLOUD_PATH, source_path),
+                        folder,
+                        storage)
+                    :
+                    AsposeImagingCloud::CreateImageFeaturesRequest.new(
+                        search_context_id,
+                        nil,
+                        File.join(ImagingAiBase::CLOUD_PATH, source_path),
+                        nil,
+                        folder,
+                        storage)
 
       imaging_api.create_image_features(request)
 
@@ -97,10 +114,13 @@ module AsposeImagingCloudExamples
 
     # Update images features in search context
     def upload_image_to_cloud(image_name, sub_folder = nil)
-      folder = sub_folder ? File.join(ImagingAiBase::EXAMPLE_IMAGES_FOLDER, sub_folder) : ImagingAiBase::EXAMPLE_IMAGES_FOLDER
+      folder = sub_folder ?
+                   File.join(ImagingAiBase::EXAMPLE_IMAGES_FOLDER, sub_folder)
+                   : ImagingAiBase::EXAMPLE_IMAGES_FOLDER
 
       local_input_image = File.open(File.join(folder, image_name), 'r')
-      request = AsposeImagingCloud::UploadFileRequest.new(File.join(ImagingAiBase::CLOUD_PATH, image_name), local_input_image)
+      request = AsposeImagingCloud::UploadFileRequest.new(
+          File.join(ImagingAiBase::CLOUD_PATH, image_name), local_input_image)
       imaging_api.upload_file(request)
 
       puts("Image #{image_name} was uploaded to cloud storage")
@@ -120,7 +140,10 @@ module AsposeImagingCloudExamples
       folder = nil # File will be saved at the root of the storage
       storage = nil # We are using default Cloud Storage
 
-      while imaging_api.get_image_search_status(AsposeImagingCloud::GetImageSearchStatusRequest.new(search_context_id, folder, storage)).search_status != 'Idle'
+      while imaging_api.get_image_search_status(
+          AsposeImagingCloud::GetImageSearchStatusRequest.new(
+              search_context_id, folder, storage))
+            .search_status != 'Idle'
         sleep(1)
       end
     end

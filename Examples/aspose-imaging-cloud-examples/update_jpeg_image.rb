@@ -51,7 +51,8 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::ModifyJpegRequest.new(get_sample_image_file_name, quality, compression_type, from_scratch, folder, storage)
+      request = AsposeImagingCloud::ModifyJpegRequest.new(
+          get_sample_image_file_name, quality, compression_type, from_scratch, folder, storage)
 
       puts("Call ModifyJpeg with params: quality: #{quality}, compression type: #{compression_type}")
 
@@ -72,7 +73,8 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::ModifyJpegRequest.new(get_sample_image_file_name, quality, compression_type, from_scratch, folder, storage)
+      request = AsposeImagingCloud::ModifyJpegRequest.new(
+          get_sample_image_file_name, quality, compression_type, from_scratch, folder, storage)
 
       puts("Call ModifyJpeg with params: quality: #{quality}, compression type: #{compression_type}")
 
@@ -92,7 +94,8 @@ module AsposeImagingCloudExamples
       out_path = nil # Path to updated file (if this is empty, response contains streamed image)
 
       input_stream = File.open(File.join(ImagingBase::EXAMPLE_IMAGES_FOLDER, get_sample_image_file_name), 'r')
-      request = AsposeImagingCloud::CreateModifiedJpegRequest.new(input_stream, quality, compression_type, from_scratch, out_path, storage)
+      request = AsposeImagingCloud::CreateModifiedJpegRequest.new(
+          input_stream, quality, compression_type, from_scratch, out_path, storage)
 
       puts("Call CreateModifiedJpeg with params: quality: #{quality}, compression type: #{compression_type}")
 

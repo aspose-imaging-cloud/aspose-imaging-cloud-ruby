@@ -54,9 +54,12 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::ModifyWmfRequest.new(get_sample_image_file_name, bk_color, page_width, page_height, border_x, border_y, from_scratch, folder, storage)
+      request = AsposeImagingCloud::ModifyWmfRequest.new(
+          get_sample_image_file_name, bk_color, page_width, page_height, border_x, border_y, from_scratch, folder,
+          storage)
 
-      puts("Call ModifyWmf with params: background color: #{bk_color}, page width: #{page_width}, page height: #{page_height}, border X: #{border_x}, border Y: #{border_y}")
+      puts("Call ModifyWmf with params: background color: #{bk_color}, page width: #{page_width}, page height: " +
+               "#{page_height}, border X: #{border_x}, border Y: #{border_y}")
 
       updated_image = imaging_api.modify_wmf(request)
       save_updated_sample_image_to_output(updated_image, false)
@@ -78,9 +81,11 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::ModifyWmfRequest.new(get_sample_image_file_name, bk_color, page_width, page_height, border_x, border_y, from_scratch, folder, storage)
+      request = AsposeImagingCloud::ModifyWmfRequest.new(
+          get_sample_image_file_name, bk_color, page_width, page_height, border_x, border_y, from_scratch, folder, storage)
 
-      puts("Call ModifyWmf with params: background color: #{bk_color}, page width: #{page_width}, page height: #{page_height}, border X: #{border_x}, border Y: #{border_y}")
+      puts("Call ModifyWmf with params: background color: #{bk_color}, page width: #{page_width}, page height: " +
+               "#{page_height}, border X: #{border_x}, border Y: #{border_y}")
 
       updated_image = @imaging_api.modify_wmf(request)
       upload_image_to_cloud(get_modified_sample_image_file_name, updated_image)
@@ -101,9 +106,11 @@ module AsposeImagingCloudExamples
       out_path = nil # Path to updated file (if this is empty, response contains streamed image)
 
       input_stream = File.open(File.join(ImagingBase::EXAMPLE_IMAGES_FOLDER, get_sample_image_file_name), 'r')
-      request = AsposeImagingCloud::CreateModifiedWmfRequest.new(input_stream, bk_color, page_width, page_height, border_x, border_y, from_scratch, out_path, storage)
+      request = AsposeImagingCloud::CreateModifiedWmfRequest.new(input_stream, bk_color, page_width, page_height,
+                                                                 border_x, border_y, from_scratch, out_path, storage)
 
-      puts("Call CreateModifiedWmf with params: background color: #{bk_color}, page width: #{page_width}, page height: #{page_height}, border X: #{border_x}, border Y: #{border_y}")
+      puts("Call CreateModifiedWmf with params: background color: #{bk_color}, page width: #{page_width}, " +
+               "page height: #{page_height}, border X: #{border_x}, border Y: #{border_y}")
 
       updated_image = imaging_api.create_modified_wmf(request)
       save_updated_sample_image_to_output(updated_image, true)

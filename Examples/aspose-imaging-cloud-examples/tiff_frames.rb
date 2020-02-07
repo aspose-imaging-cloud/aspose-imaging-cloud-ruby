@@ -57,9 +57,13 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::GetImageFrameRequest.new(get_sample_image_file_name, frame_id, new_width, new_height, x, y, rect_width, rect_height, rotate_flip_method, save_other_frames, folder, storage)
+      request = AsposeImagingCloud::GetImageFrameRequest.new(
+          get_sample_image_file_name, frame_id, new_width, new_height, x, y, rect_width, rect_height,
+          rotate_flip_method, save_other_frames, folder, storage)
 
-      puts("Call GetImageFrame with params: frame Id: #{frame_id}, new width: #{new_width}, new height: #{new_height}, x: #{x}, y: #{y}, rect width: #{rect_width}, rect height: #{rect_height}, rotate/flip method: #{rotate_flip_method}, save other frames: #{save_other_frames}")
+      puts("Call GetImageFrame with params: frame Id: #{frame_id}, new width: #{new_width}, new height: #{new_height}" +
+               ", x: #{x}, y: #{y}, rect width: #{rect_width}, rect height: #{rect_height}, rotate/flip method: " +
+               "#{rotate_flip_method}, save other frames: #{save_other_frames}")
 
       updated_image = imaging_api.get_image_frame(request)
       save_updated_image_to_output('SingleFrame.tiff', updated_image)
@@ -84,9 +88,13 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::GetImageFrameRequest.new(get_sample_image_file_name, frame_id, new_width, new_height, x, y, rect_width, rect_height, rotate_flip_method, save_other_frames, folder, storage)
+      request = AsposeImagingCloud::GetImageFrameRequest.new(
+          get_sample_image_file_name, frame_id, new_width, new_height, x, y, rect_width, rect_height,
+          rotate_flip_method, save_other_frames, folder, storage)
 
-      puts("Call GetImageFrame with params: frame Id: #{frame_id}, new width: #{new_width}, new height: #{new_height}, x: #{x}, y: #{y}, rect width: #{rect_width}, rect height: #{rect_height}, rotate/flip method: #{rotate_flip_method}, save other frames: #{save_other_frames}")
+      puts("Call GetImageFrame with params: frame Id: #{frame_id}, new width: #{new_width}, new height: #{new_height}" +
+               ", x: #{x}, y: #{y}, rect width: #{rect_width}, rect height: #{rect_height}, rotate/flip method: " +
+               "#{rotate_flip_method}, save other frames: #{save_other_frames}")
 
       updated_image = imaging_api.get_image_frame(request)
       upload_image_to_cloud('SingleFrame.tiff', updated_image)
@@ -106,9 +114,12 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::GetImageFrameRequest.new(get_sample_image_file_name, frame_id, new_width, new_height, nil, nil, nil, nil, nil, save_other_frames, folder, storage)
+      request = AsposeImagingCloud::GetImageFrameRequest.new(
+          get_sample_image_file_name, frame_id, new_width, new_height, nil, nil, nil, nil,
+          nil, save_other_frames, folder, storage)
 
-      puts("Call GetImageFrame with params: frame Id: #{frame_id}, new width: #{new_width}, new height: #{new_height}, save other frames: #{save_other_frames}")
+      puts("Call GetImageFrame with params: frame Id: #{frame_id}, new width: #{new_width}, new height: #{new_height}" +
+               ", save other frames: #{save_other_frames}")
 
       updated_image = imaging_api.get_image_frame(request)
       save_updated_image_to_output('CropFrame.tiff', updated_image)
@@ -130,9 +141,12 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::GetImageFrameRequest.new(get_sample_image_file_name, frame_id, nil, nil, x, y, rect_width, rect_height, nil, save_other_frames, folder, storage)
+      request = AsposeImagingCloud::GetImageFrameRequest.new(
+          get_sample_image_file_name, frame_id, nil, nil, x, y, rect_width, rect_height,
+          nil, save_other_frames, folder, storage)
 
-      puts("Call GetImageFrame with params: frame Id: #{frame_id}, x: #{x}, y: #{y}, rect width: #{rect_width}, rect height: #{rect_height}, save other frames: #{save_other_frames}")
+      puts("Call GetImageFrame with params: frame Id: #{frame_id}, x: #{x}, y: #{y}, rect width: #{rect_width}, " +
+               "rect height: #{rect_height}, save other frames: #{save_other_frames}")
 
       updated_image = imaging_api.get_image_frame(request)
       save_updated_image_to_output('CropFrame.tiff', updated_image)
@@ -151,9 +165,12 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::GetImageFrameRequest.new(get_sample_image_file_name, frame_id, nil, nil, nil, nil, nil, nil, rotate_flip_method, save_other_frames, folder, storage)
+      request = AsposeImagingCloud::GetImageFrameRequest.new(
+          get_sample_image_file_name, frame_id, nil, nil, nil, nil, nil, nil,
+          rotate_flip_method, save_other_frames, folder, storage)
 
-      puts("Call GetImageFrame with params: frame Id: #{frame_id}, rotate/flip method: #{rotate_flip_method}, save other frames: #{save_other_frames}")
+      puts("Call GetImageFrame with params: frame Id: #{frame_id}, rotate/flip method: #{rotate_flip_method}," +
+               " save other frames: #{save_other_frames}")
 
       updated_image = imaging_api.get_image_frame(request)
       save_updated_image_to_output('RotateFlipFrame.tiff', updated_image)
@@ -178,9 +195,13 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::GetImageFrameRequest.new(get_sample_image_file_name, frame_id, new_width, new_height, x, y, rect_width, rect_height, rotate_flip_method, save_other_frames, folder, storage)
+      request = AsposeImagingCloud::GetImageFrameRequest.new(
+          get_sample_image_file_name, frame_id, new_width, new_height, x, y, rect_width, rect_height,
+          rotate_flip_method, save_other_frames, folder, storage)
 
-      puts("Call GetImageFrame with params: frame Id: #{frame_id}, new width: #{new_width}, new height: #{new_height}, x: #{x}, y: #{y}, rect width: #{rect_width}, rect height: #{rect_height}, rotate/flip method: #{rotate_flip_method}, save other frames: #{save_other_frames}")
+      puts("Call GetImageFrame with params: frame Id: #{frame_id}, new width: #{new_width}, new height: #{new_height}" +
+               ", x: #{x}, y: #{y}, rect width: #{rect_width}, rect height: #{rect_height}, rotate/flip method: " +
+               "#{rotate_flip_method}, save other frames: #{save_other_frames}")
 
       updated_image = imaging_api.get_image_frame(request)
       save_updated_image_to_output('OtherFrames.tiff', updated_image)
@@ -206,9 +227,13 @@ module AsposeImagingCloudExamples
       storage = nil # We are using default Cloud Storage
 
       input_stream = File.open(File.join(ImagingBase::EXAMPLE_IMAGES_FOLDER, get_sample_image_file_name), 'r')
-      request = AsposeImagingCloud::CreateImageFrameRequest.new(input_stream, frame_id, new_width, new_height, x, y, rect_width, rect_height, rotate_flip_method, save_other_frames, folder, storage)
+      request = AsposeImagingCloud::CreateImageFrameRequest.new(
+          input_stream, frame_id, new_width, new_height, x, y, rect_width, rect_height, rotate_flip_method,
+          save_other_frames, folder, storage)
 
-      puts("Call CreateImageFrame with params: frame Id: #{frame_id}, new width: #{new_width}, new height: #{new_height}, x: #{x}, y: #{y}, rect width: #{rect_width}, rect height: #{rect_height}, rotate/flip method: #{rotate_flip_method}, save other frames: #{save_other_frames}")
+      puts("Call CreateImageFrame with params: frame Id: #{frame_id}, new width: #{new_width}, new height: " +
+               "#{new_height}, x: #{x}, y: #{y}, rect width: #{rect_width}, rect height: #{rect_height}, " +
+               "rotate/flip method: #{rotate_flip_method}, save other frames: #{save_other_frames}")
 
       updated_image = imaging_api.create_image_frame(request)
       save_updated_image_to_output('SingleFrameFromRequest.tiff', updated_image)
@@ -225,7 +250,8 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::GetImageFramePropertiesRequest.new(get_sample_image_file_name, frame_id, folder, storage)
+      request = AsposeImagingCloud::GetImageFramePropertiesRequest.new(
+          get_sample_image_file_name, frame_id, folder, storage)
 
       puts("Call GetImageFrameProperties with params: frame Id: #{frame_id}")
 

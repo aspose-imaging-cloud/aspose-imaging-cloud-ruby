@@ -52,9 +52,12 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::ModifyBmpRequest.new(get_sample_image_file_name, bits_per_pixel, horizontal_resolution, vertical_resolution, from_scratch, folder, storage)
+      request = AsposeImagingCloud::ModifyBmpRequest.new(
+          get_sample_image_file_name, bits_per_pixel, horizontal_resolution, vertical_resolution, from_scratch, folder,
+          storage)
 
-      puts("Call ModifyBmp with params: bits per pixel: #{bits_per_pixel}, horizontal resolution: #{horizontal_resolution}, vertical resolution: #{vertical_resolution}")
+      puts("Call ModifyBmp with params: bits per pixel: #{bits_per_pixel}, horizontal resolution: " +
+               "#{horizontal_resolution}, vertical resolution: #{vertical_resolution}")
 
       updated_image = imaging_api.modify_bmp(request)
       save_updated_sample_image_to_output(updated_image, false)
@@ -74,9 +77,12 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::ModifyBmpRequest.new(get_sample_image_file_name, bits_per_pixel, horizontal_resolution, vertical_resolution, from_scratch, folder, storage)
+      request = AsposeImagingCloud::ModifyBmpRequest.new(
+          get_sample_image_file_name, bits_per_pixel, horizontal_resolution, vertical_resolution, from_scratch, folder,
+          storage)
 
-      puts("Call ModifyBmp with params: bits per pixel: #{bits_per_pixel}, horizontal resolution: #{horizontal_resolution}, vertical resolution: #{vertical_resolution}")
+      puts("Call ModifyBmp with params: bits per pixel: #{bits_per_pixel}, horizontal resolution: " +
+               "#{horizontal_resolution}, vertical resolution: #{vertical_resolution}")
 
       updated_image = @imaging_api.modify_bmp(request)
       upload_image_to_cloud(get_modified_sample_image_file_name, updated_image)
@@ -95,9 +101,11 @@ module AsposeImagingCloudExamples
       out_path = nil # Path to updated file (if this is empty, response contains streamed image)
 
       input_stream = File.open(File.join(ImagingBase::EXAMPLE_IMAGES_FOLDER, get_sample_image_file_name), 'r')
-      request = AsposeImagingCloud::CreateModifiedBmpRequest.new(input_stream, bits_per_pixel, horizontal_resolution, vertical_resolution, from_scratch, out_path, storage)
+      request = AsposeImagingCloud::CreateModifiedBmpRequest.new(
+          input_stream, bits_per_pixel, horizontal_resolution, vertical_resolution, from_scratch, out_path, storage)
 
-      puts("Call CreateModifiedBmp with params: bits per pixel: #{bits_per_pixel}, horizontal resolution: #{horizontal_resolution}, vertical resolution: #{vertical_resolution}")
+      puts("Call CreateModifiedBmp with params: bits per pixel: #{bits_per_pixel}, horizontal resolution: " +
+               "#{horizontal_resolution}, vertical resolution: #{vertical_resolution}")
 
       updated_image = imaging_api.create_modified_bmp(request)
       save_updated_sample_image_to_output(updated_image, true)

@@ -55,9 +55,12 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::ModifyEmfRequest.new(get_sample_image_file_name, bk_color, page_width, page_height, border_x, border_y, from_scratch, folder, storage, format)
+      request = AsposeImagingCloud::ModifyEmfRequest.new(
+          get_sample_image_file_name, bk_color, page_width, page_height, border_x, border_y, from_scratch, folder,
+          storage, format)
 
-      puts("Call ModifyEmf with params: background color: #{bk_color}, width: #{page_width}, height: #{page_height}, border x: #{border_x}, border y: #{border_y}, format: #{format}")
+      puts("Call ModifyEmf with params: background color: #{bk_color}, width: #{page_width}, height: #{page_height}," +
+               " border x: #{border_x}, border y: #{border_y}, format: #{format}")
 
       updated_image = imaging_api.modify_emf(request)
       save_updated_sample_image_to_output(updated_image, false)
@@ -80,9 +83,11 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::ModifyEmfRequest.new(get_sample_image_file_name, bk_color, page_width, page_height, border_x, border_y, from_scratch, folder, storage, format)
+      request = AsposeImagingCloud::ModifyEmfRequest.new(get_sample_image_file_name, bk_color, page_width, page_height,
+                                                         border_x, border_y, from_scratch, folder, storage, format)
 
-      puts("Call ModifyEmf with params: background color: #{bk_color}, width: #{page_width}, height: #{page_height}, border x: #{border_x}, border y: #{border_y}, format: #{format}")
+      puts("Call ModifyEmf with params: background color: #{bk_color}, width: #{page_width}, height: #{page_height}, " +
+               "border x: #{border_x}, border y: #{border_y}, format: #{format}")
 
       updated_image = @imaging_api.modify_emf(request)
       upload_image_to_cloud(get_modified_sample_image_file_name, updated_image)
@@ -104,9 +109,11 @@ module AsposeImagingCloudExamples
       out_path = nil # Path to updated file (if this is empty, response contains streamed image)
 
       input_stream = File.open(File.join(ImagingBase::EXAMPLE_IMAGES_FOLDER, get_sample_image_file_name), 'r')
-      request = AsposeImagingCloud::CreateModifiedEmfRequest.new(input_stream, bk_color, page_width, page_height, border_x, border_y, from_scratch, out_path, storage, format)
+      request = AsposeImagingCloud::CreateModifiedEmfRequest.new(
+          input_stream, bk_color, page_width, page_height, border_x, border_y, from_scratch, out_path, storage, format)
 
-      puts("Call CreateModifiedEmf with params: background color: #{bk_color}, width: #{page_width}, height: #{page_height}, border x: #{border_x}, border y: #{border_y}, format: #{format}")
+      puts("Call CreateModifiedEmf with params: background color: #{bk_color}, width: #{page_width}, height: " +
+               "#{page_height}, border x: #{border_x}, border y: #{border_y}, format: #{format}")
 
       updated_image = imaging_api.create_modified_emf(request)
       save_updated_sample_image_to_output(updated_image, true)
