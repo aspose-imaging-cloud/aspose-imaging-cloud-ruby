@@ -30,6 +30,7 @@ require 'fileutils'
 require 'aspose-imaging-cloud'
 require_relative './imaging_base'
 require_relative './crop_image'
+require_relative './deskew_image'
 require_relative './export_image'
 require_relative './filter_image'
 require_relative './image_properties'
@@ -109,6 +110,11 @@ def main
     crop_image.crop_image_from_storage
     crop_image.crop_image_and_upload_to_storage
     crop_image.create_cropped_image_from_request_body
+
+    deskew_image = AsposeImagingCloudExamples::DeskewImage.new(api)
+    deskew_image.deskew_image_from_storage
+    deskew_image.deskew_image_and_upload_to_storage
+    deskew_image.create_deskewed_image_from_request_body
 
     # Export existing image to another format
     export_image = AsposeImagingCloudExamples::ExportImage.new(api)
