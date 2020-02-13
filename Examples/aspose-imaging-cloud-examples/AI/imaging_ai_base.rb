@@ -131,8 +131,6 @@ module AsposeImagingCloudExamples
       puts
     end
 
-    private
-
     # Waits the idle
     def wait_idle(search_context_id)
       puts('Waiting Search context Idle...')

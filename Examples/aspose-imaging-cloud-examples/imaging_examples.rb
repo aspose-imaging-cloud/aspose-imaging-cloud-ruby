@@ -49,6 +49,7 @@ require_relative './AI/imaging_ai_base'
 require_relative './AI/compare_images'
 require_relative './AI/find_duplicate_images'
 require_relative './AI/find_similar_images'
+require_relative './AI/search_images'
 
 def process_argument(argv, key, description, errors, default_value = nil)
   # Retrieves argument value or writes error message
@@ -242,6 +243,12 @@ def main
     find_similar_images.find_similar_images
     find_similar_images.find_images_by_tag
     find_similar_images.delete_search_context
+
+    # Search Images
+    search_images = AsposeImagingCloudExamples::SearchImages.new(api)
+    search_images.prepare_search_context
+    search_images.search_image_from_web_source
+    search_images.delete_search_context
   rescue Exception => exception
     puts 'Something goes wrong: ' + exception.message
     exit 1
