@@ -24,7 +24,8 @@
 #   DEALINGS IN THE SOFTWARE.
 #  </summary>
 #  ----------------------------------------------------------------------------
-#
+
+require 'open-uri'
 require_relative './imaging_ai_base'
 
 module AsposeImagingCloudExamples
@@ -43,15 +44,15 @@ module AsposeImagingCloudExamples
     def prepare_search_context
       create_search_context
 
-      # Upload images to Cloud Storage
-      %w[1.jpg 2.jpg 3.jpg 4.jpg 5.jpg 6.jpg 7.jpg 8.jpg 9.jpg 10.jpg].each do |image_name|
-        # Upload local image to Cloud Storage
-        upload_image_to_cloud(image_name)
-      end
-
-      create_image_features(images_path, true)
-
-      puts
+      # # Upload images to Cloud Storage
+      # %w[1.jpg 2.jpg 3.jpg 4.jpg 5.jpg 6.jpg 7.jpg 8.jpg 9.jpg 10.jpg].each do |image_name|
+      #   # Upload local image to Cloud Storage
+      #   upload_image_to_cloud(image_name)
+      # end
+      #
+      # create_image_features(images_path, true)
+      #
+      # puts
     end
 
     # Finds the similar images
@@ -68,7 +69,7 @@ module AsposeImagingCloudExamples
           search_context_id, similarity_threshold, max_count, nil, find_image_id, folder, storage)
 
       puts("Call FindSimilarImages with params: similarity threshold:" +
-          "#{similarity_threshold}, max count: #{max_count}, image id: #{find_image_id}")
+               "#{similarity_threshold}, max count: #{max_count}, image id: #{find_image_id}")
 
       response = imaging_api.find_similar_images(request)
 
@@ -107,6 +108,43 @@ module AsposeImagingCloudExamples
       find_response.results.each do |find_result|
         puts("Image name: #{find_result.image_id}, similarity: #{find_result.similarity}")
       end
+      puts
+    end
+
+    # Finds similar images from the URL source
+    def search_image_from_web_source
+      puts('Finds similar images from the URL:')
+
+      similarity_threshold = 30.0
+      max_count = 5
+      folder = ImagingAiBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
+      storage = nil # We are using default Cloud Storage
+
+      # Add images from the website to the search context
+      image_source_url = URI.encode('https://www.f1news.ru/interview/hamilton/140909.shtml')
+      imaging_api.create_web_site_image_features(AsposeImagingCloud::CreateWebSiteImageFeaturesRequest.new(
+          search_context_id, image_source_url, folder, storage))
+
+      wait_idle(search_context_id)
+
+      # Download the image from the website
+      image_data = open(URI.encode('https://cdn.f1ne.ws/userfiles/hamilton/140909.jpg'))
+
+      # Resize downloaded image
+      resized_image = imaging_api.create_resized_image(AsposeImagingCloud::CreateResizedImageRequest.new(
+          image_data, 600, 400, 'jpg', nil, storage))
+
+      # Upload resized image to cloud
+      image_name = 'ReverseSearch.jpg'
+      response = imaging_api.upload_file(AsposeImagingCloud::UploadFileRequest.new(
+          ImagingAiBase::CLOUD_PATH + '/' + image_name, resized_image, storage))
+
+      # Find similar images in the search context
+      find_response = imaging_api.find_similar_images(AsposeImagingCloud::FindSimilarImagesRequest.new(
+          search_context_id, similarity_threshold, max_count, nil,
+          ImagingAiBase::CLOUD_PATH + '/' + image_name, folder, storage))
+
+      puts('Similar images found: ' + find_response.results.length.to_s)
       puts
     end
 

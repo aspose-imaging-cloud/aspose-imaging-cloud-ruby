@@ -242,6 +242,7 @@ def main
     find_similar_images.prepare_search_context
     find_similar_images.find_similar_images
     find_similar_images.find_images_by_tag
+    find_similar_images.search_image_from_web_source
     find_similar_images.delete_search_context
 
     # Search Images
