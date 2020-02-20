@@ -31,6 +31,7 @@ require 'aspose-imaging-cloud'
 require_relative './imaging_base'
 require_relative './crop_image'
 require_relative './export_image'
+require_relative './filter_image'
 require_relative './image_properties'
 require_relative './resize_image'
 require_relative './rotate_flip_image'
@@ -114,6 +115,11 @@ def main
     export_image.save_image_as_from_storage
     export_image.save_image_as_and_upload_to_storage
     export_image.create_saved_image_as_from_request_body
+
+    # Apply a filtering effect to an image
+    filter_image = AsposeImagingCloudExamples::FilterImage.new(api)
+    filter_image.filter_image_from_storage
+    filter_image.filter_image_and_upload_to_storage
 
     # Get properties of an image
     image_properties = AsposeImagingCloudExamples::ImageProperties.new(api)
