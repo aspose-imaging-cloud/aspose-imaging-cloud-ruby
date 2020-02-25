@@ -31,6 +31,7 @@ require 'aspose-imaging-cloud'
 require_relative './imaging_base'
 require_relative './crop_image'
 require_relative './export_image'
+require_relative './filter_image'
 require_relative './image_properties'
 require_relative './resize_image'
 require_relative './rotate_flip_image'
@@ -45,11 +46,6 @@ require_relative './update_jpeg_image'
 require_relative './update_psd_image'
 require_relative './update_web_p_image'
 require_relative './update_wmf_image'
-require_relative './AI/imaging_ai_base'
-require_relative './AI/compare_images'
-require_relative './AI/find_duplicate_images'
-require_relative './AI/find_similar_images'
-require_relative './AI/search_images'
 
 def process_argument(argv, key, description, errors, default_value = nil)
   # Retrieves argument value or writes error message
@@ -119,6 +115,11 @@ def main
     export_image.save_image_as_from_storage
     export_image.save_image_as_and_upload_to_storage
     export_image.create_saved_image_as_from_request_body
+
+    # Apply a filtering effect to an image
+    filter_image = AsposeImagingCloudExamples::FilterImage.new(api)
+    filter_image.filter_image_from_storage
+    filter_image.filter_image_and_upload_to_storage
 
     # Get properties of an image
     image_properties = AsposeImagingCloudExamples::ImageProperties.new(api)
@@ -219,36 +220,6 @@ def main
     wmf_image.modify_wmf_from_storage
     wmf_image.modify_wmf_and_upload_to_storage
     wmf_image.create_modified_wmf_from_request_body
-
-    # AI APIs
-    puts('Running AI examples:')
-    puts
-
-    # Compare two images
-    compare_images = AsposeImagingCloudExamples::CompareImages.new(api)
-    compare_images.prepare_search_context
-    compare_images.compare_two_images_in_cloud
-    compare_images.compare_loaded_image_to_image_in_cloud
-    compare_images.delete_search_context
-
-    # Find Duplicate Images
-    find_duplicate_images = AsposeImagingCloudExamples::FindDuplicateImages.new(api)
-    find_duplicate_images.prepare_search_context
-    find_duplicate_images.find_image_duplicates
-    find_duplicate_images.delete_search_context
-
-    # Find Similar Images
-    find_similar_images = AsposeImagingCloudExamples::FindSimilarImages.new(api)
-    find_similar_images.prepare_search_context
-    find_similar_images.find_similar_images
-    find_similar_images.find_images_by_tag
-    find_similar_images.delete_search_context
-
-    # Search Images
-    search_images = AsposeImagingCloudExamples::SearchImages.new(api)
-    search_images.prepare_search_context
-    search_images.search_image_from_web_source
-    search_images.delete_search_context
   rescue Exception => exception
     puts 'Something goes wrong: ' + exception.message
     exit 1
