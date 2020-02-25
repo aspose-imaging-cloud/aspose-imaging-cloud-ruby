@@ -45,16 +45,16 @@ module AsposeImagingCloudExamples
 
       upload_sample_image_to_cloud
 
-      filter_type = 'BigRectangular'
-      filter_properties = AsposeImagingCloud::BigRectangularFilterProperties.new
-      format = 'gif'
+      filter_type = 'GaussianBlur'
+      filter_properties = AsposeImagingCloud::GaussianBlurFilterProperties.new(Radius: 4, Sigma: 2.1)
+      format = 'bmp'
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
       request = AsposeImagingCloud::FilterEffectImageRequest.new(
           get_sample_image_file_name, filter_type, filter_properties, format, folder, storage)
 
-      puts("Call FilterEffectImage with params: filter type: #{filter_type}, format: #{format}")
+      puts("Call FilterEffectImage with params: filter type: #{filter_type}, radius: #{filter_properties.radius}, sigma: #{filter_properties.sigma} format: #{format}")
 
       updated_image = imaging_api.filter_effect_image(request)
       save_updated_sample_image_to_output(updated_image, false, format)
@@ -67,16 +67,16 @@ module AsposeImagingCloudExamples
 
       upload_sample_image_to_cloud
 
-      filter_type = 'BigRectangular'
-      filter_properties = AsposeImagingCloud::BigRectangularFilterProperties.new
-      format = 'gif'
+      filter_type = 'GaussianBlur'
+      filter_properties = AsposeImagingCloud::GaussianBlurFilterProperties.new(Radius: 4, Sigma: 2.1)
+      format = 'bmp'
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
       request = AsposeImagingCloud::FilterEffectImageRequest.new(
           get_sample_image_file_name, filter_type, filter_properties, format, folder, storage)
 
-      puts("Call FilterEffectImage with params: filter type: #{filter_type}, format: #{format}")
+      puts("Call FilterEffectImage with params: filter type: #{filter_type}, radius: #{filter_properties.radius}, sigma: #{filter_properties.sigma} format: #{format}")
 
       updated_image = imaging_api.filter_effect_image(request)
       upload_image_to_cloud(get_modified_sample_image_file_name(false, format), updated_image)
