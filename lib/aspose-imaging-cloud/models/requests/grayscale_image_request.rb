@@ -1,5 +1,5 @@
 #  ----------------------------------------------------------------------------
-#  <copyright company="Aspose" file="deskew_image_request.rb">
+#  <copyright company="Aspose" file="grayscale_image_request.rb">
 #    Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
 #  </copyright>
 #  <summary>
@@ -28,19 +28,15 @@ require_relative './imaging_request'
 require_relative './http_request'
 
 module AsposeImagingCloud
-  # Request model for deskew_image operation.
-  class DeskewImageRequest < ImagingRequest
+  # Request model for grayscale_image operation.
+  class GrayscaleImageRequest < ImagingRequest
 
-    # Deskew an existing image.
+    # Grayscale an existing image.
     # @param [String] name Image file name.
-    # @param [BOOLEAN] resize_proportionally Resize proportionally
-    # @param [String] bk_color Background color
     # @param [String] folder Folder
     # @param [String] storage Storage
-    def initialize(name, resize_proportionally, bk_color = nil, folder = nil, storage = nil)
+    def initialize(name, folder = nil, storage = nil)
       @name = name
-      @resize_proportionally = resize_proportionally
-      @bk_color = bk_color
       @folder = folder
       @storage = storage
     end
@@ -48,21 +44,14 @@ module AsposeImagingCloud
     def to_http_info(config)
       # verify the required parameter 'name' is set
       if config.client_side_validation && @name.nil?
-        raise ArgumentError, "Missing the required parameter 'name' when calling ImagingApi.deskew_image"
-      end
-
-      # verify the required parameter 'resize_proportionally' is set
-      if config.client_side_validation && @resize_proportionally.nil?
-        raise ArgumentError, "Missing the required parameter 'resize_proportionally' when calling ImagingApi.deskew_image"
+        raise ArgumentError, "Missing the required parameter 'name' when calling ImagingApi.grayscale_image"
       end
 
       # resource path
-      local_var_path = '/imaging/{name}/deskew'.sub('{' + 'name' + '}', @name.to_s)
+      local_var_path = '/imaging/{name}/grayscale'.sub('{' + 'name' + '}', @name.to_s)
 
       # query parameters
       query_params = {}
-      query_params[:resizeProportionally] = @resize_proportionally
-      query_params[:bkColor] = @bk_color unless @bk_color.nil?
       query_params[:folder] = @folder unless @folder.nil?
       query_params[:storage] = @storage unless @storage.nil?
 

@@ -96,6 +96,7 @@ Class | Method | HTTP request | Description
 *AsposeImagingCloud::ImagingApi* | [**create_cropped_image**](docs/ImagingApi.md#create_cropped_image) | **POST** /imaging/crop | Crop an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 *AsposeImagingCloud::ImagingApi* | [**create_deskewed_image**](docs/ImagingApi.md#create_deskewed_image) | **POST** /imaging/deskew | Deskew an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 *AsposeImagingCloud::ImagingApi* | [**create_folder**](docs/ImagingApi.md#create_folder) | **PUT** /imaging/storage/folder/{path} | Create the folder
+*AsposeImagingCloud::ImagingApi* | [**create_grayscaled_image**](docs/ImagingApi.md#create_grayscaled_image) | **POST** /imaging/grayscale | Grayscales an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 *AsposeImagingCloud::ImagingApi* | [**create_image_features**](docs/ImagingApi.md#create_image_features) | **POST** /imaging/ai/imageSearch/{searchContextId}/features | Extract images features and add them to search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
 *AsposeImagingCloud::ImagingApi* | [**create_image_frame**](docs/ImagingApi.md#create_image_frame) | **POST** /imaging/frames/{frameId} | Get separate frame from existing TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 *AsposeImagingCloud::ImagingApi* | [**create_image_search**](docs/ImagingApi.md#create_image_search) | **POST** /imaging/ai/imageSearch/create | Create new search context.
@@ -139,6 +140,7 @@ Class | Method | HTTP request | Description
 *AsposeImagingCloud::ImagingApi* | [**get_image_properties**](docs/ImagingApi.md#get_image_properties) | **GET** /imaging/{name}/properties | Get properties of an image.
 *AsposeImagingCloud::ImagingApi* | [**get_image_search_status**](docs/ImagingApi.md#get_image_search_status) | **GET** /imaging/ai/imageSearch/{searchContextId}/status | Gets the search context status.
 *AsposeImagingCloud::ImagingApi* | [**get_search_image**](docs/ImagingApi.md#get_search_image) | **GET** /imaging/ai/imageSearch/{searchContextId}/image | Get image from search context
+*AsposeImagingCloud::ImagingApi* | [**grayscale_image**](docs/ImagingApi.md#grayscale_image) | **GET** /imaging/{name}/grayscale | Grayscale an existing image.
 *AsposeImagingCloud::ImagingApi* | [**modify_bmp**](docs/ImagingApi.md#modify_bmp) | **GET** /imaging/{name}/bmp | Update parameters of existing BMP image.
 *AsposeImagingCloud::ImagingApi* | [**modify_emf**](docs/ImagingApi.md#modify_emf) | **GET** /imaging/{name}/emf | Process existing EMF imaging using given parameters.
 *AsposeImagingCloud::ImagingApi* | [**modify_gif**](docs/ImagingApi.md#modify_gif) | **GET** /imaging/{name}/gif | Update parameters of existing GIF image.

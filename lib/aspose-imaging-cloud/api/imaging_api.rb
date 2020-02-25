@@ -118,6 +118,14 @@ module AsposeImagingCloud
       nil
     end
 
+    # Grayscales an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+    # @param [create_grayscaled_imageRequest] request Request object.
+    # @return [File]
+    def create_grayscaled_image(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :POST, 'File')
+    end
+
     # Extract images features and add them to search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
     # @param [create_image_featuresRequest] request Request object.
     # @return [nil]
@@ -466,6 +474,14 @@ module AsposeImagingCloud
     # @param [get_search_imageRequest] request Request object.
     # @return [File]
     def get_search_image(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :GET, 'File')
+    end
+
+    # Grayscale an existing image.
+    # @param [grayscale_imageRequest] request Request object.
+    # @return [File]
+    def grayscale_image(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'File')
     end
