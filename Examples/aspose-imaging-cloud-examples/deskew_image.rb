@@ -36,7 +36,7 @@ module AsposeImagingCloudExamples
     end
 
     def get_sample_image_file_name
-      'DeskewSampleImage.bmp'
+      'DeskewSampleImage.tif'
     end
 
     # Deskews the image from cloud storage
@@ -46,7 +46,7 @@ module AsposeImagingCloudExamples
       upload_sample_image_to_cloud
 
       resize_proportionally = true
-      bg_color = "green"
+      bg_color = "white"
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
@@ -67,7 +67,7 @@ module AsposeImagingCloudExamples
       upload_sample_image_to_cloud
 
       resize_proportionally = true
-      bg_color = "green"
+      bg_color = "white"
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
@@ -86,7 +86,7 @@ module AsposeImagingCloudExamples
       puts('Deskews the image from request body')
 
       resize_proportionally = true
-      bg_color = "green"
+      bg_color = "white"
       storage = nil # We are using default Cloud Storage
       out_path = nil # Path to updated file (if this is empty, response contains streamed image)
 
