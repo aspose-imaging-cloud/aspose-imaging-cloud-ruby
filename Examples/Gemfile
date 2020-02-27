@@ -1,0 +1,7 @@
+source 'https://rubygems.org' do
+  gem 'faraday'
+  gem 'mimemagic'
+  gem 'ci_reporter_test_unit'
+  gem 'net-http-persistent'
+  gem 'aspose_imaging_cloud', '~> 20.1'
+end

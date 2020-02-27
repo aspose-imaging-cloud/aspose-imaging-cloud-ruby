@@ -1,6 +1,6 @@
 # AsposeImagingCloud::ImagingApi
 
-All URIs are relative to *https://localhost:57972/v3.0*
+All URIs are relative to *https://localhost:5000/v3.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**create_cropped_image**](ImagingApi.md#create_cropped_image) | **POST** /imaging/crop | Crop an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 [**create_deskewed_image**](ImagingApi.md#create_deskewed_image) | **POST** /imaging/deskew | Deskew an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 [**create_folder**](ImagingApi.md#create_folder) | **PUT** /imaging/storage/folder/{path} | Create the folder
+[**create_grayscaled_image**](ImagingApi.md#create_grayscaled_image) | **POST** /imaging/grayscale | Grayscales an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 [**create_image_features**](ImagingApi.md#create_image_features) | **POST** /imaging/ai/imageSearch/{searchContextId}/features | Extract images features and add them to search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
 [**create_image_frame**](ImagingApi.md#create_image_frame) | **POST** /imaging/frames/{frameId} | Get separate frame from existing TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 [**create_image_search**](ImagingApi.md#create_image_search) | **POST** /imaging/ai/imageSearch/create | Create new search context.
@@ -56,6 +57,7 @@ Method | HTTP request | Description
 [**get_image_properties**](ImagingApi.md#get_image_properties) | **GET** /imaging/{name}/properties | Get properties of an image.
 [**get_image_search_status**](ImagingApi.md#get_image_search_status) | **GET** /imaging/ai/imageSearch/{searchContextId}/status | Gets the search context status.
 [**get_search_image**](ImagingApi.md#get_search_image) | **GET** /imaging/ai/imageSearch/{searchContextId}/image | Get image from search context
+[**grayscale_image**](ImagingApi.md#grayscale_image) | **GET** /imaging/{name}/grayscale | Grayscale an existing image.
 [**modify_bmp**](ImagingApi.md#modify_bmp) | **GET** /imaging/{name}/bmp | Update parameters of existing BMP image.
 [**modify_emf**](ImagingApi.md#modify_emf) | **GET** /imaging/{name}/emf | Process existing EMF imaging using given parameters.
 [**modify_gif**](ImagingApi.md#modify_gif) | **GET** /imaging/{name}/gif | Update parameters of existing GIF image.
@@ -614,6 +616,62 @@ nil (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+
+# **create_grayscaled_image**
+> File create_grayscaled_image(image_data, opts)
+
+Grayscales an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+
+### Example
+```ruby
+# load the gem
+require 'aspose-imaging-cloud'
+# setup authorization
+AsposeImagingCloud.configure do |config|
+  # Configure OAuth2 access token for authorization: JWT
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = AsposeImagingCloud::ImagingApi.new
+
+image_data = File.new('/path/to/file.txt') # File | Input image
+
+opts = { 
+  out_path: 'out_path_example', # String | Path to updated file (if this is empty, response contains streamed image)
+  storage: 'storage_example' # String | Your Aspose Cloud Storage name.
+}
+
+begin
+  #Grayscales an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+  result = api_instance.create_grayscaled_image(image_data, opts)
+  p result
+rescue AsposeImagingCloud::ApiError => e
+  puts "Exception when calling ImagingApi->create_grayscaled_image: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **image_data** | **File**| Input image | 
+ **out_path** | **String**| Path to updated file (if this is empty, response contains streamed image) | [optional] 
+ **storage** | **String**| Your Aspose Cloud Storage name. | [optional] 
+
+### Return type
+
+**File**
+
+### Authorization
+
+[JWT](../README.md#JWT)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 
@@ -2252,7 +2310,7 @@ end
 
 api_instance = AsposeImagingCloud::ImagingApi.new
 
-name = 'name_example' # String | Filename of an image.
+name = 'name_example' # String | Image file name.
 
 resize_proportionally = true # BOOLEAN | Resize proportionally
 
@@ -2275,7 +2333,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**| Filename of an image. | 
+ **name** | **String**| Image file name. | 
  **resize_proportionally** | **BOOLEAN**| Resize proportionally | 
  **bk_color** | **String**| Background color | [optional] 
  **folder** | **String**| Folder | [optional] 
@@ -3276,6 +3334,62 @@ Name | Type | Description  | Notes
  **search_context_id** | **String**| Search context identifier. | 
  **image_id** | **String**| Image identifier. | 
  **folder** | **String**| Folder. | [optional] 
+ **storage** | **String**| Storage | [optional] 
+
+### Return type
+
+**File**
+
+### Authorization
+
+[JWT](../README.md#JWT)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+
+# **grayscale_image**
+> File grayscale_image(name, opts)
+
+Grayscale an existing image.
+
+### Example
+```ruby
+# load the gem
+require 'aspose-imaging-cloud'
+# setup authorization
+AsposeImagingCloud.configure do |config|
+  # Configure OAuth2 access token for authorization: JWT
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = AsposeImagingCloud::ImagingApi.new
+
+name = 'name_example' # String | Image file name.
+
+opts = { 
+  folder: 'folder_example', # String | Folder
+  storage: 'storage_example' # String | Storage
+}
+
+begin
+  #Grayscale an existing image.
+  result = api_instance.grayscale_image(name, opts)
+  p result
+rescue AsposeImagingCloud::ApiError => e
+  puts "Exception when calling ImagingApi->grayscale_image: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name** | **String**| Image file name. | 
+ **folder** | **String**| Folder | [optional] 
  **storage** | **String**| Storage | [optional] 
 
 ### Return type

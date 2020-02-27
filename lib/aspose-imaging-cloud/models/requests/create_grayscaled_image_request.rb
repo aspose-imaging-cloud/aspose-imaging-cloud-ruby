@@ -1,5 +1,5 @@
 #  ----------------------------------------------------------------------------
-#  <copyright company="Aspose" file="deskew_image_request.rb">
+#  <copyright company="Aspose" file="create_grayscaled_image_request.rb">
 #    Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
 #  </copyright>
 #  <summary>
@@ -28,46 +28,36 @@ require_relative './imaging_request'
 require_relative './http_request'
 
 module AsposeImagingCloud
-  # Request model for deskew_image operation.
-  class DeskewImageRequest < ImagingRequest
+  # Request model for create_grayscaled_image operation.
+  class CreateGrayscaledImageRequest < ImagingRequest
 
-    # Deskew an existing image.
-    # @param [String] name Image file name.
-    # @param [BOOLEAN] resize_proportionally Resize proportionally
-    # @param [String] bk_color Background color
-    # @param [String] folder Folder
-    # @param [String] storage Storage
-    def initialize(name, resize_proportionally, bk_color = nil, folder = nil, storage = nil)
-      @name = name
-      @resize_proportionally = resize_proportionally
-      @bk_color = bk_color
-      @folder = folder
+    # Grayscales an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+    # @param [File] image_data Input image
+    # @param [String] out_path Path to updated file (if this is empty, response contains streamed image)
+    # @param [String] storage Your Aspose Cloud Storage name.
+    def initialize(image_data, out_path = nil, storage = nil)
+      @image_data = image_data
+      @out_path = out_path
       @storage = storage
     end
 
     def to_http_info(config)
-      # verify the required parameter 'name' is set
-      if config.client_side_validation && @name.nil?
-        raise ArgumentError, "Missing the required parameter 'name' when calling ImagingApi.deskew_image"
-      end
-
-      # verify the required parameter 'resize_proportionally' is set
-      if config.client_side_validation && @resize_proportionally.nil?
-        raise ArgumentError, "Missing the required parameter 'resize_proportionally' when calling ImagingApi.deskew_image"
+      # verify the required parameter 'image_data' is set
+      if config.client_side_validation && @image_data.nil?
+        raise ArgumentError, "Missing the required parameter 'image_data' when calling ImagingApi.create_grayscaled_image"
       end
 
       # resource path
-      local_var_path = '/imaging/{name}/deskew'.sub('{' + 'name' + '}', @name.to_s)
+      local_var_path = '/imaging/grayscale'
 
       # query parameters
       query_params = {}
-      query_params[:resizeProportionally] = @resize_proportionally
-      query_params[:bkColor] = @bk_color unless @bk_color.nil?
-      query_params[:folder] = @folder unless @folder.nil?
+      query_params[:outPath] = @out_path unless @out_path.nil?
       query_params[:storage] = @storage unless @storage.nil?
 
       # form parameters
       form_params = {}
+      form_params['imageData'] = @image_data
 
       # http body (model)
       post_body = nil
@@ -78,7 +68,7 @@ module AsposeImagingCloud
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = form_params.any? ? 'multipart/form-data' : select_header_content_type(['application/json'])
+      header_params['Content-Type'] = form_params.any? ? 'multipart/form-data' : select_header_content_type(['multipart/form-data'])
 
       AsposeImagingCloud::HttpRequest.new(local_var_path,
                                       header_params,
