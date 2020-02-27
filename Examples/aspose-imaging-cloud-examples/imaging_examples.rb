@@ -31,6 +31,7 @@ require 'aspose-imaging-cloud'
 require_relative './imaging_base'
 require_relative './crop_image'
 require_relative './deskew_image'
+require_relative './grayscale_image'
 require_relative './export_image'
 require_relative './filter_image'
 require_relative './image_properties'
@@ -115,6 +116,11 @@ def main
     deskew_image.deskew_image_from_storage
     deskew_image.deskew_image_and_upload_to_storage
     deskew_image.create_deskewed_image_from_request_body
+
+    grayscale_image = AsposeImagingCloudExamples::GrayscaleImage.new(api)
+    grayscale_image.grayscale_image_from_storage
+    grayscale_image.grayscale_image_and_upload_to_storage
+    grayscale_image.create_grayscaled_image_from_request_body
 
     # Export existing image to another format
     export_image = AsposeImagingCloudExamples::ExportImage.new(api)
