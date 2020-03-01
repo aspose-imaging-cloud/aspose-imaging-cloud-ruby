@@ -78,7 +78,7 @@ module AsposeImagingCloudExamples
     end
 
     # Grayscale an image. Image data is passed in a request stream
-    def create_Grayscaled_image_from_request_body
+    def create_grayscaled_image_from_request_body
       puts('Grayscales the image from request body')
 
       storage = nil # We are using default Cloud Storage
