@@ -59,7 +59,7 @@ module AsposeImagingCloudExamples
     def find_similar_images
       puts('Finds the similar images:')
 
-      find_image_id = File.join(ImagingAiBase::CLOUD_PATH, image_to_find)
+      find_image_id = File.join(ImagingAiBase::CLOUD_PATH, images_path, image_to_find)
       similarity_threshold = 60.0
       max_count = 3
       folder = nil
