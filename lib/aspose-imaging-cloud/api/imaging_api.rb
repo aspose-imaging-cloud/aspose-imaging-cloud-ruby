@@ -143,6 +143,14 @@ module AsposeImagingCloud
       make_request(http_request, :POST, 'File')
     end
 
+    # Get separate frame from existing TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+    # @param [create_image_frame_rangeRequest] request Request object.
+    # @return [File]
+    def create_image_frame_range(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :POST, 'File')
+    end
+
     # Create new search context.
     # @param [create_image_searchRequest] request Request object.
     # @return [SearchContextStatus]
@@ -452,6 +460,14 @@ module AsposeImagingCloud
     def get_image_frame_properties(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'ImagingResponse')
+    end
+
+    # Get frames range from existing TIFF image.
+    # @param [get_image_frame_rangeRequest] request Request object.
+    # @return [File]
+    def get_image_frame_range(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :GET, 'File')
     end
 
     # Get properties of an image.
