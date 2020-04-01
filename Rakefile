@@ -91,7 +91,7 @@ Rake::TestTask.new('filter_effect') do |t|
 end
 
 Rake::TestTask.new('tiff') do |t|
-  t.test_files = %w(test/api/tc_tiff_api.rb test/api/tc_frames_get_api.rb test/api/tc_frames_post_api.rb)
+  t.test_files = ['test/api/tc_tiff_api.rb']
   t.warning = false
   t.verbose = true
 end
