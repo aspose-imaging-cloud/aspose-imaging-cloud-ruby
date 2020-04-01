@@ -40,7 +40,7 @@ module AsposeImagingCloudTests
           assert_not_nil(_result_stream)
         end
 
-        @input_test_files.each do |input_file|
+        basic_input_test_files.each do |input_file|
           next unless input_file.name.to_s.end_with?(format_extension)
 
           name = input_file.name
@@ -63,7 +63,7 @@ module AsposeImagingCloudTests
           properties_tester = lambda do |_original_properties, result_properties, _result_stream|
             assert_equal(_original_properties.bits_per_pixel, result_properties.bits_per_pixel)
           end
-          @input_test_files.each do |input_file|
+          basic_input_test_files.each do |input_file|
             next unless input_file.name.to_s.end_with?(format_extension)
 
             name = input_file.name

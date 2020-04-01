@@ -27,6 +27,7 @@
 
 require 'test/unit'
 require 'json'
+require 'mimemagic'
 require_relative '../lib/aspose-imaging-cloud'
 
 module AsposeImagingCloudTests
@@ -41,8 +42,11 @@ module AsposeImagingCloudTests
     # The temporary folder
     attr_accessor :temp_folder
 
-    # The input test files
-    attr_accessor :input_test_files
+    # The basic input test files
+    attr_reader :basic_input_test_files
+
+    # The multipage input test files
+    attr_reader :multipage_input_test_files
 
     # Aspose.Imaging API
     attr_accessor :imaging_api
@@ -63,9 +67,10 @@ module AsposeImagingCloudTests
     # The basic export formats
     attr_reader :basic_export_formats
 
+    @@extended_test = true
+
     # One time setup to initialize ImagingApi instance
     def setup
-      @extended_test = ENV['ExtendedTests'].to_s == 'true'
       @server_access_file = 'serverAccess.json'
       @api_version = 'v3.0'
       @base_url = 'http://api.aspose.cloud/'
@@ -114,7 +119,29 @@ module AsposeImagingCloudTests
     # The API version
     attr_reader :api_version
 
+    def copy_input_file_to_test_folder(input_file_name, folder, storage)
+      # Copies original input file to test folder in cloud
+      unless check_input_file_exists(input_file_name)
+        raise ArgumentError, "Input file #{input_file_name} doesn't exist in the specified storage folder: #{folder}. Please, upload it first."
+      end
+
+      if imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(File.join(folder, input_file_name), storage)).exists
+        return
+      end
+
+      imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new(File.join(original_data_folder, input_file_name), File.join(folder, input_file_name), storage, storage))
+    end
+
     private
+
+    # The input test files
+    attr_accessor :input_test_files
+
+    # The basic input test files
+    attr_writer :basic_input_test_files
+
+    # The multipage input test files
+    attr_writer :multipage_input_test_files
 
     # The server access file
     attr_reader :server_access_file
@@ -178,6 +205,10 @@ module AsposeImagingCloudTests
       self.imaging_api = AsposeImagingCloud::ImagingApi.new(app_key, app_sid, base_url, api_version)
 
       self.input_test_files = imaging_api.get_files_list(AsposeImagingCloud::GetFilesListRequest.new(original_data_folder, test_storage)).value
+
+      self.basic_input_test_files = input_test_files.reject { |file|  file.name.start_with? 'multipage_'}
+
+      self.multipage_input_test_files = input_test_files.select { |file| file.name.start_with? 'multipage_'}
     end
 
     def request_tester(test_method_name, save_result_to_storage, parameters_line, input_file_name, result_file_name, invoke_request_action, properties_tester, folder, storage = nil)
@@ -185,13 +216,7 @@ module AsposeImagingCloudTests
 
       puts(test_method_name.to_s)
 
-      unless check_input_file_exists(input_file_name)
-        raise ArgumentError, "Input file #{input_file_name} doesn't exist in the specified storage folder: #{folder}. Please, upload it first."
-      end
-
-      unless imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(File.join(folder, input_file_name), storage)).exists
-        imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new(File.join(original_data_folder, input_file_name), File.join(folder, input_file_name), storage, storage))
-      end
+      copy_input_file_to_test_folder(input_file_name, folder, storage)
 
       passed = false
       out_path = nil
@@ -214,10 +239,11 @@ module AsposeImagingCloudTests
           unless result_info
             raise ArgumentError, "Result file #{result_file_name} doesn't exist in the specified storage folder: #{folder}. Result isn't present in the storage by an unknown reason."
           end
-
-          result_properties = imaging_api.get_image_properties(AsposeImagingCloud::GetImagePropertiesRequest.new(result_file_name, folder, storage))
-          assert_not_nil(result_properties)
-        else
+          unless result_file_name.end_with? '.pdf'
+            result_properties = imaging_api.get_image_properties(AsposeImagingCloud::GetImagePropertiesRequest.new(result_file_name, folder, storage))
+            assert_not_nil(result_properties)
+          end
+        elsif !MimeMagic.by_magic(response).to_s.end_with? 'pdf'
           result_properties = imaging_api.extract_image_properties(AsposeImagingCloud::ExtractImagePropertiesRequest.new(response))
           assert_not_nil(result_properties)
         end
