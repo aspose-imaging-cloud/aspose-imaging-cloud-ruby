@@ -106,11 +106,11 @@ module AsposeImagingCloudExamples
 
       if is_folder
         puts('Creating Search context image features...')
-        wait_idle(search_context_id)
       else
         puts("Created Search context image features for #{source_path}")
-        wait_idle(search_context_id)
       end
+
+      wait_idle(search_context_id)
     end
 
     # Update images features in search context
