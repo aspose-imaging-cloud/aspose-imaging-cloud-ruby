@@ -60,8 +60,8 @@ module AsposeImagingCloudExamples
     def find_image_duplicates
       puts('Finds the image duplicates:')
 
-      similarity_threshold = 70.0
-      folder = ImagingAiBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
+      similarity_threshold = 60.0
+      folder = nil
       storage = nil # We are using default Cloud Storage
 
       request = AsposeImagingCloud::FindImageDuplicatesRequest.new(search_context_id, similarity_threshold, folder, storage)
