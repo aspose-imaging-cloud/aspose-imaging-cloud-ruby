@@ -53,6 +53,39 @@ module AsposeImagingCloudTests
       get_request_tester('ConvertTiffToFaxTest', "Input image: #{name}", name, request_invoker, properties_tester, folder, storage)
     end
 
+    #  Test convert_tiff_to_fax
+    [true, false].each do |save_result_to_storage|
+      define_method("test_create_fax_tiff_save_to_storage_#{save_result_to_storage}") do
+      name = 'test.tiff'
+      folder = @temp_folder
+      storage = @test_storage
+      out_name = name + '_specific.tiff'
+
+      request_invoker = lambda do |input_stream, out_path|
+        return imaging_api.create_fax_tiff(AsposeImagingCloud::CreateFaxTiffRequest.new(input_stream, out_path, storage))
+      end
+
+      properties_tester = lambda do |_original_properties, result_properties, _result_stream|
+        assert_not_nil(result_properties.tiff_properties)
+        assert_equal(1, result_properties.bits_per_pixel)
+        assert_equal(196, result_properties.vertical_resolution)
+        assert_equal(204, result_properties.horizontal_resolution)
+        assert_equal(1728, result_properties.width)
+        assert_equal(2200, result_properties.height)
+      end
+
+      post_request_tester('CreateFaxTiff',
+                          save_result_to_storage,
+                          "Input image: #{name}",
+                          name,
+                          out_name,
+                          request_invoker,
+                          properties_tester,
+                          folder,
+                          storage)
+      end
+    end
+
     #  Test create_modified_tiff
     [true, false].each do |save_result_to_storage|
       define_method("test_create_modified_tiff_save_to_storage_#{save_result_to_storage}") do
