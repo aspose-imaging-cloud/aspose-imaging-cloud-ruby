@@ -109,6 +109,14 @@ module AsposeImagingCloud
       make_request(http_request, :POST, 'File')
     end
 
+    # Update parameters of TIFF image accordingly to fax parameters. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+    # @param [create_fax_tiffRequest] request Request object.
+    # @return [File]
+    def create_fax_tiff(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :POST, 'File')
+    end
+
     # Create the folder
     # @param [create_folderRequest] request Request object.
     # @return [nil]
