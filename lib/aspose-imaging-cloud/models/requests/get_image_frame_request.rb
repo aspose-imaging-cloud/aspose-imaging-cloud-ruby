@@ -1,6 +1,6 @@
 #  ----------------------------------------------------------------------------
 #  <copyright company="Aspose" file="get_image_frame_request.rb">
-#    Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
+#    Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
 #  </copyright>
 #  <summary>
 #    Permission is hereby granted, free of charge, to any person obtaining a
@@ -31,7 +31,7 @@ module AsposeImagingCloud
   # Request model for get_image_frame operation.
   class GetImageFrameRequest < ImagingRequest
 
-    # Get separate frame from existing TIFF image.
+    # Get separate frame from existing image.
     # @param [String] name Filename of image.
     # @param [Integer] frame_id Number of a frame.
     # @param [Integer] new_width New width.

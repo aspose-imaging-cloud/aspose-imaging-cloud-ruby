@@ -1,6 +1,6 @@
 #  ----------------------------------------------------------------------------
 #  <copyright company="Aspose" file="create_image_frame_range_request.rb">
-#    Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
+#    Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
 #  </copyright>
 #  <summary>
 #    Permission is hereby granted, free of charge, to any person obtaining a
@@ -31,7 +31,7 @@ module AsposeImagingCloud
   # Request model for create_image_frame_range operation.
   class CreateImageFrameRangeRequest < ImagingRequest
 
-    # Get separate frame from existing TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+    # Get separate frame from existing image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
     # @param [File] image_data Input image
     # @param [Integer] start_frame_id Index of the first frame in range.
     # @param [Integer] end_frame_id Index of the last frame in range.

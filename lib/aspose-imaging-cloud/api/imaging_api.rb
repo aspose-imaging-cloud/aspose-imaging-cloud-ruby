@@ -1,6 +1,6 @@
 #  ----------------------------------------------------------------------------
 #  <copyright company="Aspose" file="imaging_api.rb">
-#    Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
+#    Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
 #  </copyright>
 #  <summary>
 #    Permission is hereby granted, free of charge, to any person obtaining a
@@ -135,7 +135,7 @@ module AsposeImagingCloud
       nil
     end
 
-    # Get separate frame from existing TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+    # Get separate frame from existing image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
     # @param [create_image_frameRequest] request Request object.
     # @return [File]
     def create_image_frame(request)
@@ -143,7 +143,7 @@ module AsposeImagingCloud
       make_request(http_request, :POST, 'File')
     end
 
-    # Get separate frame from existing TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+    # Get separate frame from existing image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
     # @param [create_image_frame_rangeRequest] request Request object.
     # @return [File]
     def create_image_frame_range(request)
@@ -366,7 +366,7 @@ module AsposeImagingCloud
       make_request(http_request, :GET, 'ImageFeatures')
     end
 
-    # Get separate frame properties of existing TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+    # Get separate frame properties of existing image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
     # @param [extract_image_frame_propertiesRequest] request Request object.
     # @return [ImagingResponse]
     def extract_image_frame_properties(request)
@@ -446,7 +446,7 @@ module AsposeImagingCloud
       make_request(http_request, :GET, 'ImageFeatures')
     end
 
-    # Get separate frame from existing TIFF image.
+    # Get separate frame from existing image.
     # @param [get_image_frameRequest] request Request object.
     # @return [File]
     def get_image_frame(request)
@@ -454,7 +454,7 @@ module AsposeImagingCloud
       make_request(http_request, :GET, 'File')
     end
 
-    # Get separate frame properties of existing TIFF image.
+    # Get separate frame properties of existing image.
     # @param [get_image_frame_propertiesRequest] request Request object.
     # @return [ImagingResponse]
     def get_image_frame_properties(request)
@@ -462,7 +462,7 @@ module AsposeImagingCloud
       make_request(http_request, :GET, 'ImagingResponse')
     end
 
-    # Get frames range from existing TIFF image.
+    # Get frames range from existing image.
     # @param [get_image_frame_rangeRequest] request Request object.
     # @return [File]
     def get_image_frame_range(request)
