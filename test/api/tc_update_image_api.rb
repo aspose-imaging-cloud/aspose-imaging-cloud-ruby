@@ -31,7 +31,7 @@ module AsposeImagingCloudTests
     #  Class for testing UpdateImageAPI
 
     #  Test update_image
-    (@extended_test ? ['.jpg', '.bmp', '.dicom', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp'] : ['.jpg']).each do |format_extension|
+    (@@extended_test ? ['.jpg', '.bmp', '.dicom', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp'] : ['.jpg']).each do |format_extension|
       define_method("test_update_image_format_extension_#{format_extension}") do
         new_width = 300
         new_height = 450
@@ -48,7 +48,7 @@ module AsposeImagingCloudTests
           assert_equal(rect_height, result_properties.width)
           assert_equal(rect_width, result_properties.height)
         end
-        @input_test_files.each do |input_file|
+        basic_input_test_files.each do |input_file|
           next unless input_file.name.to_s.end_with?(format_extension)
 
           name = input_file.name
@@ -65,7 +65,7 @@ module AsposeImagingCloudTests
   end
 
   #  Test create_updated_image
-  (@extended_test ? ['.jpg', '.bmp', '.dicom', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp'] : ['.jpg']).each do |format_extension|
+  (@@extended_test ? ['.jpg', '.bmp', '.dicom', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp'] : ['.jpg']).each do |format_extension|
     [true, false].each do |save_result_to_storage|
       define_method("test_create_updated_image_save_to_storage_#{save_result_to_storage}_format_extension_#{format_extension}") do
         new_width = 300
@@ -83,7 +83,7 @@ module AsposeImagingCloudTests
           assert_equal(rect_height, result_properties.width)
           assert_equal(rect_width, result_properties.height)
         end
-        @input_test_files.each do |input_file|
+        basic_input_test_files.each do |input_file|
           next unless input_file.name.to_s.end_with?(format_extension)
 
           name = input_file.name

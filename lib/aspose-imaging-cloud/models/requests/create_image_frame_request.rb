@@ -1,6 +1,6 @@
 #  ----------------------------------------------------------------------------
 #  <copyright company="Aspose" file="create_image_frame_request.rb">
-#    Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
+#    Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
 #  </copyright>
 #  <summary>
 #    Permission is hereby granted, free of charge, to any person obtaining a
@@ -31,7 +31,7 @@ module AsposeImagingCloud
   # Request model for create_image_frame operation.
   class CreateImageFrameRequest < ImagingRequest
 
-    # Get separate frame from existing TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+    # Get separate frame from existing image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
     # @param [File] image_data Input image
     # @param [Integer] frame_id Number of a frame.
     # @param [Integer] new_width New width.

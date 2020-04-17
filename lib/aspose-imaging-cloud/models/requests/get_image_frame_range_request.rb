@@ -1,5 +1,5 @@
 #  ----------------------------------------------------------------------------
-#  <copyright company="Aspose" file="crop_image_request.rb">
+#  <copyright company="Aspose" file="get_image_frame_range_request.rb">
 #    Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
 #  </copyright>
 #  <summary>
@@ -28,25 +28,35 @@ require_relative './imaging_request'
 require_relative './http_request'
 
 module AsposeImagingCloud
-  # Request model for crop_image operation.
-  class CropImageRequest < ImagingRequest
+  # Request model for get_image_frame_range operation.
+  class GetImageFrameRangeRequest < ImagingRequest
 
-    # Crop an existing image.
-    # @param [String] name Filename of an image.
+    # Get frames range from existing image.
+    # @param [String] name Filename of image.
+    # @param [Integer] start_frame_id Index of the first frame in range.
+    # @param [Integer] end_frame_id Index of the last frame in range.
+    # @param [Integer] new_width New width.
+    # @param [Integer] new_height New height.
     # @param [Integer] x X position of start point for cropping rectangle.
     # @param [Integer] y Y position of start point for cropping rectangle.
-    # @param [Integer] width Width of cropping rectangle
-    # @param [Integer] height Height of cropping rectangle.
-    # @param [String] format Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+    # @param [Integer] rect_width Width of cropping rectangle.
+    # @param [Integer] rect_height Height of cropping rectangle.
+    # @param [String] rotate_flip_method RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). Default is RotateNoneFlipNone.
+    # @param [BOOLEAN] save_other_frames If result will include all other frames or just a specified frame.
     # @param [String] folder Folder with image to process.
     # @param [String] storage Your Aspose Cloud Storage name.
-    def initialize(name, x, y, width, height, format = nil, folder = nil, storage = nil)
+    def initialize(name, start_frame_id, end_frame_id, new_width = nil, new_height = nil, x = nil, y = nil, rect_width = nil, rect_height = nil, rotate_flip_method = nil, save_other_frames = nil, folder = nil, storage = nil)
       @name = name
+      @start_frame_id = start_frame_id
+      @end_frame_id = end_frame_id
+      @new_width = new_width
+      @new_height = new_height
       @x = x
       @y = y
-      @width = width
-      @height = height
-      @format = format
+      @rect_width = rect_width
+      @rect_height = rect_height
+      @rotate_flip_method = rotate_flip_method
+      @save_other_frames = save_other_frames
       @folder = folder
       @storage = storage
     end
@@ -54,39 +64,34 @@ module AsposeImagingCloud
     def to_http_info(config)
       # verify the required parameter 'name' is set
       if config.client_side_validation && @name.nil?
-        raise ArgumentError, "Missing the required parameter 'name' when calling ImagingApi.crop_image"
+        raise ArgumentError, "Missing the required parameter 'name' when calling ImagingApi.get_image_frame_range"
       end
 
-      # verify the required parameter 'x' is set
-      if config.client_side_validation && @x.nil?
-        raise ArgumentError, "Missing the required parameter 'x' when calling ImagingApi.crop_image"
+      # verify the required parameter 'start_frame_id' is set
+      if config.client_side_validation && @start_frame_id.nil?
+        raise ArgumentError, "Missing the required parameter 'start_frame_id' when calling ImagingApi.get_image_frame_range"
       end
 
-      # verify the required parameter 'y' is set
-      if config.client_side_validation && @y.nil?
-        raise ArgumentError, "Missing the required parameter 'y' when calling ImagingApi.crop_image"
-      end
-
-      # verify the required parameter 'width' is set
-      if config.client_side_validation && @width.nil?
-        raise ArgumentError, "Missing the required parameter 'width' when calling ImagingApi.crop_image"
-      end
-
-      # verify the required parameter 'height' is set
-      if config.client_side_validation && @height.nil?
-        raise ArgumentError, "Missing the required parameter 'height' when calling ImagingApi.crop_image"
+      # verify the required parameter 'end_frame_id' is set
+      if config.client_side_validation && @end_frame_id.nil?
+        raise ArgumentError, "Missing the required parameter 'end_frame_id' when calling ImagingApi.get_image_frame_range"
       end
 
       # resource path
-      local_var_path = '/imaging/{name}/crop'.sub('{' + 'name' + '}', @name.to_s)
+      local_var_path = '/imaging/{name}/frames/range'.sub('{' + 'name' + '}', @name.to_s)
 
       # query parameters
       query_params = {}
-      query_params[:x] = @x
-      query_params[:y] = @y
-      query_params[:width] = @width
-      query_params[:height] = @height
-      query_params[:format] = @format unless @format.nil?
+      query_params[:startFrameId] = @start_frame_id
+      query_params[:endFrameId] = @end_frame_id
+      query_params[:newWidth] = @new_width unless @new_width.nil?
+      query_params[:newHeight] = @new_height unless @new_height.nil?
+      query_params[:x] = @x unless @x.nil?
+      query_params[:y] = @y unless @y.nil?
+      query_params[:rectWidth] = @rect_width unless @rect_width.nil?
+      query_params[:rectHeight] = @rect_height unless @rect_height.nil?
+      query_params[:rotateFlipMethod] = @rotate_flip_method unless @rotate_flip_method.nil?
+      query_params[:saveOtherFrames] = @save_other_frames unless @save_other_frames.nil?
       query_params[:folder] = @folder unless @folder.nil?
       query_params[:storage] = @storage unless @storage.nil?
 
