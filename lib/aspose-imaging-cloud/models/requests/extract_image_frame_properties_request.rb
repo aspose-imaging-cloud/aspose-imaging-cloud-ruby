@@ -1,6 +1,6 @@
 #  ----------------------------------------------------------------------------
 #  <copyright company="Aspose" file="extract_image_frame_properties_request.rb">
-#    Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
+#    Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
 #  </copyright>
 #  <summary>
 #    Permission is hereby granted, free of charge, to any person obtaining a
@@ -31,7 +31,7 @@ module AsposeImagingCloud
   # Request model for extract_image_frame_properties operation.
   class ExtractImageFramePropertiesRequest < ImagingRequest
 
-    # Get separate frame properties of existing TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+    # Get separate frame properties of existing image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
     # @param [File] image_data Input image
     # @param [Integer] frame_id Number of a frame.
     def initialize(image_data, frame_id)
