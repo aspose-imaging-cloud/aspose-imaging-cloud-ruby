@@ -70,6 +70,10 @@ module AsposeImagingCloudTests
           name = input_file.name
           filters.each do |filter|
             formats_to_export.each do |format|
+			  if formatExtension == ".psd" && format == "webp"
+				next
+			  end
+			  
               request_invoker = lambda do
                 return @imaging_api.filter_effect_image(AsposeImagingCloud::FilterEffectImageRequest.new(name, filter.filter_type, filter.filter_properties, format, folder, storage))
               end
