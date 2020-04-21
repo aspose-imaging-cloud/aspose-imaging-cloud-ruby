@@ -70,7 +70,7 @@ module AsposeImagingCloudTests
           name = input_file.name
           filters.each do |filter|
             formats_to_export.each do |format|
-			  if formatExtension == ".psd" && format == "webp"
+			  if format_extension == ".psd" && format == "webp"
 				next
 			  end
 			  
