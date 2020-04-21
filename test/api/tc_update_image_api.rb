@@ -31,7 +31,7 @@ module AsposeImagingCloudTests
     #  Class for testing UpdateImageAPI
 
     #  Test update_image
-    (@@extended_test ? ['.jpg', '.bmp', '.dicom', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp'] : ['.jpg']).each do |format_extension|
+    ($extended_test ? ['.jpg', '.bmp', '.dicom', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp'] : ['.jpg']).each do |format_extension|
       define_method("test_update_image_format_extension_#{format_extension}") do
         new_width = 300
         new_height = 450
@@ -65,7 +65,7 @@ module AsposeImagingCloudTests
   end
 
   #  Test create_updated_image
-  (@@extended_test ? ['.jpg', '.bmp', '.dicom', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp'] : ['.jpg']).each do |format_extension|
+  ($extended_test ? ['.jpg', '.bmp', '.dicom', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp'] : ['.jpg']).each do |format_extension|
     [true, false].each do |save_result_to_storage|
       define_method("test_create_updated_image_save_to_storage_#{save_result_to_storage}_format_extension_#{format_extension}") do
         new_width = 300

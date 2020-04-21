@@ -67,7 +67,7 @@ module AsposeImagingCloudTests
     # The basic export formats
     attr_reader :basic_export_formats
 
-    @@extended_test = ENV["ExtendedTests"].to_s == 'true'
+    $extended_test = ENV["ExtendedTests"].to_s == 'true'
 
     # One time setup to initialize ImagingApi instance
     def setup

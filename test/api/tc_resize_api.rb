@@ -32,7 +32,7 @@ module AsposeImagingCloudTests
     #  Class for testing ResizeAPI
 
     #   Test resize_image
-    (@@extended_test ? ['.jpg', '.bmp', '.dicom', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp'] : ['.jpg']).each do |format_extension|
+    ($extended_test ? ['.jpg', '.bmp', '.dicom', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp'] : ['.jpg']).each do |format_extension|
       define_method("test_resize_image_format_extension_#{format_extension}") do
         new_width = 100
         new_height = 150
@@ -61,7 +61,7 @@ module AsposeImagingCloudTests
     end
 
     #  Test create_resized_image
-    (@@extended_test ? ['.jpg', '.bmp', '.dicom', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp'] : ['.jpg']).each do |format_extension|
+    ($extended_test ? ['.jpg', '.bmp', '.dicom', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp'] : ['.jpg']).each do |format_extension|
       [true, false].each do |save_result_to_storage|
         define_method("test_create_resized_image_save_to_storage_#{save_result_to_storage}_format_extension_#{format_extension}") do
           new_width = 100
