@@ -54,7 +54,7 @@ module AsposeImagingCloudTests
     ]
 
     #  Test filter_effect_image
-    (@@extended_test ? ['.dicom', '.djvu', '.gif', '.psd', '.tiff', '.webp'] : ['.psd']).each do |format_extension|
+    ($extended_test ? ['.dicom', '.djvu', '.gif', '.psd', '.tiff', '.webp'] : ['.psd']).each do |format_extension|
       define_method("test_filter_effect_format_extension_#{format_extension}") do
         folder = @temp_folder
         storage = @test_storage
@@ -70,6 +70,10 @@ module AsposeImagingCloudTests
           name = input_file.name
           filters.each do |filter|
             formats_to_export.each do |format|
+			  if format_extension == ".psd" && format == "webp"
+				next
+			  end
+			  
               request_invoker = lambda do
                 return @imaging_api.filter_effect_image(AsposeImagingCloud::FilterEffectImageRequest.new(name, filter.filter_type, filter.filter_properties, format, folder, storage))
               end

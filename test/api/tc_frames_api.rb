@@ -37,7 +37,7 @@ module AsposeImagingCloudTests
     end
 
     # Test get_image_frame
-    (@@extended_test ? %w[.cdr .cmx .dicom .djvu .gif .odg .otg .psd .webp] : ['.tiff']).each do |format_extension|
+    ($extended_test ? %w[.cdr .cmx .dicom .djvu .gif .odg .otg .psd .webp] : ['.tiff']).each do |format_extension|
       define_method("test_get_image_frame_#{format_extension}") do
         frame_id = 1
         folder = @temp_folder
@@ -81,7 +81,7 @@ module AsposeImagingCloudTests
     end
 
     # Test create_image_frame
-    (@@extended_test ? %w[.cdr .cmx .dicom .djvu .gif .odg .otg .psd .webp] : ['.tiff']).each do |format_extension|
+    ($extended_test ? %w[.cdr .cmx .dicom .djvu .gif .odg .otg .psd .webp] : ['.tiff']).each do |format_extension|
       [true, false].each do |save_result_to_storage|
         define_method("test_create_image_frame_save_result_to_storage_#{save_result_to_storage}_#{format_extension}") do
           frame_id = 1
@@ -128,7 +128,7 @@ module AsposeImagingCloudTests
     end
 
     # Test get_image_frame_range
-    (@@extended_test ? %w[.cdr .cmx .dicom .djvu .gif .odg .otg .psd .webp] : ['.tiff']).each do |format_extension|
+    ($extended_test ? %w[.cdr .cmx .dicom .djvu .gif .odg .otg .psd .webp] : ['.tiff']).each do |format_extension|
       define_method("test_get_image_frame_range_#{format_extension}") do
         start_frame_id = 0
         end_frame_id = 1
@@ -174,7 +174,7 @@ module AsposeImagingCloudTests
     end
 
     # Test create_image_frame_range
-    (@@extended_test ? %w[.cdr .cmx .dicom .djvu .gif .odg .otg .psd .webp] : ['.tiff']).each do |format_extension|
+    ($extended_test ? %w[.cdr .cmx .dicom .djvu .gif .odg .otg .psd .webp] : ['.tiff']).each do |format_extension|
       [true, false].each do |save_result_to_storage|
         define_method("test_create_image_frame_range_save_result_to_storage_#{save_result_to_storage}_#{format_extension}") do
           start_frame_id = 0
@@ -223,7 +223,7 @@ module AsposeImagingCloudTests
     end
 
     # Test get_frame_properties
-    (@@extended_test ? %w[.cdr .cmx .dicom .djvu .gif .odg .otg .psd .webp] : ['.tiff']).each do |format_extension|
+    ($extended_test ? %w[.cdr .cmx .dicom .djvu .gif .odg .otg .psd .webp] : ['.tiff']).each do |format_extension|
       define_method("test_get_image_frame_properties_#{format_extension}") do
         frame_id = 1
         folder = @temp_folder
@@ -253,7 +253,7 @@ module AsposeImagingCloudTests
     end
 
     # Test extract_frame_properties
-    (@@extended_test ? %w[.cdr .cmx .dicom .djvu .gif .odg .otg .psd .webp] : ['.tiff']).each do |format_extension|
+    ($extended_test ? %w[.cdr .cmx .dicom .djvu .gif .odg .otg .psd .webp] : ['.tiff']).each do |format_extension|
       define_method("test_extract_image_frame_properties_#{format_extension}") do
         frame_id = 1
         folder = @temp_folder
