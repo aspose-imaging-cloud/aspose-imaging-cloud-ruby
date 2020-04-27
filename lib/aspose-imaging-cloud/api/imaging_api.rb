@@ -256,6 +256,14 @@ module AsposeImagingCloud
       make_request(http_request, :POST, 'File')
     end
 
+    # Detects objects bounds. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+    # @param [create_object_boundsRequest] request Request object.
+    # @return [DetectedObjectList]
+    def create_object_bounds(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :POST, 'DetectedObjectList')
+    end
+
     # Resize an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
     # @param [create_resized_imageRequest] request Request object.
     # @return [File]
@@ -284,6 +292,14 @@ module AsposeImagingCloud
     # @param [create_updated_imageRequest] request Request object.
     # @return [File]
     def create_updated_image(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :POST, 'File')
+    end
+
+    # Detect objects bounds and draw them on the original image
+    # @param [create_visual_object_boundsRequest] request Request object.
+    # @return [File]
+    def create_visual_object_bounds(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :POST, 'File')
     end
@@ -608,6 +624,14 @@ module AsposeImagingCloud
       nil
     end
 
+    # Detect objects' bounds
+    # @param [object_boundsRequest] request Request object.
+    # @return [DetectedObjectList]
+    def object_bounds(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :GET, 'DetectedObjectList')
+    end
+
     # Check if file or folder exists
     # @param [object_existsRequest] request Request object.
     # @return [ObjectExist]
@@ -680,6 +704,14 @@ module AsposeImagingCloud
     def upload_file(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :PUT, 'FilesUploadResult')
+    end
+
+    # Detect objects bounds and draw them on the original image
+    # @param [visual_object_boundsRequest] request Request object.
+    # @return [File]
+    def visual_object_bounds(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :GET, 'File')
     end
 
     private

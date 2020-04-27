@@ -1,5 +1,5 @@
 #  ----------------------------------------------------------------------------
-#  <copyright company="Aspose" file="create_fax_tiff_request.rb">
+#  <copyright company="Aspose" file="create_object_bounds_request.rb">
 #    Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
 #  </copyright>
 #  <summary>
@@ -28,15 +28,23 @@ require_relative './imaging_request'
 require_relative './http_request'
 
 module AsposeImagingCloud
-  # Request model for create_fax_tiff operation.
-  class CreateFaxTiffRequest < ImagingRequest
+  # Request model for create_object_bounds operation.
+  class CreateObjectBoundsRequest < ImagingRequest
 
-    # Update parameters of TIFF image accordingly to fax parameters. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+    # Detects objects bounds. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
     # @param [File] image_data Input image
-    # @param [String] out_path Path to updated file (if this is empty, response contains streamed image).
+    # @param [String] method Object detection method
+    # @param [Integer] threshold Object detection probability threshold in percents
+    # @param [BOOLEAN] include_class Draw detected objects classes
+    # @param [BOOLEAN] include_score Draw detected objects scores
+    # @param [String] out_path Path to updated file (if this is empty, response contains streamed image)
     # @param [String] storage Your Aspose Cloud Storage name.
-    def initialize(image_data, out_path = nil, storage = nil)
+    def initialize(image_data, method = nil, threshold = nil, include_class = nil, include_score = nil, out_path = nil, storage = nil)
       @image_data = image_data
+      @method = method
+      @threshold = threshold
+      @include_class = include_class
+      @include_score = include_score
       @out_path = out_path
       @storage = storage
     end
@@ -44,14 +52,18 @@ module AsposeImagingCloud
     def to_http_info(config)
       # verify the required parameter 'image_data' is set
       if config.client_side_validation && @image_data.nil?
-        raise ArgumentError, "Missing the required parameter 'image_data' when calling ImagingApi.create_fax_tiff"
+        raise ArgumentError, "Missing the required parameter 'image_data' when calling ImagingApi.create_object_bounds"
       end
 
       # resource path
-      local_var_path = '/imaging/tiff/toFax'
+      local_var_path = '/imaging/ai/objectdetection/bounds'
 
       # query parameters
       query_params = {}
+      query_params[:method] = @method unless @method.nil?
+      query_params[:threshold] = @threshold unless @threshold.nil?
+      query_params[:includeClass] = @include_class unless @include_class.nil?
+      query_params[:includeScore] = @include_score unless @include_score.nil?
       query_params[:outPath] = @out_path unless @out_path.nil?
       query_params[:storage] = @storage unless @storage.nil?
 
