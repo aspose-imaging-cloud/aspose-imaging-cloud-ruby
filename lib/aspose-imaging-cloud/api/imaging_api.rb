@@ -1,6 +1,6 @@
 #  ----------------------------------------------------------------------------
 #  <copyright company="Aspose" file="imaging_api.rb">
-#    Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
+#    Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
 #  </copyright>
 #  <summary>
 #    Permission is hereby granted, free of charge, to any person obtaining a
@@ -135,18 +135,10 @@ module AsposeImagingCloud
       nil
     end
 
-    # Get separate frame from existing image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+    # Get separate frame from existing TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
     # @param [create_image_frameRequest] request Request object.
     # @return [File]
     def create_image_frame(request)
-      http_request = request.to_http_info(@api_client.config)
-      make_request(http_request, :POST, 'File')
-    end
-
-    # Get separate frame from existing image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
-    # @param [create_image_frame_rangeRequest] request Request object.
-    # @return [File]
-    def create_image_frame_range(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :POST, 'File')
     end
@@ -248,6 +240,14 @@ module AsposeImagingCloud
       make_request(http_request, :POST, 'File')
     end
 
+    # Detects objects bounds. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+    # @param [create_object_boundsRequest] request Request object.
+    # @return [Array<DetectedObject>]
+    def create_object_bounds(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :POST, 'Array<DetectedObject>')
+    end
+
     # Resize an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
     # @param [create_resized_imageRequest] request Request object.
     # @return [File]
@@ -276,6 +276,14 @@ module AsposeImagingCloud
     # @param [create_updated_imageRequest] request Request object.
     # @return [File]
     def create_updated_image(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :POST, 'File')
+    end
+
+    # Detect objects bounds and draw them on the original image
+    # @param [create_visual_object_boundsRequest] request Request object.
+    # @return [File]
+    def create_visual_object_bounds(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :POST, 'File')
     end
@@ -366,7 +374,7 @@ module AsposeImagingCloud
       make_request(http_request, :GET, 'ImageFeatures')
     end
 
-    # Get separate frame properties of existing image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+    # Get separate frame properties of existing TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
     # @param [extract_image_frame_propertiesRequest] request Request object.
     # @return [ImagingResponse]
     def extract_image_frame_properties(request)
@@ -446,7 +454,7 @@ module AsposeImagingCloud
       make_request(http_request, :GET, 'ImageFeatures')
     end
 
-    # Get separate frame from existing image.
+    # Get separate frame from existing TIFF image.
     # @param [get_image_frameRequest] request Request object.
     # @return [File]
     def get_image_frame(request)
@@ -454,20 +462,12 @@ module AsposeImagingCloud
       make_request(http_request, :GET, 'File')
     end
 
-    # Get separate frame properties of existing image.
+    # Get separate frame properties of existing TIFF image.
     # @param [get_image_frame_propertiesRequest] request Request object.
     # @return [ImagingResponse]
     def get_image_frame_properties(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'ImagingResponse')
-    end
-
-    # Get frames range from existing image.
-    # @param [get_image_frame_rangeRequest] request Request object.
-    # @return [File]
-    def get_image_frame_range(request)
-      http_request = request.to_http_info(@api_client.config)
-      make_request(http_request, :GET, 'File')
     end
 
     # Get properties of an image.
@@ -600,6 +600,14 @@ module AsposeImagingCloud
       nil
     end
 
+    # Detect objects' bounds
+    # @param [object_boundsRequest] request Request object.
+    # @return [Array<DetectedObject>]
+    def object_bounds(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :GET, 'Array<DetectedObject>')
+    end
+
     # Check if file or folder exists
     # @param [object_existsRequest] request Request object.
     # @return [ObjectExist]
@@ -672,6 +680,14 @@ module AsposeImagingCloud
     def upload_file(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :PUT, 'FilesUploadResult')
+    end
+
+    # Detect objects bounds and draw them on the original image
+    # @param [visual_object_boundsRequest] request Request object.
+    # @return [File]
+    def visual_object_bounds(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :GET, 'File')
     end
 
     private
