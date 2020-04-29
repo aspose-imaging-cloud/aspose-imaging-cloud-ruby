@@ -32,7 +32,7 @@ module AsposeImagingCloudTests
     #  Class for testing RotateFlipApi
 
     #  Test rotate_flip_image
-    (@extended_test ? ['.jpg', '.bmp', '.dicom', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp'] : ['.jpg']).each do |format_extension|
+    ($extended_test ? ['.jpg', '.bmp', '.dicom', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp'] : ['.jpg']).each do |format_extension|
       define_method("test_rotate_flip_image_format_extension_#{format_extension}") do
         method = 'Rotate90FlipX'
         folder = @temp_folder
@@ -52,7 +52,7 @@ module AsposeImagingCloudTests
           end
         end
 
-        @input_test_files.each do |input_file|
+        basic_input_test_files.each do |input_file|
           next unless input_file.name.to_s.end_with?(format_extension)
 
           name = input_file.name
@@ -69,7 +69,7 @@ module AsposeImagingCloudTests
   end
 
   #  Test create_rotate_flipped_image
-  (@extended_test ? ['.jpg', '.bmp', '.dicom', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp'] : ['.jpg']).each do |format_extension|
+  ($extended_test ? ['.jpg', '.bmp', '.dicom', '.gif', '.j2k', '.png', '.psd', '.tiff', '.webp'] : ['.jpg']).each do |format_extension|
     [true, false].each do |save_result_to_storage|
       define_method("test_create_rotate_flipped_image_save_to_storage_#{save_result_to_storage}_format_extension_#{format_extension}") do
         method = 'Rotate90FlipX'
@@ -90,7 +90,7 @@ module AsposeImagingCloudTests
           end
         end
 
-        @input_test_files.each do |input_file|
+        basic_input_test_files.each do |input_file|
           next unless input_file.name.to_s.end_with?(format_extension)
 
           name = input_file.name

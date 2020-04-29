@@ -14,6 +14,7 @@ namespace :ci do
   task :Emf => ['ci:setup:testunit', 'emf']
   task :Examples => ['ci:setup:testunit', 'examples']
   task :FilterEffect => ['ci:setup:testunit', 'filter_effect']
+  task :Frames => ['ci:setup:testunit', 'frames']
   task :Tiff => ['ci:setup:testunit', 'tiff']
   task :Gif => ['ci:setup:testunit', 'gif']
   task :Jpeg2000 => ['ci:setup:testunit', 'jpeg2000']
@@ -90,8 +91,14 @@ Rake::TestTask.new('filter_effect') do |t|
   t.verbose = true
 end
 
+Rake::TestTask.new('frames') do |t|
+  t.test_files = ['test/api/tc_frames_api.rb']
+  t.warning = false
+  t.verbose = true
+end
+
 Rake::TestTask.new('tiff') do |t|
-  t.test_files = %w(test/api/tc_tiff_api.rb test/api/tc_frames_get_api.rb test/api/tc_frames_post_api.rb)
+  t.test_files = ['test/api/tc_tiff_api.rb']
   t.warning = false
   t.verbose = true
 end
