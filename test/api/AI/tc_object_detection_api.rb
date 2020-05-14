@@ -32,38 +32,42 @@ module AsposeImagingCloudTests
     define_method("test_object_bounds") do
       folder = @temp_folder
       storage = @test_storage
-      response_tester = lambda do |result_stream|
-        assert_not_nil(result_stream)
+      response_tester = lambda do |detected_object_list|
+        assert_not_nil(detected_object_list)
+        assert_true(detected_object_list.detected_objects.length() > 0)
+        assert_not_nil(detected_object_list.detected_objects[0].label)
+        assert_not_nil(detected_object_list.detected_objects[0].score)
       end
 
       basic_input_test_files.each do |input_file|
-        next unless input_file.name.to_s.equal?("object_detection_example.jpg")
+        next unless input_file.name.to_s.equal?("test.bmp")
 
         name = input_file.name
 
         request_invoker = lambda do
-           return imaging_api.object_bounds(AsposeImagingCloud::ObjectBoundsRequest.new(name, nil, 60, true, true, folder, storage))
+           return imaging_api.object_bounds(AsposeImagingCloud::ObjectBoundsRequest.new(name, nil, 20, true, true, folder, storage))
            end
-          get_request_tester('ObjectBoundsTest', "Input image: #{name};", name, request_invoker, response_tester, folder, storage)
+          get_request_tester('objectDetection_objectbounds_test', "Input image: #{name};", name, request_invoker, response_tester, folder, storage)
         end
     end
 
     define_method("test_visual_object_bounds") do
       folder = @temp_folder
       storage = @test_storage
-      response_tester = lambda do |bounds|
-        assert_not_nil(bounds)
+      response_tester = lambda do |image_stream|
+        assert_not_nil(image_stream)
+        assert_true(image_stream.length() > 0)
       end
 
       basic_input_test_files.each do |input_file|
-        next unless input_file.name.to_s.equal?("object_detection_example.jpg")
+        next unless input_file.name.to_s.equal?("image.bmp")
 
         name = input_file.name
 
         request_invoker = lambda do
           return imaging_api.visual_object_bounds(AsposeImagingCloud::VisualObjectBoundsRequest.new(name, nil, 60, true, true, folder, storage))
         end
-        get_request_tester('ObjectBoundsTest', "Input image: #{name};", name, request_invoker, response_tester, folder, storage)
+        get_request_tester('objectDetection_visualobjectbounds_test', "Input image: #{name};", name, request_invoker, response_tester, folder, storage)
       end
     end
 
@@ -73,11 +77,15 @@ module AsposeImagingCloudTests
         folder = @temp_folder
         storage = @test_storage
 
-        response_tester = lambda do |result_stream|
-          assert_not_nil(result_stream)
+        response_tester = lambda do |detected_object_list|
+          assert_not_nil(detected_object_list)
+          assert_true(detected_object_list.detected_objects.length() > 0)
+          assert_not_nil(detected_object_list.detected_objects[0].label)
+          assert_not_nil(detected_object_list.detected_objects[0].score)
         end
+
         basic_input_test_files.each do |input_file|
-          next unless input_file.name.to_s.equal?("object_detection_example.jpg")
+          next unless input_file.name.to_s.equal?("test.bmp")
 
           name = input_file.name
 
@@ -86,7 +94,7 @@ module AsposeImagingCloudTests
           end
 
             out_name = "object_detection_example_result.jpg"
-            post_object_detection_request_tester('CreateObjectBoundsTest', save_result_to_storage, "Input image: #{name};", name, out_name, request_invoker, response_tester, folder, storage)
+            post_object_detection_request_tester('objectDetection_createobjectbounds_test', save_result_to_storage, "Input image: #{name};", name, out_name, request_invoker, response_tester, folder, storage)
           end
         end
     end
@@ -99,34 +107,10 @@ module AsposeImagingCloudTests
 
         response_tester = lambda do |_result_stream|
           assert_not_nil(_result_stream)
+          assert_true(_result_stream.length() > 0)
         end
         basic_input_test_files.each do |input_file|
-          next unless input_file.name.to_s.equal?("object_detection_example.jpg")
-
-          name = input_file.name
-
-          request_invoker = lambda do |input_stream, out_path|
-            return imaging_api.create_object_bounds(AsposeImagingCloud::CreateObjectBoundsRequest.new(input_stream, nil, 60, true, true, out_path, storage))
-          end
-
-          out_name = "object_detection_example_result.jpg"
-          post_object_detection_request_tester('CreateVisualObjectBounds', save_result_to_storage, "Input image: " +
-              + "#{name};",  name, out_name, request_invoker, response_tester, folder, storage)
-        end
-      end
-    end
-
-    # Test create_visual_object_bounds
-    [true, false].each do |save_result_to_storage|
-      define_method("test_create_visual_object_bounds_save_to_storage_#{save_result_to_storage}") do
-        folder = @temp_folder
-        storage = @test_storage
-
-        response_tester = lambda do |_result_stream|
-          assert_not_nil(_result_stream)
-        end
-        basic_input_test_files.each do |input_file|
-          next unless input_file.name.to_s.equal?("object_detection_example.jpg")
+          next unless input_file.name.to_s.equal?("test.bmp")
 
           name = input_file.name
 
@@ -135,7 +119,7 @@ module AsposeImagingCloudTests
           end
 
           out_name = "object_detection_example_result.jpg"
-          post_object_detection_request_tester('CreateVisualObjectBoundsTest', save_result_to_storage, "Input image: #{name};", name, out_name, request_invoker, response_tester, folder, storage)
+          post_object_detection_request_tester('objectDetection_createvisualobjectbounds_test', save_result_to_storage, "Input image: #{name};", name, out_name, request_invoker, response_tester, folder, storage)
         end
       end
     end
