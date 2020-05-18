@@ -141,6 +141,26 @@ module AsposeImagingCloudExamples
       puts
     end
 
+    # Update parameters of TIFF image from request body according to fax parameters
+    def convert_tiff_to_fax_from_request
+      puts('Update parameters of TIFF image from request body according to fax parameters.')
+
+      upload_sample_image_to_cloud
+
+      # Update TIFF Image parameters according to fax parameters
+      out_path = nil
+      storage = nil # We are using default Cloud Storage
+
+      input_stream = File.open(File.join(ImagingBase::EXAMPLE_IMAGES_FOLDER, get_sample_image_file_name), 'r')
+      request = AsposeImagingCloud::CreateFaxTiffRequest.new(input_stream, out_path, storage)
+
+      puts('Call CreateFaxTiff')
+
+      updated_image = imaging_api.create_fax_tiff(request)
+      save_updated_sample_image_to_output(updated_image, updated_image)
+      puts
+    end
+
     # Appends existing TIFF image to another existing TIFF image (i.e. merges TIFF images)
     def append_tiff_from_storage
       puts('Appends existing TIFF image to another existing TIFF image')
