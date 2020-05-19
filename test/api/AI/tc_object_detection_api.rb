@@ -60,7 +60,7 @@ module AsposeImagingCloudTests
       end
 
       basic_input_test_files.each do |input_file|
-        next unless input_file.name.to_s.equal?("image.bmp")
+        next unless input_file.name.to_s.equal?("test.bmp")
 
         name = input_file.name
 
@@ -93,7 +93,7 @@ module AsposeImagingCloudTests
             return imaging_api.create_object_bounds(AsposeImagingCloud::CreateObjectBoundsRequest.new(input_stream, nil, 60, true, true, out_path, storage))
           end
 
-            out_name = "object_detection_example_result.jpg"
+            out_name = "result_test.bmp"
             post_object_detection_request_tester('objectDetection_createobjectbounds_test', save_result_to_storage, "Input image: #{name};", name, out_name, request_invoker, response_tester, folder, storage)
           end
         end
@@ -118,7 +118,7 @@ module AsposeImagingCloudTests
             return imaging_api.create_visual_object_bounds(AsposeImagingCloud::CreateVisualObjectBoundsRequest.new(input_stream, nil, 60, true, true, out_path, storage))
           end
 
-          out_name = "object_detection_example_result.jpg"
+          out_name = "result_test.bmp"
           post_object_detection_request_tester('objectDetection_createvisualobjectbounds_test', save_result_to_storage, "Input image: #{name};", name, out_name, request_invoker, response_tester, folder, storage)
         end
       end
