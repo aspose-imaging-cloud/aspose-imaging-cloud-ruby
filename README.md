@@ -23,15 +23,15 @@ gem build aspose-imaging-cloud.gemspec
 Then either install the gem locally:
 
 ```shell
-gem install ./aspose-imaging-cloud-1.0.0.gem
+gem install ./aspose-imaging-cloud.gem
 ```
-(for development, run `gem install --dev ./aspose-imaging-cloud-1.0.0.gem` to install the development dependencies)
+(for development, run `gem install --dev ./aspose-imaging-cloud.gem` to install the development dependencies)
 
 or publish the gem to a gem hosting service, e.g. [RubyGems](https://rubygems.org/).
 
 Finally add this to the Gemfile:
 
-    gem 'aspose-imaging-cloud', '~> 1.0.0'
+    gem 'aspose-imaging-cloud', '~> 20.4'
 
 ### Install from Git
 
