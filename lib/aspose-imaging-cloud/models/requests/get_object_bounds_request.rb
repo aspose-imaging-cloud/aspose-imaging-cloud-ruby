@@ -1,5 +1,5 @@
 #  ----------------------------------------------------------------------------
-#  <copyright company="Aspose" file="create_visual_object_bounds_request.rb">
+#  <copyright company="Aspose" file="get_object_bounds_request.rb">
 #    Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
 #  </copyright>
 #  <summary>
@@ -28,37 +28,35 @@ require_relative './imaging_request'
 require_relative './http_request'
 
 module AsposeImagingCloud
-  # Request model for create_visual_object_bounds operation.
-  class CreateVisualObjectBoundsRequest < ImagingRequest
+  # Request model for get_object_bounds operation.
+  class GetObjectBoundsRequest < ImagingRequest
 
-    # Detects objects bounds and draw them on the original image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream
-    # @param [File] image_data Input image
+    # Detects objects&#39; bounds
+    # @param [String] name Image file name.
     # @param [String] method Object detection method
     # @param [Integer] threshold Object detection probability threshold in percents
-    # @param [BOOLEAN] include_label Draw detected objects classes
-    # @param [BOOLEAN] include_score Draw detected objects scores
-    # @param [String] color Bounds, labels, and scores text color
-    # @param [String] out_path Path to updated file (if this is empty, response contains streamed image)
-    # @param [String] storage Your Aspose Cloud Storage name.
-    def initialize(image_data, method = nil, threshold = nil, include_label = nil, include_score = nil, color = nil, out_path = nil, storage = nil)
-      @image_data = image_data
+    # @param [BOOLEAN] include_label Return detected objects labels
+    # @param [BOOLEAN] include_score Return detected objects score
+    # @param [String] folder Folder
+    # @param [String] storage Storage
+    def initialize(name, method = nil, threshold = nil, include_label = nil, include_score = nil, folder = nil, storage = nil)
+      @name = name
       @method = method
       @threshold = threshold
       @include_label = include_label
       @include_score = include_score
-      @color = color
-      @out_path = out_path
+      @folder = folder
       @storage = storage
     end
 
     def to_http_info(config)
-      # verify the required parameter 'image_data' is set
-      if config.client_side_validation && @image_data.nil?
-        raise ArgumentError, "Missing the required parameter 'image_data' when calling ImagingApi.create_visual_object_bounds"
+      # verify the required parameter 'name' is set
+      if config.client_side_validation && @name.nil?
+        raise ArgumentError, "Missing the required parameter 'name' when calling ImagingApi.get_object_bounds"
       end
 
       # resource path
-      local_var_path = '/imaging/ai/objectdetection/visualbounds'
+      local_var_path = '/imaging/ai/objectdetection/{name}/bounds'.sub('{' + 'name' + '}', @name.to_s)
 
       # query parameters
       query_params = {}
@@ -66,13 +64,11 @@ module AsposeImagingCloud
       query_params[:threshold] = @threshold unless @threshold.nil?
       query_params[:includeLabel] = @include_label unless @include_label.nil?
       query_params[:includeScore] = @include_score unless @include_score.nil?
-      query_params[:color] = @color unless @color.nil?
-      query_params[:outPath] = @out_path unless @out_path.nil?
+      query_params[:folder] = @folder unless @folder.nil?
       query_params[:storage] = @storage unless @storage.nil?
 
       # form parameters
       form_params = {}
-      form_params['imageData'] = @image_data
 
       # http body (model)
       post_body = nil
@@ -83,7 +79,7 @@ module AsposeImagingCloud
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = form_params.any? ? 'multipart/form-data' : select_header_content_type(['multipart/form-data'])
+      header_params['Content-Type'] = form_params.any? ? 'multipart/form-data' : select_header_content_type(['application/json'])
 
       AsposeImagingCloud::HttpRequest.new(local_var_path,
                                       header_params,
