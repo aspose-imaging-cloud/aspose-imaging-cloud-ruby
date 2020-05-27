@@ -83,7 +83,7 @@ end
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://localhost:57972/v3.0*
+All URIs are relative to *https://api.aspose.cloud/v3.0*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------

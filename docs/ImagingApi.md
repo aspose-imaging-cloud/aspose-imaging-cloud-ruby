@@ -1,6 +1,6 @@
 # AsposeImagingCloud::ImagingApi
 
-All URIs are relative to *https://localhost:57972/v3.0*
+All URIs are relative to *https://api.aspose.cloud/v3.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
