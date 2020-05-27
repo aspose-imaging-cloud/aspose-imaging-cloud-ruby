@@ -35,15 +35,15 @@ module AsposeImagingCloud
     # @param [File] image_data Input image
     # @param [String] method Object detection method
     # @param [Integer] threshold Object detection probability threshold in percents
-    # @param [BOOLEAN] include_class Draw detected objects classes
+    # @param [BOOLEAN] include_label Draw detected objects labels
     # @param [BOOLEAN] include_score Draw detected objects scores
     # @param [String] out_path Path to updated file (if this is empty, response contains streamed image)
     # @param [String] storage Your Aspose Cloud Storage name.
-    def initialize(image_data, method = nil, threshold = nil, include_class = nil, include_score = nil, out_path = nil, storage = nil)
+    def initialize(image_data, method = nil, threshold = nil, include_label = nil, include_score = nil, out_path = nil, storage = nil)
       @image_data = image_data
       @method = method
       @threshold = threshold
-      @include_class = include_class
+      @include_label = include_label
       @include_score = include_score
       @out_path = out_path
       @storage = storage
@@ -62,7 +62,7 @@ module AsposeImagingCloud
       query_params = {}
       query_params[:method] = @method unless @method.nil?
       query_params[:threshold] = @threshold unless @threshold.nil?
-      query_params[:includeClass] = @include_class unless @include_class.nil?
+      query_params[:includeLabel] = @include_label unless @include_label.nil?
       query_params[:includeScore] = @include_score unless @include_score.nil?
       query_params[:outPath] = @out_path unless @out_path.nil?
       query_params[:storage] = @storage unless @storage.nil?

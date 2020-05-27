@@ -151,7 +151,7 @@ module AsposeImagingCloud
       make_request(http_request, :POST, 'File')
     end
 
-    # Get separate frame from existing image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+    # Get frames range from existing image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
     # @param [create_image_frame_rangeRequest] request Request object.
     # @return [File]
     def create_image_frame_range(request)
@@ -296,7 +296,7 @@ module AsposeImagingCloud
       make_request(http_request, :POST, 'File')
     end
 
-    # Detect objects bounds and draw them on the original image
+    # Detects objects bounds and draw them on the original image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream
     # @param [create_visual_object_boundsRequest] request Request object.
     # @return [File]
     def create_visual_object_bounds(request)
@@ -510,10 +510,26 @@ module AsposeImagingCloud
       make_request(http_request, :GET, 'SearchContextStatus')
     end
 
+    # Detects objects' bounds
+    # @param [get_object_boundsRequest] request Request object.
+    # @return [DetectedObjectList]
+    def get_object_bounds(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :GET, 'DetectedObjectList')
+    end
+
     # Get image from search context
     # @param [get_search_imageRequest] request Request object.
     # @return [File]
     def get_search_image(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :GET, 'File')
+    end
+
+    # Detects objects bounds and draw them on the original image
+    # @param [get_visual_object_boundsRequest] request Request object.
+    # @return [File]
+    def get_visual_object_bounds(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'File')
     end
@@ -624,14 +640,6 @@ module AsposeImagingCloud
       nil
     end
 
-    # Detect objects' bounds
-    # @param [object_boundsRequest] request Request object.
-    # @return [DetectedObjectList]
-    def object_bounds(request)
-      http_request = request.to_http_info(@api_client.config)
-      make_request(http_request, :GET, 'DetectedObjectList')
-    end
-
     # Check if file or folder exists
     # @param [object_existsRequest] request Request object.
     # @return [ObjectExist]
@@ -704,14 +712,6 @@ module AsposeImagingCloud
     def upload_file(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :PUT, 'FilesUploadResult')
-    end
-
-    # Detect objects bounds and draw them on the original image
-    # @param [visual_object_boundsRequest] request Request object.
-    # @return [File]
-    def visual_object_bounds(request)
-      http_request = request.to_http_info(@api_client.config)
-      make_request(http_request, :GET, 'File')
     end
 
     private
