@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'aspose_imaging_cloud'
-  s.version     = '20.4'
+  s.version     = '20.5'
   s.licenses    = ['MIT']
   s.summary     = "Aspose.Imaging Cloud Ruby SDK"
   s.description = "
@@ -20,4 +20,5 @@ The solution is updated using code generator.
   s.homepage    = 'https://products.aspose.cloud/imaging'
   s.metadata    = { "source_code_uri" => "https://github.com/aspose-imaging-cloud/aspose-imaging-cloud-ruby" }
   s.extra_rdoc_files = ['README.md']
+  s.required_ruby_version = '>= 2.5.1'
 end

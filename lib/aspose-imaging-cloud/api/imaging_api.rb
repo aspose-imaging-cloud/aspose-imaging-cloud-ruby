@@ -151,7 +151,7 @@ module AsposeImagingCloud
       make_request(http_request, :POST, 'File')
     end
 
-    # Get separate frame from existing image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+    # Get frames range from existing image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
     # @param [create_image_frame_rangeRequest] request Request object.
     # @return [File]
     def create_image_frame_range(request)
@@ -256,6 +256,14 @@ module AsposeImagingCloud
       make_request(http_request, :POST, 'File')
     end
 
+    # Detects objects bounds. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+    # @param [create_object_boundsRequest] request Request object.
+    # @return [DetectedObjectList]
+    def create_object_bounds(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :POST, 'DetectedObjectList')
+    end
+
     # Resize an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
     # @param [create_resized_imageRequest] request Request object.
     # @return [File]
@@ -284,6 +292,14 @@ module AsposeImagingCloud
     # @param [create_updated_imageRequest] request Request object.
     # @return [File]
     def create_updated_image(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :POST, 'File')
+    end
+
+    # Detects objects bounds and draw them on the original image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream
+    # @param [create_visual_object_boundsRequest] request Request object.
+    # @return [File]
+    def create_visual_object_bounds(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :POST, 'File')
     end
@@ -494,10 +510,26 @@ module AsposeImagingCloud
       make_request(http_request, :GET, 'SearchContextStatus')
     end
 
+    # Detects objects' bounds
+    # @param [get_object_boundsRequest] request Request object.
+    # @return [DetectedObjectList]
+    def get_object_bounds(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :GET, 'DetectedObjectList')
+    end
+
     # Get image from search context
     # @param [get_search_imageRequest] request Request object.
     # @return [File]
     def get_search_image(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :GET, 'File')
+    end
+
+    # Detects objects bounds and draw them on the original image
+    # @param [get_visual_object_boundsRequest] request Request object.
+    # @return [File]
+    def get_visual_object_bounds(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'File')
     end

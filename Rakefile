@@ -6,6 +6,7 @@ task :testunit => 'ci:setup:testunit'
 
 namespace :ci do
   task :Ai => ['ci:setup:testunit', 'ai']
+  task :ObjectDetection =>['ci:setup:testunit', 'objectdetection']
   task :File => ['ci:setup:testunit', 'file']
   task :Folder => ['ci:setup:testunit', 'folder']
   task :Storage => ['ci:setup:testunit', 'storage']
@@ -39,6 +40,12 @@ end
 
 Rake::TestTask.new('ai') do |t|
   t.pattern = 'test/api/AI/tc_*.rb'
+  t.warning = false
+  t.verbose = true
+end
+
+Rake::TestTask.new('objectdetection') do |t|
+  t.pattern = 'test/api/AI/tc_object_detection_api.rb'
   t.warning = false
   t.verbose = true
 end

@@ -108,10 +108,22 @@ module AsposeImagingCloudTests
       request_tester(test_method_name, false, parameters_line, input_file_name, nil, -> { obtain_get_response(request_invoker) }, properties_tester, folder, storage)
     end
 
+    def get_object_detection_request_tester(test_method_name, parameters_line, input_file_name, request_invoker, properties_tester, folder, storage = nil)
+      storage ||= default_storage
+
+      object_detection_request_tester(test_method_name, false, parameters_line, input_file_name, nil, -> { obtain_object_detection_get_response(request_invoker) }, properties_tester, folder, storage)
+    end
+
     def post_request_tester(test_method_name, save_result_to_storage, parameters_line, input_file_name, result_file_name, request_invoker, properties_tester, folder, storage = nil)
       storage ||= default_storage
 
       request_tester(test_method_name, save_result_to_storage, parameters_line, input_file_name, result_file_name, -> { obtain_post_response(File.join(folder, input_file_name), save_result_to_storage ? File.join(folder, result_file_name) : nil, storage, request_invoker) }, properties_tester, folder, storage)
+    end
+
+    def post_object_detection_request_tester(test_method_name, save_result_to_storage, parameters_line, input_file_name, result_file_name, request_invoker, properties_tester, folder, storage = nil)
+      storage ||= default_storage
+
+      object_detection_request_tester(test_method_name, save_result_to_storage, parameters_line, input_file_name, result_file_name, -> { obtain_post_response(File.join(folder, input_file_name), save_result_to_storage ? File.join(folder, result_file_name) : nil, storage, request_invoker) }, properties_tester, folder, storage)
     end
 
     protected
@@ -269,6 +281,73 @@ module AsposeImagingCloudTests
       end
     end
 
+    def object_detection_request_tester(
+        test_method_name,
+        save_result_to_storage,
+        parameters_line,
+        input_file_name,
+        result_file_name,
+        invoke_request_action,
+        response_tester,
+        folder,
+        storage = nil)
+      storage ||= default_storage
+
+      puts(test_method_name.to_s)
+
+      copy_input_file_to_test_folder(input_file_name, folder, storage)
+
+      passed = false
+      out_path = nil
+      begin
+        puts(parameters_line)
+
+        if save_result_to_storage
+          out_path = File.join(folder, result_file_name)
+
+          if imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(out_path, storage)).exists
+            imaging_api.delete_file(AsposeImagingCloud::DeleteFileRequest.new(out_path, storage))
+          end
+        end
+
+        result_properties = nil
+        response = invoke_request_action.call
+        #if save_result_to_storage
+        #  result_info = get_storage_file_info(folder, result_file_name, storage)
+        #
+        #  unless result_info
+        #    raise ArgumentError, "Result file #{result_file_name} doesn't exist in the specified storage folder: #{folder}. Result isn't present in the storage by an unknown reason."
+        #  end
+        #  unless result_file_name.end_with? '.pdf'
+        #    result_properties = imaging_api.get_image_properties(AsposeImagingCloud::GetImagePropertiesRequest.new(result_file_name, folder, storage))
+        #    assert_not_nil(result_properties)
+        #  end
+        #elsif !MimeMagic.by_magic(response).to_s.end_with? 'pdf'
+        #  result_properties = imaging_api.extract_image_properties(AsposeImagingCloud::ExtractImagePropertiesRequest.new(response))
+        #  assert_not_nil(result_properties)
+        #end
+
+        #original_properties = imaging_api.get_image_properties(AsposeImagingCloud::GetImagePropertiesRequest.new(input_file_name, folder, storage))
+        #assert_not_nil(original_properties)
+
+        #if result_properties
+          response_tester.call(response)
+        #end
+
+        passed = true
+      rescue StandardError => e
+        self.failed_any_test = true
+        puts(e.to_s)
+        raise
+      ensure
+        if passed && save_result_to_storage && remove_result && imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(out_path, storage)).exists
+          imaging_api.delete_file(AsposeImagingCloud::DeleteFileRequest.new(out_path, storage))
+          puts("Test passed: #{passed}")
+          puts
+        end
+      end
+    end
+
     def check_input_file_exists(input_file_name)
       input_test_files.any? { |storage_file_info| storage_file_info.name == input_file_name }
     end
@@ -290,6 +369,16 @@ module AsposeImagingCloudTests
 
       assert_not_nil(response)
       assert_operator response.size, :>, 0
+
+      response
+    end
+
+    def obtain_object_detection_get_response(request_invoker)
+      response = request_invoker.call
+
+      response = File.open(response, 'rb') if response.is_a? ::File
+
+      assert_not_nil(response)
 
       response
     end

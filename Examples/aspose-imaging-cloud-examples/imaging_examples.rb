@@ -37,7 +37,7 @@ require_relative './filter_image'
 require_relative './image_properties'
 require_relative './resize_image'
 require_relative './rotate_flip_image'
-require_relative './tiff_frames'
+require_relative './multiframe_image'
 require_relative './update_tiff_image'
 require_relative './update_bmp_image'
 require_relative './update_emf_image'
@@ -155,24 +155,14 @@ def main
     rotate_flip_image.create_rotate_flipped_image_from_request_body
 
     # TIFF Frames
-    tiff_frames = AsposeImagingCloudExamples::TiffFrames.new(api)
-    # Get a specified frame from existing TIFF image
+    tiff_frames = AsposeImagingCloudExamples::MultiframeImage.new(api)
     tiff_frames.get_image_frame_from_storage
-    # Get a specified frame from existing TIFF image, and upload the frame to Cloud Storage
     tiff_frames.get_image_frame_and_upload_to_storage
-    # Resize a TIFF frame
-    tiff_frames.resize_image_frame_from_storage
-    # Crop a TIFF frame
-    tiff_frames.crop_image_frame_from_storage
-    # RotateFlip a TIFF frame
-    tiff_frames.rotate_flip_image_frame_from_storage
-    # Get other frames from existing TIFF image
-    tiff_frames.get_all_image_frames_from_storage
-    # Get separate frame from existing TIFF image
     tiff_frames.create_image_frame_from_request_body
-    # Get separate frame properties of existing TIFF image
+    tiff_frames.get_image_frame_range_from_storage
+    tiff_frames.get_image_frame_range_and_upload_to_storage
+    tiff_frames.create_image_frame_range_from_request_body
     tiff_frames.get_image_frame_properties_from_storage
-    # Get separate frame properties of existing TIFF image
     tiff_frames.extract_image_frame_properties_from_request_body
 
     # Update parameters of existing TIFF image
@@ -181,6 +171,7 @@ def main
     tiff_image.modify_tiff_and_upload_to_storage
     tiff_image.create_modified_tiff_from_request_body
     tiff_image.update_tiff_to_fax_from_storage
+    tiff_image.convert_tiff_to_fax_from_request
     tiff_image.append_tiff_from_storage
 
     # Update parameters of existing BMP image
