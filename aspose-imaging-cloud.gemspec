@@ -19,6 +19,6 @@ The solution is updated using code generator.
   s.files       = Dir["lib/**/*"]
   s.homepage    = 'https://products.aspose.cloud/imaging'
   s.metadata    = { "source_code_uri" => "https://github.com/aspose-imaging-cloud/aspose-imaging-cloud-ruby" }
-  s.extra_rdoc_files = ['README.md
+  s.extra_rdoc_files = ['README.md']
   s.required_ruby_version = '>= 2.5.1'
 end
