@@ -52,6 +52,7 @@ require_relative './AI/imaging_ai_base'
 require_relative './AI/compare_images'
 require_relative './AI/find_duplicate_images'
 require_relative './AI/find_similar_images'
+require_relative './object_detection_image'
 
 def process_argument(argv, key, description, errors, default_value = nil)
   # Retrieves argument value or writes error message
@@ -252,6 +253,13 @@ def main
     find_similar_images.find_images_by_tag
     find_similar_images.search_image_from_web_source
     find_similar_images.delete_search_context
+
+    # Object Detection
+    object_detection_image = AsposeImagingCloudExamples::ObjectDetectionImage.new(api)
+    object_detection_image.detect_objects_image_from_storage()
+    object_detection_image.detect_objects_image_from_stream()
+    object_detection_image.visual_detect_objects_image_from_stream()
+    object_detection_image.visualize_detect_objects_image_from_storage()
   rescue Exception => exception
     puts 'Something goes wrong: ' + exception.message
     exit 1

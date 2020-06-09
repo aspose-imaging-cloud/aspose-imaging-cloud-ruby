@@ -3,5 +3,5 @@ source 'https://rubygems.org' do
   gem 'mimemagic'
   gem 'ci_reporter_test_unit'
   gem 'net-http-persistent'
-  gem 'aspose_imaging_cloud', '~> 20.4'
+  gem 'aspose_imaging_cloud', '~> 20.5'
 end
