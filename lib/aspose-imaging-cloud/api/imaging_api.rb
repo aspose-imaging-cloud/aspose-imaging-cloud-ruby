@@ -438,6 +438,14 @@ module AsposeImagingCloud
       make_request(http_request, :GET, 'SearchResultsSet')
     end
 
+    # Detects objects bounds and draw them on the original image
+    # @param [get_available_labelsRequest] request Request object.
+    # @return [AvailableLabelsList]
+    def get_available_labels(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :GET, 'AvailableLabelsList')
+    end
+
     # Get disc usage
     # @param [get_disc_usageRequest] request Request object.
     # @return [DiscUsage]
