@@ -35,7 +35,7 @@ module AsposeImagingCloud
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'detected_objects' => :'DetectedObjects'
+        :'detected_objects' => :'detectedObjects'
       }
     end
 
@@ -54,8 +54,8 @@ module AsposeImagingCloud
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'DetectedObjects')
-        if (value = attributes[:'DetectedObjects']).is_a?(Array)
+      if attributes.has_key?(:'detectedObjects')
+        if (value = attributes[:'detectedObjects']).is_a?(Array)
           self.detected_objects = value
         end
       end
