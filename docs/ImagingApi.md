@@ -52,6 +52,7 @@ Method | HTTP request | Description
 [**find_image_duplicates**](ImagingApi.md#find_image_duplicates) | **GET** /imaging/ai/imageSearch/{searchContextId}/findDuplicates | Find images duplicates.
 [**find_images_by_tags**](ImagingApi.md#find_images_by_tags) | **POST** /imaging/ai/imageSearch/{searchContextId}/findByTags | Find images by tags. Tags JSON string is passed as zero-indexed multipart/form-data content or as raw body stream.
 [**find_similar_images**](ImagingApi.md#find_similar_images) | **GET** /imaging/ai/imageSearch/{searchContextId}/findSimilar | Find similar images. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
+[**get_available_labels**](ImagingApi.md#get_available_labels) | **GET** /imaging/ai/objectdetection/availablelabels/{method} | Detects objects bounds and draw them on the original image
 [**get_disc_usage**](ImagingApi.md#get_disc_usage) | **GET** /imaging/storage/disc | Get disc usage
 [**get_file_versions**](ImagingApi.md#get_file_versions) | **GET** /imaging/storage/version/{path} | Get file versions
 [**get_files_list**](ImagingApi.md#get_files_list) | **GET** /imaging/storage/folder/{path} | Get all files and folders within a folder
@@ -1786,6 +1787,8 @@ opts = {
   threshold: 50, # Integer | Object detection probability threshold in percents
   include_label: false, # BOOLEAN | Draw detected objects labels
   include_score: false, # BOOLEAN | Draw detected objects scores
+  allowed_labels: '', # String | Comma-separated list of allowed labels
+  blocked_labels: '', # String | Comma-separated list of blocked labels
   out_path: 'out_path_example', # String | Path to updated file (if this is empty, response contains streamed image)
   storage: 'storage_example' # String | Your Aspose Cloud Storage name.
 }
@@ -1808,6 +1811,8 @@ Name | Type | Description  | Notes
  **threshold** | **Integer**| Object detection probability threshold in percents | [optional] [default to 50]
  **include_label** | **BOOLEAN**| Draw detected objects labels | [optional] [default to false]
  **include_score** | **BOOLEAN**| Draw detected objects scores | [optional] [default to false]
+ **allowed_labels** | **String**| Comma-separated list of allowed labels | [optional] [default to ]
+ **blocked_labels** | **String**| Comma-separated list of blocked labels | [optional] [default to ]
  **out_path** | **String**| Path to updated file (if this is empty, response contains streamed image) | [optional] 
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional] 
 
@@ -2113,6 +2118,8 @@ opts = {
   threshold: 50, # Integer | Object detection probability threshold in percents
   include_label: false, # BOOLEAN | Draw detected objects classes
   include_score: false, # BOOLEAN | Draw detected objects scores
+  allowed_labels: '', # String | Comma-separated list of allowed labels
+  blocked_labels: '', # String | Comma-separated list of blocked labels
   color: 'color_example', # String | Bounds, labels, and scores text color
   out_path: 'out_path_example', # String | Path to updated file (if this is empty, response contains streamed image)
   storage: 'storage_example' # String | Your Aspose Cloud Storage name.
@@ -2136,6 +2143,8 @@ Name | Type | Description  | Notes
  **threshold** | **Integer**| Object detection probability threshold in percents | [optional] [default to 50]
  **include_label** | **BOOLEAN**| Draw detected objects classes | [optional] [default to false]
  **include_score** | **BOOLEAN**| Draw detected objects scores | [optional] [default to false]
+ **allowed_labels** | **String**| Comma-separated list of allowed labels | [optional] [default to ]
+ **blocked_labels** | **String**| Comma-separated list of blocked labels | [optional] [default to ]
  **color** | **String**| Bounds, labels, and scores text color | [optional] 
  **out_path** | **String**| Path to updated file (if this is empty, response contains streamed image) | [optional] 
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional] 
@@ -3099,6 +3108,56 @@ Name | Type | Description  | Notes
 
 
 
+# **get_available_labels**
+> AvailableLabelsList get_available_labels(method)
+
+Detects objects bounds and draw them on the original image
+
+### Example
+```ruby
+# load the gem
+require 'aspose-imaging-cloud'
+# setup authorization
+AsposeImagingCloud.configure do |config|
+  # Configure OAuth2 access token for authorization: JWT
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = AsposeImagingCloud::ImagingApi.new
+
+method = 'method_example' # String | Object detection method
+
+
+begin
+  #Detects objects bounds and draw them on the original image
+  result = api_instance.get_available_labels(method)
+  p result
+rescue AsposeImagingCloud::ApiError => e
+  puts "Exception when calling ImagingApi->get_available_labels: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **method** | **String**| Object detection method | 
+
+### Return type
+
+[**AvailableLabelsList**](AvailableLabelsList.md)
+
+### Authorization
+
+[JWT](../README.md#JWT)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+
 # **get_disc_usage**
 > DiscUsage get_disc_usage(opts)
 
@@ -3665,6 +3724,8 @@ opts = {
   threshold: 50, # Integer | Object detection probability threshold in percents
   include_label: false, # BOOLEAN | Return detected objects labels
   include_score: false, # BOOLEAN | Return detected objects score
+  allowed_labels: '', # String | Comma-separated list of allowed labels
+  blocked_labels: '', # String | Comma-separated list of blocked labels
   folder: 'folder_example', # String | Folder
   storage: 'storage_example' # String | Storage
 }
@@ -3687,6 +3748,8 @@ Name | Type | Description  | Notes
  **threshold** | **Integer**| Object detection probability threshold in percents | [optional] [default to 50]
  **include_label** | **BOOLEAN**| Return detected objects labels | [optional] [default to false]
  **include_score** | **BOOLEAN**| Return detected objects score | [optional] [default to false]
+ **allowed_labels** | **String**| Comma-separated list of allowed labels | [optional] [default to ]
+ **blocked_labels** | **String**| Comma-separated list of blocked labels | [optional] [default to ]
  **folder** | **String**| Folder | [optional] 
  **storage** | **String**| Storage | [optional] 
 
@@ -3788,6 +3851,8 @@ opts = {
   threshold: 50, # Integer | Object detection probability threshold in percents
   include_label: false, # BOOLEAN | Draw detected objects labels
   include_score: false, # BOOLEAN | Draw detected objects scores
+  allowed_labels: '', # String | Comma-separated list of allowed labels
+  blocked_labels: '', # String | Comma-separated list of blocked labels
   color: 'color_example', # String | Bounds, labels, and scores text color
   folder: 'folder_example', # String | The folder.
   storage: 'storage_example' # String | The storage.
@@ -3811,6 +3876,8 @@ Name | Type | Description  | Notes
  **threshold** | **Integer**| Object detection probability threshold in percents | [optional] [default to 50]
  **include_label** | **BOOLEAN**| Draw detected objects labels | [optional] [default to false]
  **include_score** | **BOOLEAN**| Draw detected objects scores | [optional] [default to false]
+ **allowed_labels** | **String**| Comma-separated list of allowed labels | [optional] [default to ]
+ **blocked_labels** | **String**| Comma-separated list of blocked labels | [optional] [default to ]
  **color** | **String**| Bounds, labels, and scores text color | [optional] 
  **folder** | **String**| The folder. | [optional] 
  **storage** | **String**| The storage. | [optional] 

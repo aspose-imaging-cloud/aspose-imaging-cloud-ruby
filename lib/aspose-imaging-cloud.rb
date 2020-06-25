@@ -31,6 +31,7 @@ require_relative './aspose-imaging-cloud/version'
 require_relative './aspose-imaging-cloud/configuration'
 
 # Models
+require_relative './aspose-imaging-cloud/models/available_labels_list'
 require_relative './aspose-imaging-cloud/models/bmp_properties'
 require_relative './aspose-imaging-cloud/models/detected_object'
 require_relative './aspose-imaging-cloud/models/detected_object_list'
@@ -136,6 +137,7 @@ require_relative './aspose-imaging-cloud/models/requests/filter_effect_image_req
 require_relative './aspose-imaging-cloud/models/requests/find_images_by_tags_request'
 require_relative './aspose-imaging-cloud/models/requests/find_image_duplicates_request'
 require_relative './aspose-imaging-cloud/models/requests/find_similar_images_request'
+require_relative './aspose-imaging-cloud/models/requests/get_available_labels_request'
 require_relative './aspose-imaging-cloud/models/requests/get_disc_usage_request'
 require_relative './aspose-imaging-cloud/models/requests/get_files_list_request'
 require_relative './aspose-imaging-cloud/models/requests/get_file_versions_request'

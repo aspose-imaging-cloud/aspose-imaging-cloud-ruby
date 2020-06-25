@@ -37,14 +37,18 @@ module AsposeImagingCloud
     # @param [Integer] threshold Object detection probability threshold in percents
     # @param [BOOLEAN] include_label Draw detected objects labels
     # @param [BOOLEAN] include_score Draw detected objects scores
+    # @param [String] allowed_labels Comma-separated list of allowed labels
+    # @param [String] blocked_labels Comma-separated list of blocked labels
     # @param [String] out_path Path to updated file (if this is empty, response contains streamed image)
     # @param [String] storage Your Aspose Cloud Storage name.
-    def initialize(image_data, method = nil, threshold = nil, include_label = nil, include_score = nil, out_path = nil, storage = nil)
+    def initialize(image_data, method = nil, threshold = nil, include_label = nil, include_score = nil, allowed_labels = nil, blocked_labels = nil, out_path = nil, storage = nil)
       @image_data = image_data
       @method = method
       @threshold = threshold
       @include_label = include_label
       @include_score = include_score
+      @allowed_labels = allowed_labels
+      @blocked_labels = blocked_labels
       @out_path = out_path
       @storage = storage
     end
@@ -64,6 +68,8 @@ module AsposeImagingCloud
       query_params[:threshold] = @threshold unless @threshold.nil?
       query_params[:includeLabel] = @include_label unless @include_label.nil?
       query_params[:includeScore] = @include_score unless @include_score.nil?
+      query_params[:allowedLabels] = @allowed_labels unless @allowed_labels.nil?
+      query_params[:blockedLabels] = @blocked_labels unless @blocked_labels.nil?
       query_params[:outPath] = @out_path unless @out_path.nil?
       query_params[:storage] = @storage unless @storage.nil?
 
