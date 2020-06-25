@@ -33,7 +33,6 @@ Method | HTTP request | Description
 [**create_object_bounds**](ImagingApi.md#create_object_bounds) | **POST** /imaging/ai/objectdetection/bounds | Detects objects bounds. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 [**create_resized_image**](ImagingApi.md#create_resized_image) | **POST** /imaging/resize | Resize an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 [**create_rotate_flipped_image**](ImagingApi.md#create_rotate_flipped_image) | **POST** /imaging/rotateflip | Rotate and/or flip an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
-[**create_saved_image_as**](ImagingApi.md#create_saved_image_as) | **POST** /imaging/saveAs | Export existing image to another format. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.             
 [**create_updated_image**](ImagingApi.md#create_updated_image) | **POST** /imaging/updateImage | Perform scaling, cropping and flipping of an image in a single request. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 [**create_visual_object_bounds**](ImagingApi.md#create_visual_object_bounds) | **POST** /imaging/ai/objectdetection/visualbounds | Detects objects bounds and draw them on the original image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream
 [**create_web_site_image_features**](ImagingApi.md#create_web_site_image_features) | **POST** /imaging/ai/imageSearch/{searchContextId}/features/web | Extract images features from web page and add them to search context
@@ -80,7 +79,6 @@ Method | HTTP request | Description
 [**object_exists**](ImagingApi.md#object_exists) | **GET** /imaging/storage/exist/{path} | Check if file or folder exists
 [**resize_image**](ImagingApi.md#resize_image) | **GET** /imaging/{name}/resize | Resize an existing image.
 [**rotate_flip_image**](ImagingApi.md#rotate_flip_image) | **GET** /imaging/{name}/rotateflip | Rotate and/or flip an existing image.
-[**save_image_as**](ImagingApi.md#save_image_as) | **GET** /imaging/{name}/saveAs | Export existing image to another format.
 [**storage_exists**](ImagingApi.md#storage_exists) | **GET** /imaging/storage/{storageName}/exist | Check if storage exists
 [**update_image**](ImagingApi.md#update_image) | **GET** /imaging/{name}/updateImage | Perform scaling, cropping and flipping of an existing image in a single request.
 [**update_image_features**](ImagingApi.md#update_image_features) | **PUT** /imaging/ai/imageSearch/{searchContextId}/features | Update images features in search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -269,6 +267,65 @@ Name | Type | Description  | Notes
 
 
 
+# **convert_image**
+> File convert_image(name, format, opts)
+
+Convert existing image to another format.
+
+### Example
+```ruby
+# load the gem
+require 'aspose-imaging-cloud'
+# setup authorization
+AsposeImagingCloud.configure do |config|
+  # Configure OAuth2 access token for authorization: JWT
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = AsposeImagingCloud::ImagingApi.new
+
+name = 'name_example' # String | Filename of image.
+
+format = 'format_example' # String | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+
+opts = { 
+  folder: 'folder_example', # String | Folder with image to process.
+  storage: 'storage_example' # String | Your Aspose Cloud Storage name.
+}
+
+begin
+  #Convert existing image to another format.
+  result = api_instance.convert_image(name, format, opts)
+  p result
+rescue AsposeImagingCloud::ApiError => e
+  puts "Exception when calling ImagingApi->convert_image: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name** | **String**| Filename of image. | 
+ **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
+ **folder** | **String**| Folder with image to process. | [optional] 
+ **storage** | **String**| Your Aspose Cloud Storage name. | [optional] 
+
+### Return type
+
+**File**
+
+### Authorization
+
+[JWT](../README.md#JWT)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+
 # **convert_tiff_to_fax**
 > File convert_tiff_to_fax(name, opts)
 
@@ -439,6 +496,65 @@ nil (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+
+# **create_converted_image**
+> File create_converted_image(image_data, format, opts)
+
+Convert existing image to another format. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.             
+
+### Example
+```ruby
+# load the gem
+require 'aspose-imaging-cloud'
+# setup authorization
+AsposeImagingCloud.configure do |config|
+  # Configure OAuth2 access token for authorization: JWT
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = AsposeImagingCloud::ImagingApi.new
+
+image_data = File.new('/path/to/file.txt') # File | Input image
+
+format = 'format_example' # String | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+
+opts = { 
+  out_path: 'out_path_example', # String | Path to updated file (if this is empty, response contains streamed image).
+  storage: 'storage_example' # String | Your Aspose Cloud Storage name.
+}
+
+begin
+  #Convert existing image to another format. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.             
+  result = api_instance.create_converted_image(image_data, format, opts)
+  p result
+rescue AsposeImagingCloud::ApiError => e
+  puts "Exception when calling ImagingApi->create_converted_image: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **image_data** | **File**| Input image | 
+ **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
+ **out_path** | **String**| Path to updated file (if this is empty, response contains streamed image). | [optional] 
+ **storage** | **String**| Your Aspose Cloud Storage name. | [optional] 
+
+### Return type
+
+**File**
+
+### Authorization
+
+[JWT](../README.md#JWT)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 
@@ -1933,65 +2049,6 @@ Name | Type | Description  | Notes
  **image_data** | **File**| Input image | 
  **method** | **String**| RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). | 
  **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional] 
- **out_path** | **String**| Path to updated file (if this is empty, response contains streamed image). | [optional] 
- **storage** | **String**| Your Aspose Cloud Storage name. | [optional] 
-
-### Return type
-
-**File**
-
-### Authorization
-
-[JWT](../README.md#JWT)
-
-### HTTP request headers
-
- - **Content-Type**: multipart/form-data
- - **Accept**: application/json
-
-
-
-# **create_saved_image_as**
-> File create_saved_image_as(image_data, format, opts)
-
-Export existing image to another format. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.             
-
-### Example
-```ruby
-# load the gem
-require 'aspose-imaging-cloud'
-# setup authorization
-AsposeImagingCloud.configure do |config|
-  # Configure OAuth2 access token for authorization: JWT
-  config.access_token = 'YOUR ACCESS TOKEN'
-end
-
-api_instance = AsposeImagingCloud::ImagingApi.new
-
-image_data = File.new('/path/to/file.txt') # File | Input image
-
-format = 'format_example' # String | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-
-opts = { 
-  out_path: 'out_path_example', # String | Path to updated file (if this is empty, response contains streamed image).
-  storage: 'storage_example' # String | Your Aspose Cloud Storage name.
-}
-
-begin
-  #Export existing image to another format. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.             
-  result = api_instance.create_saved_image_as(image_data, format, opts)
-  p result
-rescue AsposeImagingCloud::ApiError => e
-  puts "Exception when calling ImagingApi->create_saved_image_as: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **image_data** | **File**| Input image | 
- **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
  **out_path** | **String**| Path to updated file (if this is empty, response contains streamed image). | [optional] 
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional] 
 
@@ -4858,65 +4915,6 @@ Name | Type | Description  | Notes
  **name** | **String**| Filename of an image. | 
  **method** | **String**| RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). | 
  **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional] 
- **folder** | **String**| Folder with image to process. | [optional] 
- **storage** | **String**| Your Aspose Cloud Storage name. | [optional] 
-
-### Return type
-
-**File**
-
-### Authorization
-
-[JWT](../README.md#JWT)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-
-# **save_image_as**
-> File save_image_as(name, format, opts)
-
-Export existing image to another format.
-
-### Example
-```ruby
-# load the gem
-require 'aspose-imaging-cloud'
-# setup authorization
-AsposeImagingCloud.configure do |config|
-  # Configure OAuth2 access token for authorization: JWT
-  config.access_token = 'YOUR ACCESS TOKEN'
-end
-
-api_instance = AsposeImagingCloud::ImagingApi.new
-
-name = 'name_example' # String | Filename of image.
-
-format = 'format_example' # String | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-
-opts = { 
-  folder: 'folder_example', # String | Folder with image to process.
-  storage: 'storage_example' # String | Your Aspose Cloud Storage name.
-}
-
-begin
-  #Export existing image to another format.
-  result = api_instance.save_image_as(name, format, opts)
-  p result
-rescue AsposeImagingCloud::ApiError => e
-  puts "Exception when calling ImagingApi->save_image_as: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **String**| Filename of image. | 
- **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
  **folder** | **String**| Folder with image to process. | [optional] 
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional] 
 
