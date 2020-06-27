@@ -67,6 +67,14 @@ module AsposeImagingCloud
       make_request(http_request, :POST, 'SearchResultsSet')
     end
 
+    # Convert existing image to another format.
+    # @param [convert_imageRequest] request Request object.
+    # @return [File]
+    def convert_image(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :GET, 'File')
+    end
+
     # Update parameters of existing TIFF image accordingly to fax parameters.
     # @param [convert_tiff_to_faxRequest] request Request object.
     # @return [File]
@@ -91,6 +99,14 @@ module AsposeImagingCloud
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :PUT, nil)
       nil
+    end
+
+    # Convert existing image to another format. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.             
+    # @param [create_converted_imageRequest] request Request object.
+    # @return [File]
+    def create_converted_image(request)
+      http_request = request.to_http_info(@api_client.config)
+      make_request(http_request, :POST, 'File')
     end
 
     # Crop an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -276,14 +292,6 @@ module AsposeImagingCloud
     # @param [create_rotate_flipped_imageRequest] request Request object.
     # @return [File]
     def create_rotate_flipped_image(request)
-      http_request = request.to_http_info(@api_client.config)
-      make_request(http_request, :POST, 'File')
-    end
-
-    # Export existing image to another format. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.             
-    # @param [create_saved_image_asRequest] request Request object.
-    # @return [File]
-    def create_saved_image_as(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :POST, 'File')
     end
@@ -668,14 +676,6 @@ module AsposeImagingCloud
     # @param [rotate_flip_imageRequest] request Request object.
     # @return [File]
     def rotate_flip_image(request)
-      http_request = request.to_http_info(@api_client.config)
-      make_request(http_request, :GET, 'File')
-    end
-
-    # Export existing image to another format.
-    # @param [save_image_asRequest] request Request object.
-    # @return [File]
-    def save_image_as(request)
       http_request = request.to_http_info(@api_client.config)
       make_request(http_request, :GET, 'File')
     end
