@@ -83,16 +83,18 @@ end
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.aspose.cloud/v3.0*
+All URIs are relative to *https://api-qa.aspose.cloud/v3.0*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AsposeImagingCloud::ImagingApi* | [**add_search_image**](docs/ImagingApi.md#add_search_image) | **POST** /imaging/ai/imageSearch/{searchContextId}/image | Add image and images features to search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
 *AsposeImagingCloud::ImagingApi* | [**append_tiff**](docs/ImagingApi.md#append_tiff) | **POST** /imaging/tiff/{name}/appendTiff | Appends existing TIFF image to another existing TIFF image (i.e. merges TIFF images).
 *AsposeImagingCloud::ImagingApi* | [**compare_images**](docs/ImagingApi.md#compare_images) | **POST** /imaging/ai/imageSearch/{searchContextId}/compare | Compare two images. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
+*AsposeImagingCloud::ImagingApi* | [**convert_image**](docs/ImagingApi.md#convert_image) | **GET** /imaging/{name}/convert | Convert existing image to another format.
 *AsposeImagingCloud::ImagingApi* | [**convert_tiff_to_fax**](docs/ImagingApi.md#convert_tiff_to_fax) | **GET** /imaging/tiff/{name}/toFax | Update parameters of existing TIFF image accordingly to fax parameters.
 *AsposeImagingCloud::ImagingApi* | [**copy_file**](docs/ImagingApi.md#copy_file) | **PUT** /imaging/storage/file/copy/{srcPath} | Copy file
 *AsposeImagingCloud::ImagingApi* | [**copy_folder**](docs/ImagingApi.md#copy_folder) | **PUT** /imaging/storage/folder/copy/{srcPath} | Copy folder
+*AsposeImagingCloud::ImagingApi* | [**create_converted_image**](docs/ImagingApi.md#create_converted_image) | **POST** /imaging/convert | Convert existing image to another format. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.             
 *AsposeImagingCloud::ImagingApi* | [**create_cropped_image**](docs/ImagingApi.md#create_cropped_image) | **POST** /imaging/crop | Crop an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 *AsposeImagingCloud::ImagingApi* | [**create_deskewed_image**](docs/ImagingApi.md#create_deskewed_image) | **POST** /imaging/deskew | Deskew an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 *AsposeImagingCloud::ImagingApi* | [**create_fax_tiff**](docs/ImagingApi.md#create_fax_tiff) | **POST** /imaging/tiff/toFax | Update parameters of TIFF image accordingly to fax parameters. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -116,7 +118,6 @@ Class | Method | HTTP request | Description
 *AsposeImagingCloud::ImagingApi* | [**create_object_bounds**](docs/ImagingApi.md#create_object_bounds) | **POST** /imaging/ai/objectdetection/bounds | Detects objects bounds. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 *AsposeImagingCloud::ImagingApi* | [**create_resized_image**](docs/ImagingApi.md#create_resized_image) | **POST** /imaging/resize | Resize an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 *AsposeImagingCloud::ImagingApi* | [**create_rotate_flipped_image**](docs/ImagingApi.md#create_rotate_flipped_image) | **POST** /imaging/rotateflip | Rotate and/or flip an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
-*AsposeImagingCloud::ImagingApi* | [**create_saved_image_as**](docs/ImagingApi.md#create_saved_image_as) | **POST** /imaging/saveAs | Export existing image to another format. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.             
 *AsposeImagingCloud::ImagingApi* | [**create_updated_image**](docs/ImagingApi.md#create_updated_image) | **POST** /imaging/updateImage | Perform scaling, cropping and flipping of an image in a single request. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 *AsposeImagingCloud::ImagingApi* | [**create_visual_object_bounds**](docs/ImagingApi.md#create_visual_object_bounds) | **POST** /imaging/ai/objectdetection/visualbounds | Detects objects bounds and draw them on the original image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream
 *AsposeImagingCloud::ImagingApi* | [**create_web_site_image_features**](docs/ImagingApi.md#create_web_site_image_features) | **POST** /imaging/ai/imageSearch/{searchContextId}/features/web | Extract images features from web page and add them to search context
@@ -164,7 +165,6 @@ Class | Method | HTTP request | Description
 *AsposeImagingCloud::ImagingApi* | [**object_exists**](docs/ImagingApi.md#object_exists) | **GET** /imaging/storage/exist/{path} | Check if file or folder exists
 *AsposeImagingCloud::ImagingApi* | [**resize_image**](docs/ImagingApi.md#resize_image) | **GET** /imaging/{name}/resize | Resize an existing image.
 *AsposeImagingCloud::ImagingApi* | [**rotate_flip_image**](docs/ImagingApi.md#rotate_flip_image) | **GET** /imaging/{name}/rotateflip | Rotate and/or flip an existing image.
-*AsposeImagingCloud::ImagingApi* | [**save_image_as**](docs/ImagingApi.md#save_image_as) | **GET** /imaging/{name}/saveAs | Export existing image to another format.
 *AsposeImagingCloud::ImagingApi* | [**storage_exists**](docs/ImagingApi.md#storage_exists) | **GET** /imaging/storage/{storageName}/exist | Check if storage exists
 *AsposeImagingCloud::ImagingApi* | [**update_image**](docs/ImagingApi.md#update_image) | **GET** /imaging/{name}/updateImage | Perform scaling, cropping and flipping of an existing image in a single request.
 *AsposeImagingCloud::ImagingApi* | [**update_image_features**](docs/ImagingApi.md#update_image_features) | **PUT** /imaging/ai/imageSearch/{searchContextId}/features | Update images features in search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.

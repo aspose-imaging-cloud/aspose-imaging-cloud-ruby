@@ -59,12 +59,6 @@ module AsposeImagingCloud
     # Gets or sets the photo interpretation.
     attr_accessor :photo_interpretation
 
-    # Gets or sets a value indicating whether width tag found.
-    attr_accessor :width_tag_found
-
-    # Gets or sets a value indicating whether height tag found.
-    attr_accessor :height_tag_found
-
     # Gets or sets the width.
     attr_accessor :width
 
@@ -89,17 +83,11 @@ module AsposeImagingCloud
     # Gets or sets the number of frames.
     attr_accessor :number_of_frames
 
-    # Gets or sets the length of element.
-    attr_accessor :length_value
-
     # Indicates if DICOM image has little endian byte order.
     attr_accessor :is_little_endian
 
     # Gets or sets the offset.
     attr_accessor :offset
-
-    # Gets or sets a value indicating whether \"DICOM\" data is found.
-    attr_accessor :dicom_found
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -114,8 +102,6 @@ module AsposeImagingCloud
         :'samples_per_pixel' => :'SamplesPerPixel',
         :'bits_allocated' => :'BitsAllocated',
         :'photo_interpretation' => :'PhotoInterpretation',
-        :'width_tag_found' => :'WidthTagFound',
-        :'height_tag_found' => :'HeightTagFound',
         :'width' => :'Width',
         :'height' => :'Height',
         :'window_centre' => :'WindowCentre',
@@ -124,10 +110,8 @@ module AsposeImagingCloud
         :'rescale_intercept' => :'RescaleIntercept',
         :'rescale_slope' => :'RescaleSlope',
         :'number_of_frames' => :'NumberOfFrames',
-        :'length_value' => :'LengthValue',
         :'is_little_endian' => :'IsLittleEndian',
-        :'offset' => :'Offset',
-        :'dicom_found' => :'DicomFound'
+        :'offset' => :'Offset'
       }
     end
 
@@ -144,8 +128,6 @@ module AsposeImagingCloud
         :'samples_per_pixel' => :'Integer',
         :'bits_allocated' => :'Integer',
         :'photo_interpretation' => :'String',
-        :'width_tag_found' => :'BOOLEAN',
-        :'height_tag_found' => :'BOOLEAN',
         :'width' => :'Integer',
         :'height' => :'Integer',
         :'window_centre' => :'Float',
@@ -154,10 +136,8 @@ module AsposeImagingCloud
         :'rescale_intercept' => :'Float',
         :'rescale_slope' => :'Float',
         :'number_of_frames' => :'Integer',
-        :'length_value' => :'Integer',
         :'is_little_endian' => :'BOOLEAN',
-        :'offset' => :'Integer',
-        :'dicom_found' => :'BOOLEAN'
+        :'offset' => :'Integer'
       }
     end
 
@@ -211,14 +191,6 @@ module AsposeImagingCloud
         self.photo_interpretation = attributes[:'PhotoInterpretation']
       end
 
-      if attributes.has_key?(:'WidthTagFound')
-        self.width_tag_found = attributes[:'WidthTagFound']
-      end
-
-      if attributes.has_key?(:'HeightTagFound')
-        self.height_tag_found = attributes[:'HeightTagFound']
-      end
-
       if attributes.has_key?(:'Width')
         self.width = attributes[:'Width']
       end
@@ -251,20 +223,12 @@ module AsposeImagingCloud
         self.number_of_frames = attributes[:'NumberOfFrames']
       end
 
-      if attributes.has_key?(:'LengthValue')
-        self.length_value = attributes[:'LengthValue']
-      end
-
       if attributes.has_key?(:'IsLittleEndian')
         self.is_little_endian = attributes[:'IsLittleEndian']
       end
 
       if attributes.has_key?(:'Offset')
         self.offset = attributes[:'Offset']
-      end
-
-      if attributes.has_key?(:'DicomFound')
-        self.dicom_found = attributes[:'DicomFound']
       end
     end
 
@@ -304,14 +268,6 @@ module AsposeImagingCloud
         invalid_properties.push('invalid value for "bits_allocated", bits_allocated cannot be nil.')
       end
 
-      if @width_tag_found.nil?
-        invalid_properties.push('invalid value for "width_tag_found", width_tag_found cannot be nil.')
-      end
-
-      if @height_tag_found.nil?
-        invalid_properties.push('invalid value for "height_tag_found", height_tag_found cannot be nil.')
-      end
-
       if @width.nil?
         invalid_properties.push('invalid value for "width", width cannot be nil.')
       end
@@ -344,20 +300,12 @@ module AsposeImagingCloud
         invalid_properties.push('invalid value for "number_of_frames", number_of_frames cannot be nil.')
       end
 
-      if @length_value.nil?
-        invalid_properties.push('invalid value for "length_value", length_value cannot be nil.')
-      end
-
       if @is_little_endian.nil?
         invalid_properties.push('invalid value for "is_little_endian", is_little_endian cannot be nil.')
       end
 
       if @offset.nil?
         invalid_properties.push('invalid value for "offset", offset cannot be nil.')
-      end
-
-      if @dicom_found.nil?
-        invalid_properties.push('invalid value for "dicom_found", dicom_found cannot be nil.')
       end
 
       invalid_properties
@@ -374,8 +322,6 @@ module AsposeImagingCloud
       return false if @signed_image.nil?
       return false if @samples_per_pixel.nil?
       return false if @bits_allocated.nil?
-      return false if @width_tag_found.nil?
-      return false if @height_tag_found.nil?
       return false if @width.nil?
       return false if @height.nil?
       return false if @window_centre.nil?
@@ -384,10 +330,8 @@ module AsposeImagingCloud
       return false if @rescale_intercept.nil?
       return false if @rescale_slope.nil?
       return false if @number_of_frames.nil?
-      return false if @length_value.nil?
       return false if @is_little_endian.nil?
       return false if @offset.nil?
-      return false if @dicom_found.nil?
       true
     end
 
@@ -446,8 +390,6 @@ module AsposeImagingCloud
           samples_per_pixel == o.samples_per_pixel &&
           bits_allocated == o.bits_allocated &&
           photo_interpretation == o.photo_interpretation &&
-          width_tag_found == o.width_tag_found &&
-          height_tag_found == o.height_tag_found &&
           width == o.width &&
           height == o.height &&
           window_centre == o.window_centre &&
@@ -456,10 +398,8 @@ module AsposeImagingCloud
           rescale_intercept == o.rescale_intercept &&
           rescale_slope == o.rescale_slope &&
           number_of_frames == o.number_of_frames &&
-          length_value == o.length_value &&
           is_little_endian == o.is_little_endian &&
-          offset == o.offset &&
-          dicom_found == o.dicom_found
+          offset == o.offset
     end
 
     # @see the `==` method
@@ -471,7 +411,7 @@ module AsposeImagingCloud
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [planar_configuration, reds, greens, blues, dicom_header_info_by_bytes, signed_image, dicom_info, samples_per_pixel, bits_allocated, photo_interpretation, width_tag_found, height_tag_found, width, height, window_centre, window_width, pixel_representation, rescale_intercept, rescale_slope, number_of_frames, length_value, is_little_endian, offset, dicom_found].hash
+      [planar_configuration, reds, greens, blues, dicom_header_info_by_bytes, signed_image, dicom_info, samples_per_pixel, bits_allocated, photo_interpretation, width, height, window_centre, window_width, pixel_representation, rescale_intercept, rescale_slope, number_of_frames, is_little_endian, offset].hash
     end
 
     # Builds the object from hash

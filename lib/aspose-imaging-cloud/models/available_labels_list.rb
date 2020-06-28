@@ -27,6 +27,7 @@
 require 'date'
 
 module AsposeImagingCloud
+  # AvailableLabelsList
   class AvailableLabelsList
     # detected objects
     attr_accessor :available_labels
