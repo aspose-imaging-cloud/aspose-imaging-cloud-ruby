@@ -13,8 +13,6 @@ Name | Type | Description | Notes
 **samples_per_pixel** | **Integer** | Gets or sets samples per pixel count. | 
 **bits_allocated** | **Integer** | Gets or sets allocated bits count. | 
 **photo_interpretation** | **String** | Gets or sets the photo interpretation. | [optional] 
-**width_tag_found** | **BOOLEAN** | Gets or sets a value indicating whether width tag found. | 
-**height_tag_found** | **BOOLEAN** | Gets or sets a value indicating whether height tag found. | 
 **width** | **Integer** | Gets or sets the width. | 
 **height** | **Integer** | Gets or sets the height. | 
 **window_centre** | **Float** | Gets or sets the window centre. | 
@@ -23,9 +21,7 @@ Name | Type | Description | Notes
 **rescale_intercept** | **Float** | Gets or sets a value of the rescale intercept. | 
 **rescale_slope** | **Float** | Gets or sets a value of the rescale slope. | 
 **number_of_frames** | **Integer** | Gets or sets the number of frames. | 
-**length_value** | **Integer** | Gets or sets the length of element. | 
 **is_little_endian** | **BOOLEAN** | Indicates if DICOM image has little endian byte order. | 
 **offset** | **Integer** | Gets or sets the offset. | 
-**dicom_found** | **BOOLEAN** | Gets or sets a value indicating whether \&quot;DICOM\&quot; data is found. | 
 
 

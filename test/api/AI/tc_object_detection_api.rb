@@ -29,6 +29,20 @@ module AsposeImagingCloudTests
   class TestObjectDetectionApi < ImagingApiTester
     #  Class for testing ObjectDetectionAPI
 
+    define_method("available_labels") do
+      begin
+        puts('available_labels_test')
+        response = imaging_api.get_available_labels(AsposeImagingCloud::GetAvailableLabelsRequest("ssd"));
+        assert_not_nil(response)
+        puts('test passed: true')
+      rescue StandardError => e
+        self.failed_any_test = true
+        puts('test passed: false')
+        puts(e.to_s)
+        raise
+      end
+    end
+
     define_method("test_object_bounds") do
       folder = @temp_folder
       storage = @test_storage
@@ -45,7 +59,8 @@ module AsposeImagingCloudTests
         name = input_file.name
 
         request_invoker = lambda do
-           return imaging_api.object_bounds(AsposeImagingCloud::GetObjectBoundsRequest.new(name, nil, 20, true, true, folder, storage))
+           return imaging_api.object_bounds(AsposeImagingCloud::GetObjectBoundsRequest.new(
+               name, nil, 20, true, true, "dog", nil, folder, storage))
            end
           get_request_tester('objectDetection_objectbounds_test', "Input image: #{name};", name, request_invoker, response_tester, folder, storage)
         end
@@ -65,7 +80,8 @@ module AsposeImagingCloudTests
         name = input_file.name
 
         request_invoker = lambda do
-          return imaging_api.visual_object_bounds(AsposeImagingCloud::GetVisualObjectBoundsRequest.new(name, nil, 60, true, true, "red", folder, storage))
+          return imaging_api.visual_object_bounds(AsposeImagingCloud::GetVisualObjectBoundsRequest.new(
+              name, nil, 20, true, true, "dog", nil, "red", folder, storage))
         end
         get_request_tester('objectDetection_visualobjectbounds_test', "Input image: #{name};", name, request_invoker, response_tester, folder, storage)
       end
@@ -90,7 +106,8 @@ module AsposeImagingCloudTests
           name = input_file.name
 
           request_invoker = lambda do |input_stream, out_path|
-            return imaging_api.create_object_bounds(AsposeImagingCloud::CreateObjectBoundsRequest.new(input_stream, nil, 60, true, true, out_path, storage))
+            return imaging_api.create_object_bounds(AsposeImagingCloud::CreateObjectBoundsRequest.new(
+                input_stream, nil, 20, true, true, "dog", nil, out_path, storage))
           end
 
             out_name = "result_test.bmp"
@@ -115,7 +132,8 @@ module AsposeImagingCloudTests
           name = input_file.name
 
           request_invoker = lambda do |input_stream, out_path|
-            return imaging_api.create_visual_object_bounds(AsposeImagingCloud::CreateVisualObjectBoundsRequest.new(input_stream, nil, 60, true, true, nil, out_path, storage))
+            return imaging_api.create_visual_object_bounds(AsposeImagingCloud::CreateVisualObjectBoundsRequest.new(
+                input_stream, nil, 20, true, true, "dog", nil, nil, out_path, storage))
           end
 
           out_name = "result_test.bmp"

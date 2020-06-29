@@ -1,5 +1,5 @@
 #  ----------------------------------------------------------------------------
-#  <copyright company="Aspose" file="visual_object_bounds_request.rb">
+#  <copyright company="Aspose" file="convert_image_request.rb">
 #    Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
 #  </copyright>
 #  <summary>
@@ -28,23 +28,17 @@ require_relative './imaging_request'
 require_relative './http_request'
 
 module AsposeImagingCloud
-  # Request model for visual_object_bounds operation.
-  class VisualObjectBoundsRequest < ImagingRequest
+  # Request model for convert_image operation.
+  class ConvertImageRequest < ImagingRequest
 
-    # Detect objects bounds and draw them on the original image
-    # @param [String] name The image features detector.
-    # @param [String] method Object detection method
-    # @param [Integer] threshold Object detection probability threshold in percents
-    # @param [BOOLEAN] include_class Draw detected objects classes
-    # @param [BOOLEAN] include_score Draw detected objects scores
-    # @param [String] folder The folder.
-    # @param [String] storage The storage.
-    def initialize(name, method = nil, threshold = nil, include_class = nil, include_score = nil, folder = nil, storage = nil)
+    # Convert existing image to another format.
+    # @param [String] name Filename of image.
+    # @param [String] format Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+    # @param [String] folder Folder with image to process.
+    # @param [String] storage Your Aspose Cloud Storage name.
+    def initialize(name, format, folder = nil, storage = nil)
       @name = name
-      @method = method
-      @threshold = threshold
-      @include_class = include_class
-      @include_score = include_score
+      @format = format
       @folder = folder
       @storage = storage
     end
@@ -52,19 +46,20 @@ module AsposeImagingCloud
     def to_http_info(config)
       # verify the required parameter 'name' is set
       if config.client_side_validation && @name.nil?
-        raise ArgumentError, "Missing the required parameter 'name' when calling ImagingApi.visual_object_bounds"
+        raise ArgumentError, "Missing the required parameter 'name' when calling ImagingApi.convert_image"
+      end
+
+      # verify the required parameter 'format' is set
+      if config.client_side_validation && @format.nil?
+        raise ArgumentError, "Missing the required parameter 'format' when calling ImagingApi.convert_image"
       end
 
       # resource path
-      local_var_path = '/imaging/ai/objectdetection/visualbounds'
+      local_var_path = '/imaging/{name}/convert'.sub('{' + 'name' + '}', @name.to_s)
 
       # query parameters
       query_params = {}
-      query_params[:name] = @name
-      query_params[:method] = @method unless @method.nil?
-      query_params[:threshold] = @threshold unless @threshold.nil?
-      query_params[:includeClass] = @include_class unless @include_class.nil?
-      query_params[:includeScore] = @include_score unless @include_score.nil?
+      query_params[:format] = @format
       query_params[:folder] = @folder unless @folder.nil?
       query_params[:storage] = @storage unless @storage.nil?
 
@@ -91,4 +86,3 @@ module AsposeImagingCloud
     end
   end
 end
-

@@ -37,14 +37,18 @@ module AsposeImagingCloud
     # @param [Integer] threshold Object detection probability threshold in percents
     # @param [BOOLEAN] include_label Return detected objects labels
     # @param [BOOLEAN] include_score Return detected objects score
+    # @param [String] allowed_labels Comma-separated list of allowed labels
+    # @param [String] blocked_labels Comma-separated list of blocked labels
     # @param [String] folder Folder
     # @param [String] storage Storage
-    def initialize(name, method = nil, threshold = nil, include_label = nil, include_score = nil, folder = nil, storage = nil)
+    def initialize(name, method = nil, threshold = nil, include_label = nil, include_score = nil, allowed_labels = nil, blocked_labels = nil, folder = nil, storage = nil)
       @name = name
       @method = method
       @threshold = threshold
       @include_label = include_label
       @include_score = include_score
+      @allowed_labels = allowed_labels
+      @blocked_labels = blocked_labels
       @folder = folder
       @storage = storage
     end
@@ -64,6 +68,8 @@ module AsposeImagingCloud
       query_params[:threshold] = @threshold unless @threshold.nil?
       query_params[:includeLabel] = @include_label unless @include_label.nil?
       query_params[:includeScore] = @include_score unless @include_score.nil?
+      query_params[:allowedLabels] = @allowed_labels unless @allowed_labels.nil?
+      query_params[:blockedLabels] = @blocked_labels unless @blocked_labels.nil?
       query_params[:folder] = @folder unless @folder.nil?
       query_params[:storage] = @storage unless @storage.nil?
 

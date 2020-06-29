@@ -1,15 +1,17 @@
 # AsposeImagingCloud::ImagingApi
 
-All URIs are relative to *https://api.aspose.cloud/v3.0*
+All URIs are relative to *https://api-qa.aspose.cloud/v3.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**add_search_image**](ImagingApi.md#add_search_image) | **POST** /imaging/ai/imageSearch/{searchContextId}/image | Add image and images features to search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
 [**append_tiff**](ImagingApi.md#append_tiff) | **POST** /imaging/tiff/{name}/appendTiff | Appends existing TIFF image to another existing TIFF image (i.e. merges TIFF images).
 [**compare_images**](ImagingApi.md#compare_images) | **POST** /imaging/ai/imageSearch/{searchContextId}/compare | Compare two images. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
+[**convert_image**](ImagingApi.md#convert_image) | **GET** /imaging/{name}/convert | Convert existing image to another format.
 [**convert_tiff_to_fax**](ImagingApi.md#convert_tiff_to_fax) | **GET** /imaging/tiff/{name}/toFax | Update parameters of existing TIFF image accordingly to fax parameters.
 [**copy_file**](ImagingApi.md#copy_file) | **PUT** /imaging/storage/file/copy/{srcPath} | Copy file
 [**copy_folder**](ImagingApi.md#copy_folder) | **PUT** /imaging/storage/folder/copy/{srcPath} | Copy folder
+[**create_converted_image**](ImagingApi.md#create_converted_image) | **POST** /imaging/convert | Convert existing image to another format. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.             
 [**create_cropped_image**](ImagingApi.md#create_cropped_image) | **POST** /imaging/crop | Crop an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 [**create_deskewed_image**](ImagingApi.md#create_deskewed_image) | **POST** /imaging/deskew | Deskew an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 [**create_fax_tiff**](ImagingApi.md#create_fax_tiff) | **POST** /imaging/tiff/toFax | Update parameters of TIFF image accordingly to fax parameters. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -33,7 +35,6 @@ Method | HTTP request | Description
 [**create_object_bounds**](ImagingApi.md#create_object_bounds) | **POST** /imaging/ai/objectdetection/bounds | Detects objects bounds. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 [**create_resized_image**](ImagingApi.md#create_resized_image) | **POST** /imaging/resize | Resize an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 [**create_rotate_flipped_image**](ImagingApi.md#create_rotate_flipped_image) | **POST** /imaging/rotateflip | Rotate and/or flip an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
-[**create_saved_image_as**](ImagingApi.md#create_saved_image_as) | **POST** /imaging/saveAs | Export existing image to another format. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.             
 [**create_updated_image**](ImagingApi.md#create_updated_image) | **POST** /imaging/updateImage | Perform scaling, cropping and flipping of an image in a single request. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 [**create_visual_object_bounds**](ImagingApi.md#create_visual_object_bounds) | **POST** /imaging/ai/objectdetection/visualbounds | Detects objects bounds and draw them on the original image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream
 [**create_web_site_image_features**](ImagingApi.md#create_web_site_image_features) | **POST** /imaging/ai/imageSearch/{searchContextId}/features/web | Extract images features from web page and add them to search context
@@ -52,6 +53,7 @@ Method | HTTP request | Description
 [**find_image_duplicates**](ImagingApi.md#find_image_duplicates) | **GET** /imaging/ai/imageSearch/{searchContextId}/findDuplicates | Find images duplicates.
 [**find_images_by_tags**](ImagingApi.md#find_images_by_tags) | **POST** /imaging/ai/imageSearch/{searchContextId}/findByTags | Find images by tags. Tags JSON string is passed as zero-indexed multipart/form-data content or as raw body stream.
 [**find_similar_images**](ImagingApi.md#find_similar_images) | **GET** /imaging/ai/imageSearch/{searchContextId}/findSimilar | Find similar images. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
+[**get_available_labels**](ImagingApi.md#get_available_labels) | **GET** /imaging/ai/objectdetection/availablelabels/{method} | Detects objects bounds and draw them on the original image
 [**get_disc_usage**](ImagingApi.md#get_disc_usage) | **GET** /imaging/storage/disc | Get disc usage
 [**get_file_versions**](ImagingApi.md#get_file_versions) | **GET** /imaging/storage/version/{path} | Get file versions
 [**get_files_list**](ImagingApi.md#get_files_list) | **GET** /imaging/storage/folder/{path} | Get all files and folders within a folder
@@ -80,7 +82,6 @@ Method | HTTP request | Description
 [**object_exists**](ImagingApi.md#object_exists) | **GET** /imaging/storage/exist/{path} | Check if file or folder exists
 [**resize_image**](ImagingApi.md#resize_image) | **GET** /imaging/{name}/resize | Resize an existing image.
 [**rotate_flip_image**](ImagingApi.md#rotate_flip_image) | **GET** /imaging/{name}/rotateflip | Rotate and/or flip an existing image.
-[**save_image_as**](ImagingApi.md#save_image_as) | **GET** /imaging/{name}/saveAs | Export existing image to another format.
 [**storage_exists**](ImagingApi.md#storage_exists) | **GET** /imaging/storage/{storageName}/exist | Check if storage exists
 [**update_image**](ImagingApi.md#update_image) | **GET** /imaging/{name}/updateImage | Perform scaling, cropping and flipping of an existing image in a single request.
 [**update_image_features**](ImagingApi.md#update_image_features) | **PUT** /imaging/ai/imageSearch/{searchContextId}/features | Update images features in search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -269,6 +270,65 @@ Name | Type | Description  | Notes
 
 
 
+# **convert_image**
+> File convert_image(name, format, opts)
+
+Convert existing image to another format.
+
+### Example
+```ruby
+# load the gem
+require 'aspose-imaging-cloud'
+# setup authorization
+AsposeImagingCloud.configure do |config|
+  # Configure OAuth2 access token for authorization: JWT
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = AsposeImagingCloud::ImagingApi.new
+
+name = 'name_example' # String | Filename of image.
+
+format = 'format_example' # String | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+
+opts = { 
+  folder: 'folder_example', # String | Folder with image to process.
+  storage: 'storage_example' # String | Your Aspose Cloud Storage name.
+}
+
+begin
+  #Convert existing image to another format.
+  result = api_instance.convert_image(name, format, opts)
+  p result
+rescue AsposeImagingCloud::ApiError => e
+  puts "Exception when calling ImagingApi->convert_image: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name** | **String**| Filename of image. | 
+ **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
+ **folder** | **String**| Folder with image to process. | [optional] 
+ **storage** | **String**| Your Aspose Cloud Storage name. | [optional] 
+
+### Return type
+
+**File**
+
+### Authorization
+
+[JWT](../README.md#JWT)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+
 # **convert_tiff_to_fax**
 > File convert_tiff_to_fax(name, opts)
 
@@ -439,6 +499,65 @@ nil (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+
+# **create_converted_image**
+> File create_converted_image(image_data, format, opts)
+
+Convert existing image to another format. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.             
+
+### Example
+```ruby
+# load the gem
+require 'aspose-imaging-cloud'
+# setup authorization
+AsposeImagingCloud.configure do |config|
+  # Configure OAuth2 access token for authorization: JWT
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = AsposeImagingCloud::ImagingApi.new
+
+image_data = File.new('/path/to/file.txt') # File | Input image
+
+format = 'format_example' # String | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+
+opts = { 
+  out_path: 'out_path_example', # String | Path to updated file (if this is empty, response contains streamed image).
+  storage: 'storage_example' # String | Your Aspose Cloud Storage name.
+}
+
+begin
+  #Convert existing image to another format. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.             
+  result = api_instance.create_converted_image(image_data, format, opts)
+  p result
+rescue AsposeImagingCloud::ApiError => e
+  puts "Exception when calling ImagingApi->create_converted_image: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **image_data** | **File**| Input image | 
+ **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
+ **out_path** | **String**| Path to updated file (if this is empty, response contains streamed image). | [optional] 
+ **storage** | **String**| Your Aspose Cloud Storage name. | [optional] 
+
+### Return type
+
+**File**
+
+### Authorization
+
+[JWT](../README.md#JWT)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 
@@ -1786,6 +1905,8 @@ opts = {
   threshold: 50, # Integer | Object detection probability threshold in percents
   include_label: false, # BOOLEAN | Draw detected objects labels
   include_score: false, # BOOLEAN | Draw detected objects scores
+  allowed_labels: '', # String | Comma-separated list of allowed labels
+  blocked_labels: '', # String | Comma-separated list of blocked labels
   out_path: 'out_path_example', # String | Path to updated file (if this is empty, response contains streamed image)
   storage: 'storage_example' # String | Your Aspose Cloud Storage name.
 }
@@ -1808,6 +1929,8 @@ Name | Type | Description  | Notes
  **threshold** | **Integer**| Object detection probability threshold in percents | [optional] [default to 50]
  **include_label** | **BOOLEAN**| Draw detected objects labels | [optional] [default to false]
  **include_score** | **BOOLEAN**| Draw detected objects scores | [optional] [default to false]
+ **allowed_labels** | **String**| Comma-separated list of allowed labels | [optional] [default to ]
+ **blocked_labels** | **String**| Comma-separated list of blocked labels | [optional] [default to ]
  **out_path** | **String**| Path to updated file (if this is empty, response contains streamed image) | [optional] 
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional] 
 
@@ -1951,65 +2074,6 @@ Name | Type | Description  | Notes
 
 
 
-# **create_saved_image_as**
-> File create_saved_image_as(image_data, format, opts)
-
-Export existing image to another format. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.             
-
-### Example
-```ruby
-# load the gem
-require 'aspose-imaging-cloud'
-# setup authorization
-AsposeImagingCloud.configure do |config|
-  # Configure OAuth2 access token for authorization: JWT
-  config.access_token = 'YOUR ACCESS TOKEN'
-end
-
-api_instance = AsposeImagingCloud::ImagingApi.new
-
-image_data = File.new('/path/to/file.txt') # File | Input image
-
-format = 'format_example' # String | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-
-opts = { 
-  out_path: 'out_path_example', # String | Path to updated file (if this is empty, response contains streamed image).
-  storage: 'storage_example' # String | Your Aspose Cloud Storage name.
-}
-
-begin
-  #Export existing image to another format. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.             
-  result = api_instance.create_saved_image_as(image_data, format, opts)
-  p result
-rescue AsposeImagingCloud::ApiError => e
-  puts "Exception when calling ImagingApi->create_saved_image_as: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **image_data** | **File**| Input image | 
- **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
- **out_path** | **String**| Path to updated file (if this is empty, response contains streamed image). | [optional] 
- **storage** | **String**| Your Aspose Cloud Storage name. | [optional] 
-
-### Return type
-
-**File**
-
-### Authorization
-
-[JWT](../README.md#JWT)
-
-### HTTP request headers
-
- - **Content-Type**: multipart/form-data
- - **Accept**: application/json
-
-
-
 # **create_updated_image**
 > File create_updated_image(image_data, new_width, new_height, x, y, rect_width, rect_height, rotate_flip_method, opts)
 
@@ -2113,6 +2177,8 @@ opts = {
   threshold: 50, # Integer | Object detection probability threshold in percents
   include_label: false, # BOOLEAN | Draw detected objects classes
   include_score: false, # BOOLEAN | Draw detected objects scores
+  allowed_labels: '', # String | Comma-separated list of allowed labels
+  blocked_labels: '', # String | Comma-separated list of blocked labels
   color: 'color_example', # String | Bounds, labels, and scores text color
   out_path: 'out_path_example', # String | Path to updated file (if this is empty, response contains streamed image)
   storage: 'storage_example' # String | Your Aspose Cloud Storage name.
@@ -2136,6 +2202,8 @@ Name | Type | Description  | Notes
  **threshold** | **Integer**| Object detection probability threshold in percents | [optional] [default to 50]
  **include_label** | **BOOLEAN**| Draw detected objects classes | [optional] [default to false]
  **include_score** | **BOOLEAN**| Draw detected objects scores | [optional] [default to false]
+ **allowed_labels** | **String**| Comma-separated list of allowed labels | [optional] [default to ]
+ **blocked_labels** | **String**| Comma-separated list of blocked labels | [optional] [default to ]
  **color** | **String**| Bounds, labels, and scores text color | [optional] 
  **out_path** | **String**| Path to updated file (if this is empty, response contains streamed image) | [optional] 
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional] 
@@ -3099,6 +3167,56 @@ Name | Type | Description  | Notes
 
 
 
+# **get_available_labels**
+> AvailableLabelsList get_available_labels(method)
+
+Detects objects bounds and draw them on the original image
+
+### Example
+```ruby
+# load the gem
+require 'aspose-imaging-cloud'
+# setup authorization
+AsposeImagingCloud.configure do |config|
+  # Configure OAuth2 access token for authorization: JWT
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = AsposeImagingCloud::ImagingApi.new
+
+method = 'method_example' # String | Object detection method
+
+
+begin
+  #Detects objects bounds and draw them on the original image
+  result = api_instance.get_available_labels(method)
+  p result
+rescue AsposeImagingCloud::ApiError => e
+  puts "Exception when calling ImagingApi->get_available_labels: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **method** | **String**| Object detection method | 
+
+### Return type
+
+[**AvailableLabelsList**](AvailableLabelsList.md)
+
+### Authorization
+
+[JWT](../README.md#JWT)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+
 # **get_disc_usage**
 > DiscUsage get_disc_usage(opts)
 
@@ -3665,6 +3783,8 @@ opts = {
   threshold: 50, # Integer | Object detection probability threshold in percents
   include_label: false, # BOOLEAN | Return detected objects labels
   include_score: false, # BOOLEAN | Return detected objects score
+  allowed_labels: '', # String | Comma-separated list of allowed labels
+  blocked_labels: '', # String | Comma-separated list of blocked labels
   folder: 'folder_example', # String | Folder
   storage: 'storage_example' # String | Storage
 }
@@ -3687,6 +3807,8 @@ Name | Type | Description  | Notes
  **threshold** | **Integer**| Object detection probability threshold in percents | [optional] [default to 50]
  **include_label** | **BOOLEAN**| Return detected objects labels | [optional] [default to false]
  **include_score** | **BOOLEAN**| Return detected objects score | [optional] [default to false]
+ **allowed_labels** | **String**| Comma-separated list of allowed labels | [optional] [default to ]
+ **blocked_labels** | **String**| Comma-separated list of blocked labels | [optional] [default to ]
  **folder** | **String**| Folder | [optional] 
  **storage** | **String**| Storage | [optional] 
 
@@ -3788,6 +3910,8 @@ opts = {
   threshold: 50, # Integer | Object detection probability threshold in percents
   include_label: false, # BOOLEAN | Draw detected objects labels
   include_score: false, # BOOLEAN | Draw detected objects scores
+  allowed_labels: '', # String | Comma-separated list of allowed labels
+  blocked_labels: '', # String | Comma-separated list of blocked labels
   color: 'color_example', # String | Bounds, labels, and scores text color
   folder: 'folder_example', # String | The folder.
   storage: 'storage_example' # String | The storage.
@@ -3811,6 +3935,8 @@ Name | Type | Description  | Notes
  **threshold** | **Integer**| Object detection probability threshold in percents | [optional] [default to 50]
  **include_label** | **BOOLEAN**| Draw detected objects labels | [optional] [default to false]
  **include_score** | **BOOLEAN**| Draw detected objects scores | [optional] [default to false]
+ **allowed_labels** | **String**| Comma-separated list of allowed labels | [optional] [default to ]
+ **blocked_labels** | **String**| Comma-separated list of blocked labels | [optional] [default to ]
  **color** | **String**| Bounds, labels, and scores text color | [optional] 
  **folder** | **String**| The folder. | [optional] 
  **storage** | **String**| The storage. | [optional] 
@@ -4858,65 +4984,6 @@ Name | Type | Description  | Notes
  **name** | **String**| Filename of an image. | 
  **method** | **String**| RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). | 
  **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional] 
- **folder** | **String**| Folder with image to process. | [optional] 
- **storage** | **String**| Your Aspose Cloud Storage name. | [optional] 
-
-### Return type
-
-**File**
-
-### Authorization
-
-[JWT](../README.md#JWT)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-
-# **save_image_as**
-> File save_image_as(name, format, opts)
-
-Export existing image to another format.
-
-### Example
-```ruby
-# load the gem
-require 'aspose-imaging-cloud'
-# setup authorization
-AsposeImagingCloud.configure do |config|
-  # Configure OAuth2 access token for authorization: JWT
-  config.access_token = 'YOUR ACCESS TOKEN'
-end
-
-api_instance = AsposeImagingCloud::ImagingApi.new
-
-name = 'name_example' # String | Filename of image.
-
-format = 'format_example' # String | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-
-opts = { 
-  folder: 'folder_example', # String | Folder with image to process.
-  storage: 'storage_example' # String | Your Aspose Cloud Storage name.
-}
-
-begin
-  #Export existing image to another format.
-  result = api_instance.save_image_as(name, format, opts)
-  p result
-rescue AsposeImagingCloud::ApiError => e
-  puts "Exception when calling ImagingApi->save_image_as: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **String**| Filename of image. | 
- **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
  **folder** | **String**| Folder with image to process. | [optional] 
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional] 
 

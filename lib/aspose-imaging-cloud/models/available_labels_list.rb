@@ -1,5 +1,5 @@
 #  ----------------------------------------------------------------------------
-#  <copyright company="Aspose" file="detected_object_list.rb">
+#  <copyright company="Aspose" file="available_labels_list.rb">
 #    Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
 #  </copyright>
 #  <summary>
@@ -27,22 +27,22 @@
 require 'date'
 
 module AsposeImagingCloud
-  # Wrapper for detected objects array
-  class DetectedObjectList
+  # AvailableLabelsList
+  class AvailableLabelsList
     # detected objects
-    attr_accessor :detected_objects
+    attr_accessor :available_labels
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'detected_objects' => :'detectedObjects'
+        :'available_labels' => :'availableLabels'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'detected_objects' => :'Array<DetectedObject>'
+        :'available_labels' => :'Array<String>'
       }
     end
 
@@ -54,9 +54,9 @@ module AsposeImagingCloud
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'detectedObjects')
-        if (value = attributes[:'detectedObjects']).is_a?(Array)
-          self.detected_objects = value
+      if attributes.has_key?(:'availableLabels')
+        if (value = attributes[:'availableLabels']).is_a?(Array)
+          self.available_labels = value
         end
       end
     end
@@ -79,7 +79,7 @@ module AsposeImagingCloud
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          detected_objects == o.detected_objects
+          available_labels == o.available_labels
     end
 
     # @see the `==` method
@@ -91,7 +91,7 @@ module AsposeImagingCloud
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [detected_objects].hash
+      [available_labels].hash
     end
 
     # Builds the object from hash

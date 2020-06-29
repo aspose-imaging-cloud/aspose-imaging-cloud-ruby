@@ -1,5 +1,5 @@
 #  ----------------------------------------------------------------------------
-#  <copyright company="Aspose" file="create_saved_image_as_request.rb">
+#  <copyright company="Aspose" file="get_available_labels_request.rb">
 #    Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
 #  </copyright>
 #  <summary>
@@ -28,44 +28,29 @@ require_relative './imaging_request'
 require_relative './http_request'
 
 module AsposeImagingCloud
-  # Request model for create_saved_image_as operation.
-  class CreateSavedImageAsRequest < ImagingRequest
+  # Request model for get_available_labels operation.
+  class GetAvailableLabelsRequest < ImagingRequest
 
-    # Export existing image to another format. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.             
-    # @param [File] image_data Input image
-    # @param [String] format Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-    # @param [String] out_path Path to updated file (if this is empty, response contains streamed image).
-    # @param [String] storage Your Aspose Cloud Storage name.
-    def initialize(image_data, format, out_path = nil, storage = nil)
-      @image_data = image_data
-      @format = format
-      @out_path = out_path
-      @storage = storage
+    # Detects objects bounds and draw them on the original image
+    # @param [String] method Object detection method
+    def initialize(method)
+      @method = method
     end
 
     def to_http_info(config)
-      # verify the required parameter 'image_data' is set
-      if config.client_side_validation && @image_data.nil?
-        raise ArgumentError, "Missing the required parameter 'image_data' when calling ImagingApi.create_saved_image_as"
-      end
-
-      # verify the required parameter 'format' is set
-      if config.client_side_validation && @format.nil?
-        raise ArgumentError, "Missing the required parameter 'format' when calling ImagingApi.create_saved_image_as"
+      # verify the required parameter 'method' is set
+      if config.client_side_validation && @method.nil?
+        raise ArgumentError, "Missing the required parameter 'method' when calling ImagingApi.get_available_labels"
       end
 
       # resource path
-      local_var_path = '/imaging/saveAs'
+      local_var_path = '/imaging/ai/objectdetection/availablelabels/{method}'.sub('{' + 'method' + '}', @method.to_s)
 
       # query parameters
       query_params = {}
-      query_params[:format] = @format
-      query_params[:outPath] = @out_path unless @out_path.nil?
-      query_params[:storage] = @storage unless @storage.nil?
 
       # form parameters
       form_params = {}
-      form_params['imageData'] = @image_data
 
       # http body (model)
       post_body = nil
@@ -76,7 +61,7 @@ module AsposeImagingCloud
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = form_params.any? ? 'multipart/form-data' : select_header_content_type(['multipart/form-data'])
+      header_params['Content-Type'] = form_params.any? ? 'multipart/form-data' : select_header_content_type(['application/json'])
 
       AsposeImagingCloud::HttpRequest.new(local_var_path,
                                       header_params,
