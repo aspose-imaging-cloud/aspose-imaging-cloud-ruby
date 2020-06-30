@@ -50,11 +50,13 @@ module AsposeImagingCloudExamples
       threshold = 50
       includeLabel = true
       includeScore = true
+      allowedLabels = "cat"
+      blockedLabels = "dog"
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
       request = AsposeImagingCloud::GetObjectBoundsRequest.new(
-          get_sample_image_file_name, method, threshold, includeLabel, includeScore, folder, storage)
+          get_sample_image_file_name, method, threshold, includeLabel, includeScore, allowedLabels, blockedLabels, folder, storage)
 
       puts("Call ObjectBoundsRequest with params: method: #{method}, threshold: #{threshold}, includeLabel: #{includeLabel}, includeScore: #{includeScore}")
 
@@ -74,11 +76,13 @@ module AsposeImagingCloudExamples
       includeLabel = true
       includeScore = true
       color = "blue"
+      allowedLabels = "cat"
+      blockedLabels = "dog"
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
       request = AsposeImagingCloud::GetVisualObjectBoundsRequest.new(
-          get_sample_image_file_name, method, threshold, includeLabel, includeScore, color, folder, storage)
+          get_sample_image_file_name, method, threshold, includeLabel, includeScore, allowedLabels, blockedLabels, color, folder, storage)
 
       puts("Call VisualObjectBoundsRequest with params: method: #{method}, threshold: #{threshold}, includeLabel: #{includeLabel}, includeScore: #{includeScore}, color: #{color}")
 
@@ -95,6 +99,8 @@ module AsposeImagingCloudExamples
       threshold = 50
       includeLabel = true
       includeScore = true
+      allowedLabels = "cat"
+      blockedLabels = "dog"
       outPath = nil
       storage = nil # We are using default Cloud Storage
       input_stream = File.open(File.join(ImagingBase::EXAMPLE_IMAGES_FOLDER, get_sample_image_file_name), 'r')
@@ -117,13 +123,15 @@ module AsposeImagingCloudExamples
       threshold = 50
       includeLabel = true
       includeScore = true
+      allowedLabels = "cat"
+      blockedLabels = "dog"
       color = nil
       outPath = nil
       storage = nil # We are using default Cloud Storage
       input_stream = File.open(File.join(ImagingBase::EXAMPLE_IMAGES_FOLDER, get_sample_image_file_name), 'r')
 
       request = AsposeImagingCloud::CreateVisualObjectBoundsRequest.new(
-          input_stream, method, threshold, includeLabel, includeScore, color, outPath, storage)
+          input_stream, method, threshold, includeLabel, includeScore, allowedLabels, blockedLabels, color, outPath, storage)
 
       puts("Call CreateVisualObjectBoundsRequest with params: method: #{method}, threshold: #{threshold}, includeLabel: #{includeLabel}, includeScore: #{includeScore}; color: #{color}")
 
