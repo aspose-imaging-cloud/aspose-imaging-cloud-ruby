@@ -52,11 +52,11 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::SaveImageAsRequest.new(get_sample_image_file_name, format, folder, storage)
+      request = AsposeImagingCloud::ConvertImageRequest.new(get_sample_image_file_name, format, folder, storage)
 
       puts("Call ExportImage with params: format: #{format}")
 
-      updated_image = imaging_api.save_image_as(request)
+      updated_image = imaging_api.convert_image(request)
       save_updated_sample_image_to_output(updated_image, false, format)
       puts
     end
@@ -74,11 +74,11 @@ module AsposeImagingCloudExamples
       folder = ImagingBase::CLOUD_PATH # Input file is saved at the Examples folder in the storage
       storage = nil # We are using default Cloud Storage
 
-      request = AsposeImagingCloud::SaveImageAsRequest.new(get_sample_image_file_name, format, folder, storage)
+      request = AsposeImagingCloud::ConvertImageRequest.new(get_sample_image_file_name, format, folder, storage)
 
       puts("Call ExportImage with params: format: #{format}")
 
-      updated_image = @imaging_api.save_image_as(request)
+      updated_image = @imaging_api.convert_image(request)
       upload_image_to_cloud(get_modified_sample_image_file_name(false, format), updated_image)
       puts
     end
@@ -95,11 +95,11 @@ module AsposeImagingCloudExamples
       out_path = nil # Path to updated file (if this is empty, response contains streamed image)
 
       input_stream = File.open(File.join(ImagingBase::EXAMPLE_IMAGES_FOLDER, get_sample_image_file_name), 'r')
-      request = AsposeImagingCloud::CreateSavedImageAsRequest.new(input_stream, format, out_path, storage)
+      request = AsposeImagingCloud::CreateConvertedImageRequest.new(input_stream, format, out_path, storage)
 
       puts("Call CreateExportedImage with params: format: #{format}")
 
-      updated_image = imaging_api.create_saved_image_as(request)
+      updated_image = imaging_api.create_converted_image(request)
       save_updated_sample_image_to_output(updated_image, false, format)
       puts
     end
