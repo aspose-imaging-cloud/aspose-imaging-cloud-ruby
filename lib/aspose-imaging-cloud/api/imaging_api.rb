@@ -446,7 +446,7 @@ module AsposeImagingCloud
       make_request(http_request, :GET, 'SearchResultsSet')
     end
 
-    # Detects objects bounds and draw them on the original image
+    # Gets available labels for selected object detection method.
     # @param [get_available_labelsRequest] request Request object.
     # @return [AvailableLabelsList]
     def get_available_labels(request)
