@@ -28,12 +28,6 @@ require 'date'
 
 module AsposeImagingCloud
   class EpsProperties
-    # Gets the width.
-    attr_accessor :width
-
-    # Gets the height.
-    attr_accessor :height
-
     # Gets the BoundingBox.
     attr_accessor :bounding_box_string
 
@@ -52,8 +46,6 @@ module AsposeImagingCloud
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'width' => :'Width',
-        :'height' => :'Height',
         :'bounding_box_string' => :'BoundingBoxString',
         :'creation_date_string' => :'CreationDateString',
         :'creator' => :'Creator',
@@ -65,8 +57,6 @@ module AsposeImagingCloud
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'width' => :'Integer',
-        :'height' => :'Integer',
         :'bounding_box_string' => :'String',
         :'creation_date_string' => :'String',
         :'creator' => :'String',
@@ -82,14 +72,6 @@ module AsposeImagingCloud
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
-
-      if attributes.has_key?(:'Width')
-        self.width = attributes[:'Width']
-      end
-
-      if attributes.has_key?(:'Height')
-        self.height = attributes[:'Height']
-      end
 
       if attributes.has_key?(:'BoundingBoxString')
         self.bounding_box_string = attributes[:'BoundingBoxString']
@@ -116,22 +98,12 @@ module AsposeImagingCloud
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @width.nil?
-        invalid_properties.push('invalid value for "width", width cannot be nil.')
-      end
-
-      if @height.nil?
-        invalid_properties.push('invalid value for "height", height cannot be nil.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @width.nil?
-      return false if @height.nil?
       true
     end
 
@@ -140,8 +112,6 @@ module AsposeImagingCloud
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          width == o.width &&
-          height == o.height &&
           bounding_box_string == o.bounding_box_string &&
           creation_date_string == o.creation_date_string &&
           creator == o.creator &&
@@ -158,7 +128,7 @@ module AsposeImagingCloud
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [width, height, bounding_box_string, creation_date_string, creator, post_script_version, title].hash
+      [bounding_box_string, creation_date_string, creator, post_script_version, title].hash
     end
 
     # Builds the object from hash
