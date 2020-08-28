@@ -136,7 +136,7 @@ Class | Method | HTTP request | Description
 *AsposeImagingCloud::ImagingApi* | [**find_image_duplicates**](docs/ImagingApi.md#find_image_duplicates) | **GET** /imaging/ai/imageSearch/{searchContextId}/findDuplicates | Find images duplicates.
 *AsposeImagingCloud::ImagingApi* | [**find_images_by_tags**](docs/ImagingApi.md#find_images_by_tags) | **POST** /imaging/ai/imageSearch/{searchContextId}/findByTags | Find images by tags. Tags JSON string is passed as zero-indexed multipart/form-data content or as raw body stream.
 *AsposeImagingCloud::ImagingApi* | [**find_similar_images**](docs/ImagingApi.md#find_similar_images) | **GET** /imaging/ai/imageSearch/{searchContextId}/findSimilar | Find similar images. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
-*AsposeImagingCloud::ImagingApi* | [**get_available_labels**](docs/ImagingApi.md#get_available_labels) | **GET** /imaging/ai/objectdetection/availablelabels/{method} | Detects objects bounds and draw them on the original image
+*AsposeImagingCloud::ImagingApi* | [**get_available_labels**](docs/ImagingApi.md#get_available_labels) | **GET** /imaging/ai/objectdetection/availablelabels/{method} | Gets available labels for selected object detection method.
 *AsposeImagingCloud::ImagingApi* | [**get_disc_usage**](docs/ImagingApi.md#get_disc_usage) | **GET** /imaging/storage/disc | Get disc usage
 *AsposeImagingCloud::ImagingApi* | [**get_file_versions**](docs/ImagingApi.md#get_file_versions) | **GET** /imaging/storage/version/{path} | Get file versions
 *AsposeImagingCloud::ImagingApi* | [**get_files_list**](docs/ImagingApi.md#get_files_list) | **GET** /imaging/storage/folder/{path} | Get all files and folders within a folder
@@ -182,6 +182,7 @@ Class | Method | HTTP request | Description
  - [AsposeImagingCloud::DiscUsage](docs/DiscUsage.md)
  - [AsposeImagingCloud::DjvuProperties](docs/DjvuProperties.md)
  - [AsposeImagingCloud::DngProperties](docs/DngProperties.md)
+ - [AsposeImagingCloud::EpsProperties](docs/EpsProperties.md)
  - [AsposeImagingCloud::Error](docs/Error.md)
  - [AsposeImagingCloud::ErrorDetails](docs/ErrorDetails.md)
  - [AsposeImagingCloud::ExifData](docs/ExifData.md)

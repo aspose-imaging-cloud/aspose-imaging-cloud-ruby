@@ -31,7 +31,7 @@ module AsposeImagingCloud
   # Request model for get_available_labels operation.
   class GetAvailableLabelsRequest < ImagingRequest
 
-    # Detects objects bounds and draw them on the original image
+    # Gets available labels for selected object detection method.
     # @param [String] method Object detection method
     def initialize(method)
       @method = method

@@ -53,7 +53,7 @@ Method | HTTP request | Description
 [**find_image_duplicates**](ImagingApi.md#find_image_duplicates) | **GET** /imaging/ai/imageSearch/{searchContextId}/findDuplicates | Find images duplicates.
 [**find_images_by_tags**](ImagingApi.md#find_images_by_tags) | **POST** /imaging/ai/imageSearch/{searchContextId}/findByTags | Find images by tags. Tags JSON string is passed as zero-indexed multipart/form-data content or as raw body stream.
 [**find_similar_images**](ImagingApi.md#find_similar_images) | **GET** /imaging/ai/imageSearch/{searchContextId}/findSimilar | Find similar images. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
-[**get_available_labels**](ImagingApi.md#get_available_labels) | **GET** /imaging/ai/objectdetection/availablelabels/{method} | Detects objects bounds and draw them on the original image
+[**get_available_labels**](ImagingApi.md#get_available_labels) | **GET** /imaging/ai/objectdetection/availablelabels/{method} | Gets available labels for selected object detection method.
 [**get_disc_usage**](ImagingApi.md#get_disc_usage) | **GET** /imaging/storage/disc | Get disc usage
 [**get_file_versions**](ImagingApi.md#get_file_versions) | **GET** /imaging/storage/version/{path} | Get file versions
 [**get_files_list**](ImagingApi.md#get_files_list) | **GET** /imaging/storage/folder/{path} | Get all files and folders within a folder
@@ -3170,7 +3170,7 @@ Name | Type | Description  | Notes
 # **get_available_labels**
 > AvailableLabelsList get_available_labels(method)
 
-Detects objects bounds and draw them on the original image
+Gets available labels for selected object detection method.
 
 ### Example
 ```ruby
@@ -3188,7 +3188,7 @@ method = 'method_example' # String | Object detection method
 
 
 begin
-  #Detects objects bounds and draw them on the original image
+  #Gets available labels for selected object detection method.
   result = api_instance.get_available_labels(method)
   p result
 rescue AsposeImagingCloud::ApiError => e

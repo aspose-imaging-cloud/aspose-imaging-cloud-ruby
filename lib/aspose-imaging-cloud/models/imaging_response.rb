@@ -77,6 +77,9 @@ module AsposeImagingCloud
     # Gets or sets the SVG properties.
     attr_accessor :svg_properties
 
+    # Gets or sets the EPS properties.
+    attr_accessor :eps_properties
+
     # Gets or sets the horizontal resolution of an image.
     attr_accessor :horizontal_resolution
 
@@ -105,6 +108,7 @@ module AsposeImagingCloud
         :'dng_properties' => :'DngProperties',
         :'odg_properties' => :'OdgProperties',
         :'svg_properties' => :'SvgProperties',
+        :'eps_properties' => :'EpsProperties',
         :'horizontal_resolution' => :'HorizontalResolution',
         :'vertical_resolution' => :'VerticalResolution',
         :'is_cached' => :'IsCached'
@@ -130,6 +134,7 @@ module AsposeImagingCloud
         :'dng_properties' => :'DngProperties',
         :'odg_properties' => :'OdgProperties',
         :'svg_properties' => :'SvgProperties',
+        :'eps_properties' => :'EpsProperties',
         :'horizontal_resolution' => :'Float',
         :'vertical_resolution' => :'Float',
         :'is_cached' => :'BOOLEAN'
@@ -206,6 +211,10 @@ module AsposeImagingCloud
 
       if attributes.has_key?(:'SvgProperties')
         self.svg_properties = attributes[:'SvgProperties']
+      end
+
+      if attributes.has_key?(:'EpsProperties')
+        self.eps_properties = attributes[:'EpsProperties']
       end
 
       if attributes.has_key?(:'HorizontalResolution')
@@ -285,6 +294,7 @@ module AsposeImagingCloud
           dng_properties == o.dng_properties &&
           odg_properties == o.odg_properties &&
           svg_properties == o.svg_properties &&
+          eps_properties == o.eps_properties &&
           horizontal_resolution == o.horizontal_resolution &&
           vertical_resolution == o.vertical_resolution &&
           is_cached == o.is_cached
@@ -299,7 +309,7 @@ module AsposeImagingCloud
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [height, width, bits_per_pixel, bmp_properties, gif_properties, jpeg_properties, png_properties, tiff_properties, psd_properties, djvu_properties, web_p_properties, jpeg2000_properties, dicom_properties, dng_properties, odg_properties, svg_properties, horizontal_resolution, vertical_resolution, is_cached].hash
+      [height, width, bits_per_pixel, bmp_properties, gif_properties, jpeg_properties, png_properties, tiff_properties, psd_properties, djvu_properties, web_p_properties, jpeg2000_properties, dicom_properties, dng_properties, odg_properties, svg_properties, eps_properties, horizontal_resolution, vertical_resolution, is_cached].hash
     end
 
     # Builds the object from hash
