@@ -72,6 +72,8 @@ module AsposeImagingCloudTests
       end
     end
 
+	# omitted due to IMAGINGCLOUD-292
+	=begin
     def test_file_versions_copy
       return if imaging_api.api_client.config.on_premise
 
@@ -248,7 +250,8 @@ module AsposeImagingCloudTests
         end
       end
     end
-
+	=end
+	
     def test_move_file
       folder = temp_folder + '/Storage'
       file = 'Storage.txt'
