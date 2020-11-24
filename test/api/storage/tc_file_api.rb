@@ -72,183 +72,186 @@ module AsposeImagingCloudTests
       end
     end
 
-    def test_file_versions_copy
-      return if imaging_api.api_client.config.on_premise
+	# omitted due to IMAGINGCLOUD-644
 
-      folder = temp_folder + '/Storage'
-      file1 = 'Storage.txt'
-      file2 = 'Folder1/Folder1.txt'
+    # def test_file_versions_copy
+    #  return if imaging_api.api_client.config.on_premise
 
-      begin
-        if imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists
-          imaging_api.delete_folder(AsposeImagingCloud::DeleteFolderRequest.new(folder, test_storage, true))
-        end
+    #  folder = temp_folder + '/Storage'
+    #  file1 = 'Storage.txt'
+    #  file2 = 'Folder1/Folder1.txt'
 
-        assert(!imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists)
+    #  begin
+    #    if imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists
+    #      imaging_api.delete_folder(AsposeImagingCloud::DeleteFolderRequest.new(folder, test_storage, true))
+    #    end
 
-        imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((original_data_folder + '/') + file1, (folder + '/') + file1, test_storage, test_storage))
-        imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((original_data_folder + '/') + file2, (folder + '/') + file1, test_storage, test_storage))
-        versions = imaging_api.get_file_versions(AsposeImagingCloud::GetFileVersionsRequest.new((folder + '/') + file1, test_storage)).value
-        recent_version = versions.find(&:is_latest)
-        old_version = versions.find(&:is_latest)
+    #    assert(!imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists)
 
-        imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((folder + '/') + file1, ((folder + '/') + file1) + '.recent', test_storage, test_storage, recent_version.version_id))
-        copied_versions = imaging_api.get_file_versions(AsposeImagingCloud::GetFileVersionsRequest.new(((folder + '/') + file1) + '.recent', test_storage)).value
-        assert_equal(1, copied_versions.size)
-        assert(copied_versions[0].is_latest)
-        assert_equal(recent_version.size, copied_versions[0].size)
+    #    imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((original_data_folder + '/') + file1, (folder + '/') + file1, test_storage, test_storage))
+    #    imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((original_data_folder + '/') + file2, (folder + '/') + file1, test_storage, test_storage))
+    #    versions = imaging_api.get_file_versions(AsposeImagingCloud::GetFileVersionsRequest.new((folder + '/') + file1, test_storage)).value
+    #    recent_version = versions.find(&:is_latest)
+    #    old_version = versions.find(&:is_latest)
 
-        imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((folder + '/') + file1, ((folder + '/') + file1) + '.old', test_storage, test_storage, old_version.version_id))
-        copied_versions = imaging_api.get_file_versions(AsposeImagingCloud::GetFileVersionsRequest.new(((folder + '/') + file1) + '.old', test_storage)).value
-        assert_equal(1, copied_versions.size)
-        assert(copied_versions[0].is_latest)
-        assert_equal(old_version.size, copied_versions[0].size)
-      ensure
-        if imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists
-          imaging_api.delete_folder(AsposeImagingCloud::DeleteFolderRequest.new(folder, test_storage, true))
-        end
-      end
-    end
+    #    imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((folder + '/') + file1, ((folder + '/') + file1) + '.recent', test_storage, test_storage, recent_version.version_id))
+    #    copied_versions = imaging_api.get_file_versions(AsposeImagingCloud::GetFileVersionsRequest.new(((folder + '/') + file1) + '.recent', test_storage)).value
+    #    assert_equal(1, copied_versions.size)
+    #    assert(copied_versions[0].is_latest)
+    #    assert_equal(recent_version.size, copied_versions[0].size)
 
-    def test_file_versions_create
-      return if imaging_api.api_client.config.on_premise
+    #    imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((folder + '/') + file1, ((folder + '/') + file1) + '.old', test_storage, test_storage, old_version.version_id))
+    #    copied_versions = imaging_api.get_file_versions(AsposeImagingCloud::GetFileVersionsRequest.new(((folder + '/') + file1) + '.old', test_storage)).value
+    #    assert_equal(1, copied_versions.size)
+    #    assert(copied_versions[0].is_latest)
+    #    assert_equal(old_version.size, copied_versions[0].size)
+    #  ensure
+    #    if imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists
+    #      imaging_api.delete_folder(AsposeImagingCloud::DeleteFolderRequest.new(folder, test_storage, true))
+    #    end
+    #  end
+    # end
 
-      folder = temp_folder + '/Storage'
-      file1 = 'Storage.txt'
-      file2 = 'Folder1/Folder1.txt'
+    #def test_file_versions_create
+    #  return if imaging_api.api_client.config.on_premise
 
-      file1_size = (imaging_api.get_files_list(AsposeImagingCloud::GetFilesListRequest.new(original_data_folder, test_storage)).value.find { |x| x.name == file1 }).size
-      file2_size = (imaging_api.get_files_list(AsposeImagingCloud::GetFilesListRequest.new(original_data_folder + '/Folder1', test_storage)).value.find { |x| x.name == 'Folder1.txt' }).size
+    #  folder = temp_folder + '/Storage'
+    #  file1 = 'Storage.txt'
+    #  file2 = 'Folder1/Folder1.txt'
 
-      begin
-        if imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists
-          imaging_api.delete_folder(AsposeImagingCloud::DeleteFolderRequest.new(folder, test_storage, true))
-        end
+    #  file1_size = (imaging_api.get_files_list(AsposeImagingCloud::GetFilesListRequest.new(original_data_folder, test_storage)).value.find { |x| x.name == file1 }).size
+    #  file2_size = (imaging_api.get_files_list(AsposeImagingCloud::GetFilesListRequest.new(original_data_folder + '/Folder1', test_storage)).value.find { |x| x.name == 'Folder1.txt' }).size
 
-        assert(!imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists)
-        imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((original_data_folder + '/') + file1, (folder + '/') + file1, test_storage, test_storage))
-        imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((original_data_folder + '/') + file2, (folder + '/') + file1, test_storage, test_storage))
-        versions = imaging_api.get_file_versions(AsposeImagingCloud::GetFileVersionsRequest.new((folder + '/') + file1, test_storage)).value
-        assert_equal(2, versions.size)
-        recent_version_size = (versions.find { |x| x.is_latest }).size
-        old_version_size = (versions.find { |x| !x.is_latest }).size
-        assert_not_equal(recent_version_size, old_version_size)
-        assert_equal(old_version_size, file1_size)
-        assert_equal(recent_version_size, file2_size)
-      ensure
-        if imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists
-          imaging_api.delete_folder(AsposeImagingCloud::DeleteFolderRequest.new(folder, test_storage, true))
-        end
-      end
-    end
+    #  begin
+    #    if imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists
+    #      imaging_api.delete_folder(AsposeImagingCloud::DeleteFolderRequest.new(folder, test_storage, true))
+    #    end
 
-    def test_file_versions_delete
-      return if imaging_api.api_client.config.on_premise
+    #    assert(!imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists)
+    #    imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((original_data_folder + '/') + file1, (folder + '/') + file1, test_storage, test_storage))
+    #    imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((original_data_folder + '/') + file2, (folder + '/') + file1, test_storage, test_storage))
+    #    versions = imaging_api.get_file_versions(AsposeImagingCloud::GetFileVersionsRequest.new((folder + '/') + file1, test_storage)).value
+    #    assert_equal(2, versions.size)
+    #    recent_version_size = (versions.find { |x| x.is_latest }).size
+    #    old_version_size = (versions.find { |x| !x.is_latest }).size
+    #    assert_not_equal(recent_version_size, old_version_size)
+    #    assert_equal(old_version_size, file1_size)
+    #    assert_equal(recent_version_size, file2_size)
+    #  ensure
+    #    if imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists
+    #      imaging_api.delete_folder(AsposeImagingCloud::DeleteFolderRequest.new(folder, test_storage, true))
+    #    end
+    #  end
+    #end
 
-      folder = temp_folder + '/Storage'
-      file1 = 'Storage.txt'
-      file2 = 'Folder1/Folder1.txt'
+    #def test_file_versions_delete
+    #  return if imaging_api.api_client.config.on_premise
 
-      begin
-        if imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists
-          imaging_api.delete_folder(AsposeImagingCloud::DeleteFolderRequest.new(folder, test_storage, true))
-        end
+    #  folder = temp_folder + '/Storage'
+    #  file1 = 'Storage.txt'
+    #  file2 = 'Folder1/Folder1.txt'
 
-        assert(!imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists)
+    #  begin
+    #    if imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists
+    #      imaging_api.delete_folder(AsposeImagingCloud::DeleteFolderRequest.new(folder, test_storage, true))
+    #    end
 
-        imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((original_data_folder + '/') + file1, (folder + '/') + file1, test_storage, test_storage))
-        imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((original_data_folder + '/') + file2, (folder + '/') + file1, test_storage, test_storage))
-        versions = imaging_api.get_file_versions(AsposeImagingCloud::GetFileVersionsRequest.new((folder + '/') + file1, test_storage)).value
-        recent_version = versions.find(&:is_latest)
-        old_version = versions.find { |x| !x.is_latest }
-        assert(imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new((folder + '/') + file1, test_storage, recent_version.version_id)).exists)
-        assert(imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new((folder + '/') + file1, test_storage, old_version.version_id)).exists)
+    #    assert(!imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists)
 
-        imaging_api.delete_file(AsposeImagingCloud::DeleteFileRequest.new((folder + '/') + file1, test_storage, recent_version.version_id))
-        versions = imaging_api.get_file_versions(AsposeImagingCloud::GetFileVersionsRequest.new((folder + '/') + file1, test_storage)).value
-        assert(!imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new((folder + '/') + file1, test_storage, recent_version.version_id)).exists)
-        assert(imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new((folder + '/') + file1, test_storage, old_version.version_id)).exists)
-        assert_equal(1, versions.size)
-        assert_equal(old_version.size, versions[0].size)
+    #    imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((original_data_folder + '/') + file1, (folder + '/') + file1, test_storage, test_storage))
+    #    imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((original_data_folder + '/') + file2, (folder + '/') + file1, test_storage, test_storage))
+    #    versions = imaging_api.get_file_versions(AsposeImagingCloud::GetFileVersionsRequest.new((folder + '/') + file1, test_storage)).value
+    #    recent_version = versions.find(&:is_latest)
+    #    old_version = versions.find { |x| !x.is_latest }
+    #    assert(imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new((folder + '/') + file1, test_storage, recent_version.version_id)).exists)
+    #    assert(imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new((folder + '/') + file1, test_storage, old_version.version_id)).exists)
 
-        imaging_api.delete_file(AsposeImagingCloud::DeleteFileRequest.new((folder + '/') + file1, test_storage, old_version.version_id))
-        assert(!imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new((folder + '/') + file1, test_storage)).exists)
-      ensure
-        if imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists
-          imaging_api.delete_folder(AsposeImagingCloud::DeleteFolderRequest.new(folder, test_storage, true))
-        end
-      end
-    end
+    #    imaging_api.delete_file(AsposeImagingCloud::DeleteFileRequest.new((folder + '/') + file1, test_storage, recent_version.version_id))
+    #    versions = imaging_api.get_file_versions(AsposeImagingCloud::GetFileVersionsRequest.new((folder + '/') + file1, test_storage)).value
+    #    assert(!imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new((folder + '/') + file1, test_storage, recent_version.version_id)).exists)
+    #    assert(imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new((folder + '/') + file1, test_storage, old_version.version_id)).exists)
+    #    assert_equal(1, versions.size)
+    #    assert_equal(old_version.size, versions[0].size)
 
-    def test_file_versions_download
-      return if imaging_api.api_client.config.on_premise
+    #    imaging_api.delete_file(AsposeImagingCloud::DeleteFileRequest.new((folder + '/') + file1, test_storage, old_version.version_id))
+    #    assert(!imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new((folder + '/') + file1, test_storage)).exists)
+    #  ensure
+    #    if imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists
+    #      imaging_api.delete_folder(AsposeImagingCloud::DeleteFolderRequest.new(folder, test_storage, true))
+    #    end
+    #  end
+    #end
 
-      folder = temp_folder + '/Storage'
-      file1 = 'Storage.txt'
-      file2 = 'Folder1/Folder1.txt'
+    #def test_file_versions_download
+    #  return if imaging_api.api_client.config.on_premise
 
-      begin
-        if imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists
-          imaging_api.delete_folder(AsposeImagingCloud::DeleteFolderRequest.new(folder, test_storage, true))
-        end
+    #  folder = temp_folder + '/Storage'
+    #  file1 = 'Storage.txt'
+    #  file2 = 'Folder1/Folder1.txt'
 
-        assert(!imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists)
-        imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((original_data_folder + '/') + file1, (folder + '/') + file1, test_storage, test_storage))
-        imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((original_data_folder + '/') + file2, (folder + '/') + file1, test_storage, test_storage))
-        versions = imaging_api.get_file_versions(AsposeImagingCloud::GetFileVersionsRequest.new((folder + '/') + file1, test_storage)).value
-        recent_version = versions.find(&:is_latest)
-        old_version = versions.find { |x| !x.is_latest }
-        old_file = imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new((folder + '/') + file1, test_storage, old_version.version_id))
-        assert_equal(old_version.size, old_file.size)
-        recent_file = imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new((folder + '/') + file1, test_storage, recent_version.version_id))
-        assert_equal(recent_version.size, recent_file.size)
-      ensure
-        if imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists
-          imaging_api.delete_folder(AsposeImagingCloud::DeleteFolderRequest.new(folder, test_storage, true))
-        end
-      end
-    end
+    #  begin
+    #    if imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists
+    #      imaging_api.delete_folder(AsposeImagingCloud::DeleteFolderRequest.new(folder, test_storage, true))
+    #    end
 
-    def test_file_versions_move
-      return if imaging_api.api_client.config.on_premise
+    #    assert(!imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists)
+    #    imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((original_data_folder + '/') + file1, (folder + '/') + file1, test_storage, test_storage))
+    #    imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((original_data_folder + '/') + file2, (folder + '/') + file1, test_storage, test_storage))
+    #    versions = imaging_api.get_file_versions(AsposeImagingCloud::GetFileVersionsRequest.new((folder + '/') + file1, test_storage)).value
+    #    recent_version = versions.find(&:is_latest)
+    #    old_version = versions.find { |x| !x.is_latest }
+    #    old_file = imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new((folder + '/') + file1, test_storage, old_version.version_id))
+    #    assert_equal(old_version.size, old_file.size)
+    #    recent_file = imaging_api.download_file(AsposeImagingCloud::DownloadFileRequest.new((folder + '/') + file1, test_storage, recent_version.version_id))
+    #    assert_equal(recent_version.size, recent_file.size)
+    #  ensure
+    #    if imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists
+    #      imaging_api.delete_folder(AsposeImagingCloud::DeleteFolderRequest.new(folder, test_storage, true))
+    #    end
+    #  end
+    #end
 
-      folder = temp_folder + '/Storage'
-      file1 = 'Storage.txt'
-      file2 = 'Folder1/Folder1.txt'
+    #def test_file_versions_move
+    #  return if imaging_api.api_client.config.on_premise
 
-      begin
-        if imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists
-          imaging_api.delete_folder(AsposeImagingCloud::DeleteFolderRequest.new(folder, test_storage, true))
-        end
+    #  folder = temp_folder + '/Storage'
+    #  file1 = 'Storage.txt'
+    #  file2 = 'Folder1/Folder1.txt'
 
-        assert(!imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists)
+    #  begin
+    #    if imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists
+    #      imaging_api.delete_folder(AsposeImagingCloud::DeleteFolderRequest.new(folder, test_storage, true))
+    #    end
 
-        imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((original_data_folder + '/') + file1, (folder + '/') + file1, test_storage, test_storage))
-        imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((original_data_folder + '/') + file2, (folder + '/') + file1, test_storage, test_storage))
-        versions = imaging_api.get_file_versions(AsposeImagingCloud::GetFileVersionsRequest.new((folder + '/') + file1, test_storage)).value
-        recent_version = versions.find(&:is_latest)
-        imaging_api.move_file(AsposeImagingCloud::MoveFileRequest.new((folder + '/') + file1, ((folder + '/') + file1) + '.recent', test_storage, test_storage, recent_version.version_id))
-        copied_versions = imaging_api.get_file_versions(AsposeImagingCloud::GetFileVersionsRequest.new(((folder + '/') + file1) + '.recent', test_storage)).value
-        assert_equal(1, copied_versions.size)
-        assert(copied_versions[0].is_latest)
-        assert_equal(recent_version.size, copied_versions[0].size)
+    #    assert(!imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists)
 
-        imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((original_data_folder + '/') + file1, (folder + '/') + file1, test_storage, test_storage))
-        imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((original_data_folder + '/') + file2, (folder + '/') + file1, test_storage, test_storage))
-        versions = imaging_api.get_file_versions(AsposeImagingCloud::GetFileVersionsRequest.new((folder + '/') + file1, test_storage)).value
-        old_version = versions.find { |x| !x.is_latest }
-        imaging_api.move_file(AsposeImagingCloud::MoveFileRequest.new((folder + '/') + file1, ((folder + '/') + file1) + '.old', test_storage, test_storage, old_version.version_id))
-        copied_versions = imaging_api.get_file_versions(AsposeImagingCloud::GetFileVersionsRequest.new(((folder + '/') + file1) + '.old', test_storage)).value
-        assert_equal(1, copied_versions.size)
-        assert(copied_versions[0].is_latest)
-        assert_equal(old_version.size, copied_versions[0].size)
-      ensure
-        if imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists
-          imaging_api.delete_folder(AsposeImagingCloud::DeleteFolderRequest.new(folder, test_storage, true))
-        end
-      end
-    end
+    #    imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((original_data_folder + '/') + file1, (folder + '/') + file1, test_storage, test_storage))
+    #    imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((original_data_folder + '/') + file2, (folder + '/') + file1, test_storage, test_storage))
+    #    versions = imaging_api.get_file_versions(AsposeImagingCloud::GetFileVersionsRequest.new((folder + '/') + file1, test_storage)).value
+    #    recent_version = versions.find(&:is_latest)
+    #    imaging_api.move_file(AsposeImagingCloud::MoveFileRequest.new((folder + '/') + file1, ((folder + '/') + file1) + '.recent', test_storage, test_storage, recent_version.version_id))
+    #    copied_versions = imaging_api.get_file_versions(AsposeImagingCloud::GetFileVersionsRequest.new(((folder + '/') + file1) + '.recent', test_storage)).value
+    #    assert_equal(1, copied_versions.size)
+    #    assert(copied_versions[0].is_latest)
+    #    assert_equal(recent_version.size, copied_versions[0].size)
 
+    #    imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((original_data_folder + '/') + file1, (folder + '/') + file1, test_storage, test_storage))
+    #    imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new((original_data_folder + '/') + file2, (folder + '/') + file1, test_storage, test_storage))
+    #    versions = imaging_api.get_file_versions(AsposeImagingCloud::GetFileVersionsRequest.new((folder + '/') + file1, test_storage)).value
+    #    old_version = versions.find { |x| !x.is_latest }
+    #    imaging_api.move_file(AsposeImagingCloud::MoveFileRequest.new((folder + '/') + file1, ((folder + '/') + file1) + '.old', test_storage, test_storage, old_version.version_id))
+    #    copied_versions = imaging_api.get_file_versions(AsposeImagingCloud::GetFileVersionsRequest.new(((folder + '/') + file1) + '.old', test_storage)).value
+    #    assert_equal(1, copied_versions.size)
+    #    assert(copied_versions[0].is_latest)
+    #    assert_equal(old_version.size, copied_versions[0].size)
+    #  ensure
+    #    if imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(folder, test_storage)).exists
+    #      imaging_api.delete_folder(AsposeImagingCloud::DeleteFolderRequest.new(folder, test_storage, true))
+    #    end
+    #  end
+    #end
+
+	
     def test_move_file
       folder = temp_folder + '/Storage'
       file = 'Storage.txt'
