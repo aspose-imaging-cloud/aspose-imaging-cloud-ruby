@@ -72,7 +72,7 @@ module AsposeImagingCloudTests
       end
     end
 
-	# omitted due to IMAGINGCLOUD-292
+	# omitted due to IMAGINGCLOUD-644
 
     # def test_file_versions_copy
     #  return if imaging_api.api_client.config.on_premise
