@@ -725,8 +725,13 @@ module AsposeImagingCloud
     private
 
     def make_request(http_request, method, return_type)
-      ensure_token
       call_api(http_request, method, return_type)
+    rescue ApiError => e
+      if e.code.equal? 401
+        request_token
+        return call_api(http_request, method, return_type)
+      end
+      raise
 
     end
 
@@ -740,10 +745,6 @@ module AsposeImagingCloud
                                       auth_names: http_request.auth_names,
                                       return_type: return_type)
       response[0]
-    end
-
-    def ensure_token
-      request_token unless @api_client.config.access_token
     end
 
     def request_token
