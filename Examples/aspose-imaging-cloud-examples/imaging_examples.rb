@@ -82,12 +82,12 @@ def process_arguments(argv)
   # Process CLI arguments, exit on invalid input
   errors = []
 
-  app_key = process_argument(argv, '--appKey', 'app key', errors)
-  app_sid = process_argument(argv, '--appSid', 'app sid', errors)
+  client_secret = process_argument(argv, '--clientSecret', 'Client Secret', errors)
+  client_id = process_argument(argv, '--clientId', 'Client ID', errors)
   base_url = process_argument(argv, '--baseUrl', 'Base url', errors, 'https://api.aspose.cloud/')
 
   if errors.empty?
-    return app_key, app_sid, base_url
+    return client_secret, client_id, base_url
   end
 
   puts 'Failed to launch examples:'
@@ -97,9 +97,9 @@ end
 
 def main
 
-  app_key, app_sid, base_url = process_arguments(ARGV)
+  client_secret, client_id, base_url = process_arguments(ARGV)
 
-  api = AsposeImagingCloud::ImagingApi.new(app_key, app_sid, base_url)
+  api = AsposeImagingCloud::ImagingApi.new(client_secret, client_id, base_url)
 
   if File.directory?(AsposeImagingCloudExamples::ImagingBase::OUTPUT_FOLDER)
     FileUtils.rm_r(AsposeImagingCloudExamples::ImagingBase::OUTPUT_FOLDER)

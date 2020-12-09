@@ -169,12 +169,12 @@ module AsposeImagingCloudTests
     def create_api_instances
       puts('Trying to obtain configuration from environment variables.')
       on_premise = ENV['OnPremise'].to_s == 'true'
-      app_key = on_premise ? nil : ENV['AppKey']
-      app_sid = on_premise ? nil : ENV['AppSid']
+      client_secret = on_premise ? nil : ENV['ClientSecret']
+      client_id = on_premise ? nil : ENV['ClientId']
       base_url = ENV['ApiEndpoint']
       api_version = ENV['ApiVersion']
 
-      if (!on_premise && (!app_key || !app_sid)) || !base_url || !api_version
+      if (!on_premise && (!client_secret || !client_id)) || !base_url || !api_version
         puts('Access data isn\'t set completely by environment variables. Filling unset data with default values.')
       end
 
@@ -187,14 +187,14 @@ module AsposeImagingCloudTests
       if File.readable? server_access_file_path
         server_file_info = JSON.parse(File.read(server_access_file_path))
 
-        if !app_key && !on_premise
-          app_key = server_file_info['AppKey']
-          puts('Set default App key')
+        if !client_secret && !on_premise
+          client_secret = server_file_info['ClientSecret']
+          puts('Set default Client Secret')
         end
 
-        if !app_sid && !on_premise
-          app_sid = server_file_info['AppSid']
-          puts('Set default App SID')
+        if !client_id && !on_premise
+          client_id = server_file_info['ClientId']
+          puts('Set default Client ID')
         end
 
         unless base_url
@@ -202,19 +202,19 @@ module AsposeImagingCloudTests
           puts('Set default Base URL')
         end
       elsif !on_premise
-        raise ArgumentError, 'Please, specify valid access data (AppKey, AppSid, Base URL)'
+        raise ArgumentError, 'Please, specify valid access data (ClientSecret, ClientId, Base URL)'
       end
 
       puts("On premise: #{on_premise}")
       unless on_premise
-        puts("App key: #{app_key}")
-        puts("App SID: #{app_sid}")
+        puts("Client Secret: #{client_secret}")
+        puts("Client ID: #{client_id}")
       end
       puts("Storage: #{test_storage}")
       puts("Base URL: #{base_url}")
       puts("API version: #{api_version}")
 
-      self.imaging_api = AsposeImagingCloud::ImagingApi.new(app_key, app_sid, base_url, api_version)
+      self.imaging_api = AsposeImagingCloud::ImagingApi.new(client_secret, client_id, base_url, api_version)
 
       self.input_test_files = imaging_api.get_files_list(AsposeImagingCloud::GetFilesListRequest.new(original_data_folder, test_storage)).value
 
