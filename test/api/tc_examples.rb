@@ -34,7 +34,7 @@ module AsposeImagingCloudTests
       # Converts from storage example test
 
       config = imaging_api.api_client.config
-      imaging_api = AsposeImagingCloud::ImagingApi.new(config.api_key[:api_key], config.api_key[:app_sid], config.host, config.api_version)
+      imaging_api = AsposeImagingCloud::ImagingApi.new(config.api_key[:api_key], config.api_key[:client_id], config.host, config.api_version)
 
       begin
         # upload local image to storage
@@ -65,7 +65,7 @@ module AsposeImagingCloudTests
       # Converts from stream example
 
       config = imaging_api.api_client.config
-      imaging_api = AsposeImagingCloud::ImagingApi.new(config.api_key[:api_key], config.api_key[:app_sid], config.host, config.api_version)
+      imaging_api = AsposeImagingCloud::ImagingApi.new(config.api_key[:api_key], config.api_key[:client_id], config.host, config.api_version)
       remote_result_image = 'ExampleFolderRuby' + '/' + 'resultImage.jpg'
 
       begin
