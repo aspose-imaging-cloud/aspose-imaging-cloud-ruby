@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'aspose_imaging_cloud'
-  s.version     = '20.9'
+  s.version     = '20.12'
   s.licenses    = ['MIT']
   s.summary     = "Aspose.Imaging Cloud Ruby SDK"
   s.description = "
@@ -10,7 +10,8 @@ Aspose.Imaging Cloud SDK for Ruby offers advanced processing of multi page TIFF 
 
 This repository contains Aspose.Imaging Cloud Ruby SDK source code. This SDK allows you to work with Aspose.Imaging Cloud REST APIs in your Ruby applications quickly and easily, with zero initial cost.
 
-To use this SDK, you will need App SID and App Key which can be looked up at Aspose Cloud Dashboard (free registration in Aspose Cloud is required for this).
+To use this SDK, you will need Client ID and Client Key which can be looked up at Aspose Cloud Dashboard (free
+registration in Aspose Cloud is required for this).
 
 The solution is updated using code generator.
 "

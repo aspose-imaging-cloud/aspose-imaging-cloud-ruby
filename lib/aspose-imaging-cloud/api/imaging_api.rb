@@ -32,13 +32,13 @@ module AsposeImagingCloud
     attr_accessor :api_client
 
     # Initializes a new instance of the ImagingApi class.
-    # @param [String] app_key Key to access the server.
-    # @param [String] app_sid ID to access the server.
+    # @param [String] client_secret Key to access the server.
+    # @param [String] client_id ID to access the server.
     # @param [String] base_url Server URL.
     # @param [String] api_version Api version.
     # @param [Object] debug Debug switch [true, false].
-    def initialize(app_key = nil, app_sid = nil, base_url = 'api-qa.aspose.cloud', api_version = 'v3.0', debug = false)
-      @api_client = ApiClient.new(app_key, app_sid, base_url, api_version, debug)
+    def initialize(client_secret = nil, client_id = nil, base_url = 'api-qa.aspose.cloud', api_version = 'v3.0', debug = false)
+      @api_client = ApiClient.new(client_secret, client_id, base_url, api_version, debug)
     end
 
     # Add image and images features to search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -725,13 +725,8 @@ module AsposeImagingCloud
     private
 
     def make_request(http_request, method, return_type)
+      ensure_token
       call_api(http_request, method, return_type)
-    rescue ApiError => e
-      if e.code.equal? 401
-        request_token
-        return call_api(http_request, method, return_type)
-      end
-      raise
 
     end
 
@@ -747,13 +742,17 @@ module AsposeImagingCloud
       response[0]
     end
 
+    def ensure_token
+      request_token unless @api_client.config.access_token
+    end
+
     def request_token
       config = @api_client.config
       request_url = '/connect/token'
       form_params =
         {
           'grant_type': 'client_credentials',
-          'client_id': config.api_key[:app_sid],
+          'client_id': config.api_key[:client_id],
           'client_secret': config.api_key[:api_key]
         }
 

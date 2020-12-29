@@ -1,7 +1,7 @@
 ### Imaging - Save as: convert image from storage to another format
 ```ruby
 # optional parameters are base URL, API version and debug mode
-imaging_api = ImagingApi.new('yourAppKey', 'yourAppSid')
+imaging_api = ImagingApi.new('ClientSecret', 'ClientId')
 
 begin
   # upload local image to storage
@@ -31,7 +31,7 @@ end
 ### Imaging - Save as: convert image from request stream to another format
 ```ruby
 # optional parameters are base URL, API version and debug mode
-imaging_api = ImagingApi.new('yourAppKey', 'yourAppSid')
+imaging_api = ImagingApi.new('ClientSecret', 'ClientId')
 
 begin
   # convert image from request stream to JPEG and save it to storage
@@ -54,7 +54,7 @@ end
 ### Imaging.AI - Compare two images
 ```ruby
 # optional parameters are base URL, API version and debug mode
-imaging_api = ImagingApi.new('yourAppKey', 'yourAppSid')
+imaging_api = ImagingApi.new('ClientSecret', 'ClientId')
 
 # create search context or use existing search context ID if search context was
 # created earlier
@@ -73,7 +73,7 @@ similarity = response.results[0].similarity
 ### Imaging.AI - Find similar images
 ```ruby
 # optional parameters are base URL, API version and debug mode
-imaging_api = ImagingApi.new('yourAppKey', 'yourAppSid')
+imaging_api = ImagingApi.new('ClientSecret', 'ClientId')
 
 # create search context or use existing search context ID if search context was
 # created earlier
@@ -114,7 +114,7 @@ end
 ### Imaging.AI - Find duplicate images
 ```ruby
 # optional parameters are base URL, API version and debug mode
-imaging_api = ImagingApi.new('yourAppKey', 'yourAppSid')
+imaging_api = ImagingApi.new('ClientSecret', 'ClientId')
 
 # create search context or use existing search context ID if search context was
 # created earlier
@@ -148,7 +148,7 @@ end
 ### Imaging.AI - Search images by tags
 ```ruby
 # optional parameters are base URL, API version and debug mode
-imaging_api = ImagingApi.new('yourAppKey', 'yourAppSid')
+imaging_api = ImagingApi.new('ClientSecret', 'ClientId')
 
 # create search context or use existing search context ID if search context was
 # created earlier
