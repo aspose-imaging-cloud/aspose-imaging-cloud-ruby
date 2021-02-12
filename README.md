@@ -95,38 +95,15 @@ Include the Ruby code directly using `-I` as follows:
 ruby -Ilib script.rb
 ```
 
-## Getting Started
 
-Please follow the [installation](#installation) procedure and then run the following code:
+## Convert PNG to JPG in Ruby
+
 ```ruby
-# Load the gem
-require 'aspose-imaging-cloud'
+    # Get your ClientId and ClientSecret from https://dashboard.aspose.cloud (free registration required).
+	api = AsposeImagingCloud::ImagingApi.new("MY_CLIENT_SECRET", "MY_CLIENT_ID")
 
-# Setup authorization
-AsposeImagingCloud.configure do |config|
-  # Configure OAuth2 access token for authorization: JWT
-  config.access_token = 'YOUR ACCESS TOKEN'
-end
-
-api_instance = AsposeImagingCloud::ImagingApi.new
-
-search_context_id = 'search_context_id_example' # String | Search context identifier.
-
-image_id = 'image_id_example' # String | Image identifier.
-
-opts = {
-  image_data: File.new('/path/to/file.txt'), # File | Input image
-  folder: 'folder_example', # String | Folder.
-  storage: 'storage_example' # String | Storage
-}
-
-begin
-  #Add image and images features to search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
-  api_instance.add_search_image(search_context_id, image_id, opts)
-rescue AsposeImagingCloud::ApiError => e
-  puts "Exception when calling ImagingApi->add_search_image: #{e}"
-end
-
+	requestParam = AsposeImagingCloud::ConvertImageRequest.new("sample.png", "jpg", "tempFolder", "My_Storage_Name")
+	result = api.convert_image(requestParam)
 ```
 
 ## Documentation for API Endpoints
