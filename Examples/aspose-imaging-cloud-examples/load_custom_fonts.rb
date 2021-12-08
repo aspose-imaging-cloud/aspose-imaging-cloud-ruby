@@ -69,10 +69,10 @@ module AsposeImagingCloudExamples
 	def upload_fonts_to_cloud()       
         fonts_folder = File.join(ImagingBase::EXAMPLE_IMAGES_FOLDER, "Fonts");
 		font_files = Dir[fonts_folder + "/*.ttf"]
-		font_files.each do |file_name|
-		  if !File.directory? file_name
-			puts(file_name)
-			upload_image_to_cloud(File.join("Fonts", font_file), File.join(fonts_folder, font_file))			
+		font_files.each do |font_file_name|
+		  if !File.directory? font_file_name
+			puts(font_file_name)
+			upload_image_to_cloud(File.join("Fonts", font_file_name), File.join(fonts_folder, font_file_name))			
 		  end
 		end	
 	end
