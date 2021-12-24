@@ -28,11 +28,12 @@
 require_relative './imaging_api_tester'
 module AsposeImagingCloudTests
   class TestLoadCustomFontsApi < ImagingApiTester
-    #  Class for testing using custom fonts
-
+    #     Class for testing using custom fonts
     #
     #     Performs testing using custom fonts
 	#
+	# 	  custom fonts should be loaded to storage to 'Fonts' folder
+    #     'Fonts' folder should be placed to the root of the cloud storage
 	#
     #
     
