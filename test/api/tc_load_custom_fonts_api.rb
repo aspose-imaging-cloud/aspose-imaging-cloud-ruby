@@ -36,17 +36,14 @@ module AsposeImagingCloudTests
 	#
     #
     
-	def setup		
-		super
-		@cloud_test_folder_prefix+='/UseCases'
-	end
-	
 	def test_using_custom_fonts_for_vector_image 
 		folder = @temp_folder
 		storage = @test_storage
 		formats_to_export = @basic_export_formats
 		name = 'image.emz'
-		format ='png'          
+		format ='png'     
+
+		copy_input_file_to_test_folder(name, folder, storage)	
 		
 		request_invoker = lambda do
 		  return imaging_api.convert_image(AsposeImagingCloud::ConvertImageRequest.new(name, format, folder, storage))
@@ -58,5 +55,14 @@ module AsposeImagingCloudTests
 
 		get_request_tester('LoadCustomFontsTest', "Input image: #{name}; Output format: #{format}", name, request_invoker, properties_tester, folder, storage)
 	end
+	
+	def copy_input_file_to_test_folder(input_file_name, folder, storage) 
+		if imaging_api.object_exists(AsposeImagingCloud::ObjectExistsRequest.new(File.join(folder, input_file_name), storage)).exists
+			return
+		end
+
+		imaging_api.copy_file(AsposeImagingCloud::CopyFileRequest.new(File.join(original_data_folder+'/UseCases', input_file_name), File.join(folder, input_file_name), storage, storage))
+	end
+	
   end 
 end 
