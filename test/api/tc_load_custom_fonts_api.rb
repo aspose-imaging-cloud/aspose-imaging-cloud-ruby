@@ -59,4 +59,3 @@ module AsposeImagingCloudTests
 		get_request_tester('LoadCustomFontsTest', "Input image: #{name}; Output format: #{format}", name, request_invoker, properties_tester, folder, storage)
 	end
   end 
-end
