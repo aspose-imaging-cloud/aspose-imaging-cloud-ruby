@@ -27,6 +27,7 @@ namespace :ci do
   task :Update => ['ci:setup:testunit', 'update']
   task :Webp => ['ci:setup:testunit', 'webp']
   task :Wmf => ['ci:setup:testunit', 'wmf']
+  task :LoadCustomFonts => ['ci:setup:testunit', 'load_custom_fonts']
   task :Imaging => ['ci:setup:testunit', 'imaging']
   task 'v3.0' => ['ci:setup:testunit', 'v3']
   task :All => ['ci:setup:testunit', 'all']
@@ -166,6 +167,12 @@ end
 
 Rake::TestTask.new('wmf') do |t|
   t.test_files = ['test/api/tc_wmf_api.rb']
+  t.warning = false
+  t.verbose = true
+end
+
+Rake::TestTask.new('load_custom_fonts') do |t|
+  t.test_files = ['test/api/tc_load_custom_fonts_api.rb']
   t.warning = false
   t.verbose = true
 end
