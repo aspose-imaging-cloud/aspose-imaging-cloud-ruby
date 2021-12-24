@@ -41,7 +41,7 @@ module AsposeImagingCloudTests
 		@cloud_test_folder_prefix+='/UseCases'
 	end
 	
-	def test_using_custom_fonts_for_vector_image do
+	def test_using_custom_fonts_for_vector_image 
 		folder = @temp_folder
 		storage = @test_storage
 		formats_to_export = @basic_export_formats
