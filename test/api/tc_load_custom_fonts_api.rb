@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 #  ----------------------------------------------------------------------------
-#  <copyright company="Aspose" file="AsposeImagingCloudTests.rb">
-#    Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
+#  <copyright company="Aspose" file="tc_load_custom_fonts_api.rb">
+#    Copyright (c) 2018-2021 Aspose Pty Ltd. All rights reserved.
 #  </copyright>
 #  <summary>
 #    Permission is hereby granted, free of charge, to any person obtaining a
@@ -23,32 +25,38 @@
 #  </summary>
 #  ----------------------------------------------------------------------------
 
+require_relative './imaging_api_tester'
+module AsposeImagingCloudTests
+  class TestLoadCustomFontsApi < ImagingApiTester
+    #  Class for testing using custom fonts
 
-require_relative './api_tester'
-require_relative './api/imaging_api_tester'
-require_relative './api/tc_bmp_api'
-require_relative './api/tc_crop_api'
-require_relative './api/tc_emf_api'
-require_relative './api/tc_examples'
-require_relative './api/tc_frames_api'
-require_relative './api/tc_gif_api'
-require_relative './api/tc_jpeg2000_api'
-require_relative './api/tc_jpg_api'
-require_relative './api/tc_psd_api'
-require_relative './api/tc_resize_api'
-require_relative './api/tc_rotate_flip_api'
-require_relative './api/tc_convert_api'
-require_relative './api/tc_tiff_api'
-require_relative './api/tc_update_image_api'
-require_relative './api/tc_web_p_api'
-require_relative './api/tc_wmf_api'
-require_relative './api/tc_load_custom_fonts_api'
-require_relative './api/AI/ai_api_tester'
-require_relative './api/AI/tc_compare_images'
-require_relative './api/AI/tc_find_duplicates'
-require_relative './api/AI/tc_find_images'
-require_relative './api/AI/tc_search_context'
-require_relative './api/storage/storage_api_tester'
-require_relative './api/storage/tc_file_api'
-require_relative './api/storage/tc_folder_api'
-require_relative './api/storage/tc_storage_api'
+    #
+    #     Performs testing using custom fonts
+	#
+	#
+    #
+    
+	def setup		
+		super
+		@cloud_test_folder_prefix+='/UseCases'
+	end
+	
+	def test_using_custom_fonts_for_vector_image do
+		folder = @temp_folder
+		storage = @test_storage
+		formats_to_export = @basic_export_formats
+		name = 'image.emz'
+		format ='png'          
+		
+		request_invoker = lambda do
+		  return imaging_api.convert_image(AsposeImagingCloud::ConvertImageRequest.new(name, format, folder, storage))
+		end
+		
+		properties_tester = lambda do |_original_properties, result_properties, _result_stream|
+           assert(_result_stream.size < 100)
+        end
+
+		get_request_tester('LoadCustomFontsTest', "Input image: #{name}; Output format: #{format}", name, request_invoker, properties_tester, folder, storage)
+	end
+  end 
+end
