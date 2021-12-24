@@ -50,7 +50,7 @@ module AsposeImagingCloudTests
 		end
 		
 		properties_tester = lambda do |_original_properties, result_properties, _result_stream|
-           assert(_result_stream.size < 100)
+           assert((_result_stream.size-11454).abs < 100)
         end
 
 		get_request_tester('LoadCustomFontsTest', "Input image: #{name}; Output format: #{format}", name, request_invoker, properties_tester, folder, storage)
