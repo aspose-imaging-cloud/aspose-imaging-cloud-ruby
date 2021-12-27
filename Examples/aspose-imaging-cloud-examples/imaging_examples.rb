@@ -53,6 +53,7 @@ require_relative './AI/compare_images'
 require_relative './AI/find_duplicate_images'
 require_relative './AI/find_similar_images'
 require_relative './object_detection_image'
+require_relative './load_custom_fonts'
 
 def process_argument(argv, key, description, errors, default_value = nil)
   # Retrieves argument value or writes error message
@@ -260,6 +261,11 @@ def main
     object_detection_image.detect_objects_image_from_stream()
     object_detection_image.visual_detect_objects_image_from_stream()
     object_detection_image.visualize_detect_objects_image_from_storage()
+	
+	#Load custom fonts 
+    custom_fonts = AsposeImagingCloudExamples::LoadCustomFonts.new(api)
+    custom_fonts.using_custom_fonts_for_vector_image_conversion()
+		
   rescue Exception => exception
     puts 'Something goes wrong: ' + exception.message
     exit 1
