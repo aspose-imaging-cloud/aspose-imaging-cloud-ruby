@@ -28,7 +28,6 @@ require 'json'
 require 'logger'
 require 'tempfile'
 require 'faraday'
-require 'faraday_middleware'
 require 'mimemagic'
 require 'uri'
 
