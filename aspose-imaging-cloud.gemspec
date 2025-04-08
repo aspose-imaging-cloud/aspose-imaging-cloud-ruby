@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'aspose_imaging_cloud'
-  s.version     = '23.5'
+  s.version     = '25.4'
   s.licenses    = ['MIT']
   s.summary     = "Aspose.Imaging Cloud Ruby SDK"
   s.description = "

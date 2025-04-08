@@ -31,7 +31,7 @@ or publish the gem to a gem hosting service, e.g. [RubyGems](https://rubygems.or
 
 Finally add this to the Gemfile:
 
-    gem 'aspose-imaging-cloud', '~> 23.5'
+    gem 'aspose-imaging-cloud', '~> 25.4'
 
 ### Install from Git
 
