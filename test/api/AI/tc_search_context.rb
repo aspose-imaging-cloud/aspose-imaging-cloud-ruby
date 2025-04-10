@@ -137,7 +137,7 @@ module AsposeImagingCloudTests
 
       wait_search_context_idle
 
-      image_url = URI.encode('https://cdn.f1ne.ws/userfiles/hamilton/140909.jpg')
+      image_url = URI.encode('https://c.f1news.ru/userfiles/hamilton/140909.jpg')
       response = imaging_api.get_image_features(AsposeImagingCloud::GetImageFeaturesRequest.new(search_context_id, image_url, nil, test_storage))
 
       assert_operator response.features.size, :>, 0
